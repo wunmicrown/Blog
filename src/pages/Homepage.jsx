@@ -80,7 +80,7 @@ const Homepage = () => {
                 </Link>
               </div>
               {/* Register Form */}
-              <Register />
+              <Register/>
             </div>
           </div>
         </div>

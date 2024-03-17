@@ -1,11 +1,11 @@
 import React from 'react'
 
-const Write = () => {
-  return (
-    <>
-        <div>Write</div>
-    </>
-  )
+const Writes = () => {
+    return (
+        <>
+            <div>Writes</div>
+        </>
+    )
 }
 
-export default Write
+export default Writes

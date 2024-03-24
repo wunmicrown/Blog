@@ -8,8 +8,8 @@ const Layout = () => {
   return (
     <>
     <main>
-        {/* <PublicNavbar/> */}
-        <PrivateNavbar/>
+        <PublicNavbar/>
+        {/* <PrivateNavbar/> */}
         <Outlet/>
         <Footer/>
         

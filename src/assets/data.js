@@ -7,26 +7,28 @@ import cover6 from '../assets/imgs/ca3.png'
 import cover7 from '../assets/imgs/ca7.png'
 import cover8 from '../assets/imgs/ca5.png'
 export const category = [
+    
+  {
+    id: 1,
+    category: "Technology",
+    title: "There's always light at the end of the tunnel",
+    cover:cover1,
+  },
+  
     {
-      id: 1,
-      category: "Life",
-      title: "Stay Calm And Surf",
-      cover:cover1
-    },
-    {
-      id: 2,
+      id: 6,
       category: "Fashion",
       title: "Becoming a Dragonfly",
       cover:cover2,
     },
     {
-      id: 3,
+      id: 4,
       category: "Travel",
       title: "There's always light at the end of the tunnel",
       cover: cover3
     },
     {
-      id: 4,
+      id: 3,
       category: "Sport",
       title: "Stay Calm And Surf",
       cover:cover4,
@@ -38,7 +40,7 @@ export const category = [
       cover:cover5,
     },
     {
-      id: 6,
+      id: 2,
       category: "Web devlopment",
       title: "Becoming a Dragonfly",
       cover:cover6,
@@ -51,8 +53,8 @@ export const category = [
     },
     {
       id: 8,
-      category: "Technology",
-      title: "There's always light at the end of the tunnel",
-      cover:cover8,
+      category: "Life",
+      title: "Stay Calm And Surf",
+      cover:cover8
     },
   ]

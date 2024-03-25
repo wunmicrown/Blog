@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import logoImg from '../../assets/img/blog-logo.png'
+import logoImg from '../../assets/imgs/blog-logo.png'
 import { Link } from 'react-router-dom'
 import { IoSettingsOutline } from "react-icons/io5"
 import { BsBagCheck } from "react-icons/bs"

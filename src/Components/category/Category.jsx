@@ -6,6 +6,7 @@ import "slick-carousel/slick/slick-theme.css"
 import Slider from "react-slick"
 import { GrFormPrevious } from "react-icons/gr"
 import { MdNavigateNext } from "react-icons/md"
+import image from '../../assets/imgs/ca3.png'
 
 const SampleNextArrow = (props) => {
   const { onClick } = props
@@ -57,7 +58,7 @@ const Category = () => {
                 <div className='box' key={item.id}>
                   <img src={item.cover} alt='cover' />
                   <div className='overlay'>
-                    <h4>{item.category}</h4>
+                    <h4>{item.category}</h4>  
                     <p>{item.title}</p>
                   </div>
                 </div>

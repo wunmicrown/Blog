@@ -20,7 +20,7 @@ const ForgotPassword = () => {
             console.log(response);
             toast.success(response.data.message);
             if (response.data.status) {
-                navigate(`/verify-email?email=${email}`);
+                navigate(`/password-reset-verification?email=${email}`);
             }
         } catch (error) {
             console.error("Error resetting email:", error);

@@ -3,10 +3,10 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API_URL } from "../constants/Api";
+import { API_URL } from "../../components/constants/Api";
 
 const PasswordReset = () => {
-  const URL = `${API_URL}/v1/auth/resetpassword`;
+  const URL = `${API_URL}/users/reset-password`;
   const navigate = useNavigate();
   const [params] = useSearchParams();
   const email = params.get("email");
@@ -63,7 +63,7 @@ const PasswordReset = () => {
 
   return (
     <div className="flex justify-center items-center h-screen ">
-      <div className="bg-[#121212] p-8 rounded-lg shadow-lg w-96">
+      <div className="p-8 rounded-lg shadow-lg w-96">
         <div className="text-2xl font-bold mb-4 text-center text-blue-700">
           <BsShieldLock className="inline-block text-blue-500 text-4xl mr-2" />
           Change Password

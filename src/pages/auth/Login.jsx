@@ -67,7 +67,7 @@ const Login = () => {
                   onChange={loginFormik.handleChange}
                   value={loginFormik.values.email}
                   autoComplete="username"
-                  className="mt-1 p-2 flex-grow shadow border-gray-300 rounded-lg placeholder-gray-500 focus:border-green-500  focus:ring-green-500"
+                  className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-300 rounded-lg focus:ring focus:ring-green-200"
                   placeholder="Email Address"
                 />
               </div>
@@ -84,7 +84,7 @@ const Login = () => {
                   type="password"
                   onChange={loginFormik.handleChange}
                   value={loginFormik.values.password}
-                  className="mt-1 p-2 flex-grow shadow bg-white focus:border-blue-500 rounded-lg"
+                  className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-300 rounded-lg focus:ring focus:ring-green-200"
                   placeholder="Password"
                   autoComplete="current-password"
                 />

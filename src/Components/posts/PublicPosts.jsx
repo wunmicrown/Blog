@@ -106,12 +106,12 @@ const PublicPosts = () => {
                   Create an account or login to view more posts
                 </p>
                 <Link to={"/register"}>
-                  <button className="mb-4 w-full px-4 py-2 font-semibold text-white bg-blue-500 rounded hover:bg-blue-700">
+                  <button  className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-400 to-blue-600 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse">
                     Create Account
                   </button>
                 </Link>
                 <Link to={"/login"}>
-                  <button className="w-full px-4 py-2 font-semibold text-white bg-green-500 rounded hover:bg-green-700">
+                  <button className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-400 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse">
                     Login
                   </button>
                 </Link>

@@ -7,7 +7,7 @@ import Register from './pages/auth/Register'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import VerifyEmail from './pages/auth/VerifyEmail'
-import Layout from './components/Layout'
+import Layout from '../src/components/Layout'
 
 
 const App = () => {

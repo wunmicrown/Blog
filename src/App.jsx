@@ -26,9 +26,9 @@ const App = () => {
                 theme="light"
             />
             <Routes>
-                <Route element={<Layout />}>
+                <Route index element={<Layout />}>
                     
-                    <Route index element={<Homepage />} />
+                    <Route path='/' element={<Homepage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />

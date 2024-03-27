@@ -2,10 +2,12 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Login from './pages/auth/Login'
 import Write from './pages/Write'
-import { ToastContainer } from 'react-toastify'
 import Homepage from './pages/Homepage'
 import Register from './pages/auth/Register'
 import Layout from './components/Layout'
+import { ToastContainer } from 'react-toastify'
+import "react-toastify/dist/ReactToastify.css";
+
 
 const App = () => {
 

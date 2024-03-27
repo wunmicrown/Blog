@@ -5,6 +5,7 @@ import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
 import { loginSchema } from "../../components/validationSchema/loginSchema";
 import { API_URL } from "../../components/constants/Api";
 import { toast } from "react-toastify";
+import { FaBlog } from "react-icons/fa";
 
 const Login = () => {
   const URL = `${API_URL}/users/login`;
@@ -50,12 +51,12 @@ const Login = () => {
 
   return (
     <>
-      <div className="pt-44 bg-[#272A2B] h-screen">
-        <div className="max-w-md mx-auto shadow-lg bg-[#121212] p-5 rounded text-gray-300">
-          <h2 className="text-2xl mb-4 text-center font-bold text-blue-600 pt-4">Login</h2>
+      <div className="pt-44 h-screen">
+        <div className="max-w-md mx-auto shadow-lg p-5 rounded text-gray-500">
           <form onSubmit={loginFormik.handleSubmit} className="space-y-4">
+        <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-8 mb-8" />
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+              <label htmlFor="email" className="block text-sm font-medium text-gray-500">
                 Email Address
               </label>
               <div className="flex items-center border rounded-md px-3 py-2">
@@ -66,14 +67,14 @@ const Login = () => {
                   onChange={loginFormik.handleChange}
                   value={loginFormik.values.email}
                   autoComplete="username"
-                  className="mt-1 p-2 flex-grow shadow bg-white  focus:border-blue-500 rounded-lg"
+                  className="mt-1 p-2 flex-grow shadow   focus:border-green-500 rounded-lg focus:ring-green-500"
                   placeholder="Email Address"
                 />
               </div>
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-300">
+              <label htmlFor="password" className="block text-sm font-medium text-gray-500">
                 Password
               </label>
               <div className="flex items-center border rounded-md px-3 py-2">

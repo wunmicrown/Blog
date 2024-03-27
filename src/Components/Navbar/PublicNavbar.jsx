@@ -14,7 +14,7 @@ const PublicNavbar = () => {
   };
 
   return (
-    <Disclosure as="nav" className="bg-white shadow fixed w-full top-0 z-10">
+    <Disclosure as="nav" className="bg-white shadow fixed w-full top-0 z-50">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">

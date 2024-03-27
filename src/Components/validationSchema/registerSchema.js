@@ -1,6 +1,6 @@
 import * as yup from "yup";
 
-export const validationSchema = yup.object({
+export const registerSchema = yup.object({
   username: yup
     .string()
     .required("Last name is required")

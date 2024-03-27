@@ -1,101 +1,130 @@
-import React, { useEffect, useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
+import { API_URL } from "../../components/constants/Api";
+import { registerSchema } from "../../components/validationSchema/registerSchema";
+import { toast } from "react-toastify";
 
-const Register = () => {
-  //! Nvaigation hook
+const SignUp = () => {
+  const URL = `${API_URL}`;
   const navigate = useNavigate();
-  const [formData, setFormData, error] = useState({
-    email: "",
-    password: "",
-    username: "",
-  });
 
-  //handle form change
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+  const onSubmit = async (values) => {
+    try {
+      const response = await axios.post(URL, values);
+      console.log(response);
+      localStorage.setItem('userDetails', JSON.stringify(response.data.user));
+
+      toast.success("User registered successfully. Verification OTP sent to email.");
+      navigate("/verify-email");
+    } catch (error) {
+      toast.error(`Sign up failed: ${error.response.data}`);
+    }
   };
 
-  //handle form submit
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    // reset form
-    setFormData({
+  const { handleChange, handleSubmit, values, errors } = useFormik({
+    initialValues: {
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
-      username: "",
-      
-    });
-  };
-
-
+    },
+    registerSchema,
+    onSubmit,
+  });
 
   return (
-    <form onSubmit={handleSubmit} className="w-full pl-2 lg:w-1/2">
-      <div className="flex flex-col items-center p-10 xl:px-24 xl:pb-12 bg-white lg:max-w-xl lg:ml-auto rounded-4xl shadow-2xl">
-        <h2 className="mb-4 text-2xl md:text-3xl text-coolGray-900 font-bold text-center">
-          Join our community
-        </h2>
-       
-        <h3 className="mb-7 text-base md:text-lg text-coolGray-500 font-medium text-center">
-          Discover a world of like-minded individuals who share your interests,
-          passions, and goals
-        </h3>
-        <label className="mb-4 flex flex-col w-full">
-          <span className="mb-1 text-coolGray-800 font-medium">Username</span>
-          <input
-            className="py-3 px-3 leading-5 w-full text-coolGray-400 font-normal border border-coolGray-200 outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-sm"
-            type="text"
-            placeholder="Enter your username"
-            value={formData.username}
-            onChange={handleChange}
-            name="username"
-          />
-        </label>
-        <label className="mb-4 flex flex-col w-full">
-          <span className="mb-1 text-coolGray-800 font-medium">Email</span>
-          <input
-            className="py-3 px-3 leading-5 w-full text-coolGray-400 font-normal border border-coolGray-200 outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-sm"
-            placeholder="Enter your username"
-            type="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-        </label>
-        <label className="mb-4 flex flex-col w-full">
-          <span className="mb-1 text-coolGray-800 font-medium">Password</span>
-          <input
-            className="py-3 px-3 leading-5 w-full text-coolGray-400 font-normal border border-coolGray-200 outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-lg shadow-sm"
-            type="password"
-            placeholder="Enter your password"
-            value={formData.password}
-            onChange={handleChange}
-            name="password"
-          />
-        </label>
-{/* 
-        {loading ? (
-          <LoadingComponent />
-        ) : ( */}
-          <button
-            className="mb-4 inline-block py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-green-500 hover:bg-green-600 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md"
-            type="submit"
-          >
-            Get Started
-          </button>
-        {/* )} */}
-
-        <p className="text-sm text-coolGray-400 font-medium text-center">
-          <span>Already have an account?</span>
-          <Link className="text-green-500 hover:text-green-600" to="/login">
-            Sign In
-          </Link>
-        </p>
-      </div>
-    </form>
+   <>
+     <section className="bg-[#272A2B] h-screen">
+     <main className=" pt-28">
+        <div className="max-w-md mx-auto shadow-lg p-6  bg-[#121212] rounded">
+      <h2 className="text-2xl mb-4 text-center font-bold text-blue-600">Sign Up</h2>
+      <form onSubmit={handleSubmit}>
+        <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                First Name
+              </label>
+          <div className="flex items-center border rounded-md px-3 py-2">
+            <AiOutlineUser className="mr-2 text-gray-300" />
+            <input
+              type="text"
+              name="firstName"
+              onChange={handleChange}
+              value={values.firstName}
+              placeholder="First Name"
+              className="bg-white focus:border-blue-400 rounded-lg shadow-sm appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <span className="text-red-500">{errors.firstName}</span>
+        </div>
+        <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                Last Name
+              </label>
+          <div className="flex items-center border rounded-md px-3 py-2">
+            <AiOutlineUser className="mr-2 text-gray-300 " />
+            <input
+              type="text"
+              name="lastName"
+              onChange={handleChange}
+              value={values.lastName}
+              placeholder="Last Name"
+              className="bg-white focus:border-blue-400 rounded-lg shadow-sm appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <span className="text-red-500">{errors.lastName}</span>
+        </div>
+        <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                Email Address
+              </label>
+          <div className="flex items-center border rounded-md px-3 py-2">
+            <AiOutlineMail className="mr-2 text-gray-300" />
+            <input
+              type="text"
+              name="email"
+              onChange={handleChange}
+              value={values.email}
+              placeholder="Email Address"
+              className="bg-white focus:border-blue-400 rounded-lg shadow-sm appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <span className="text-red-500">{errors.email}</span>
+        </div>
+        <div className="mb-4">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-300">
+                Password
+              </label>
+          <div className="flex items-center border rounded-md px-3 py-2">
+            <AiOutlineLock className="mr-2 text-gray-300" />
+            <input
+              type="password"
+              name="password"
+              onChange={handleChange}
+              value={values.password}
+              placeholder="Password"
+              className="bg-white focus:border-blue-400 rounded-lg shadow-sm appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            />
+          </div>
+          <span className="text-red-500">{errors.password}</span>
+        </div>
+        <button
+          type="submit"
+          className="w-full bg-blue-500 text-white py-2 rounded-md hover:bg-blue-600"
+        >
+          Sign Up
+        </button>
+        <div className="text-center mt-4">
+          <p className="text-gray-300">Already have an account?</p>
+          <Link to="/login" className="text-blue-500 hover:underline">Login here</Link>
+        </div>
+      </form>
+    </div>
+    </main>
+     </section>
+   </>
   );
 };
 
-export default Register;
+export default SignUp;

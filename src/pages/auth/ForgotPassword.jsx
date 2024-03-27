@@ -2,7 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API_URL } from "../constants/Api";
+import { API_URL } from "../../components/constants/Api";
+import { AiOutlineMail } from "react-icons/ai";
+import Loading from "../../components/loading/Loading";
 
 const ForgotPassword = () => {
   const URL = `${API_URL}/users/reset-email`;
@@ -29,29 +31,42 @@ const ForgotPassword = () => {
   return (
     <>
     
-    <div className="flex items-center  justify-center h-screen text-gray-400">
-      <div className="bg-[#121212] shadow-md rounded-lg p-8">
-        <h1 className="text-3xl font-bold mb-4 text-blue-700">Find Your Account</h1>
-        <p className="mb-4">
-          Please enter your email address or mobile number to search for your
-          account.
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
+      <div className="w-96 p-6 bg-white rounded-xl shadow-md">
+        <h1 className="text-3xl font-bold text-gray-700 text-center mb-6">Reset your password</h1>
+        <p className="text-gray-600 text-center mb-4">
+        Enter your email address and we'll send you a otp to reset your
+          password.
         </p>
-        <div className="flex items-center border-b border-gray-300 mb-4">
+        <div className="mb-6 relative">
+          <AiOutlineMail className="absolute text-gray-500 text-2xl top-2 left-2" />
           <input
-            type="email"
+            name="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email address or mobile number"
-            className="flex-1 mr-2 border-none focus:outline-none bg-slate-200 rounded-lg w-[444px] p-3"
+            type="email"
+            placeholder="Enter your email"
+            className="pl-10 pr-4 py-2 w-full border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
           />
         </div>
-        <button
+        {/* <button
           className="bg-blue-600 text-white px-4 py-2 rounded-lg"
           onClick={handleSubmit}
           disabled={loading}
         >
-          {loading ? "Loading..." : "Reset Email"}
-        </button>
+          {loading ? (<Loading/>) : " Send reset otp"}
+        </button> */}
+        {loading ? (
+          <Loading/>
+        ) : (
+          <button 
+          className="w-full px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none"
+          onClick={handleSubmit}
+          disabled={loading}
+          >
+            Send reset otp
+          </button>
+        )}
       </div>
     </div>
     </>

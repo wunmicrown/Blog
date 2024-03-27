@@ -4,10 +4,10 @@ import Login from './pages/auth/Login'
 import Write from './pages/Write'
 import Homepage from './pages/Homepage'
 import Register from './pages/auth/Register'
-import Layout from './components/Layout'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 import VerifyEmail from './pages/auth/VerifyEmail'
+import Layout from './components/Layout'
 
 
 const App = () => {
@@ -27,17 +27,18 @@ const App = () => {
                 theme="light"
             />
             <Routes>
-                <Route path="/" element={<Layout/>}>
+                <Route path="/" element={<Layout />}>
+                    
                     <Route index element={<Homepage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
-                    <Route path="/write" element={<Write/>} />
+                    <Route path="/write" element={<Write />} />
                     {/* <Route path="/posts" element={<Posts/>} /> */}
 
                 </Route>
             </Routes>
-          
+
 
         </>
     )

@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import VerifyEmail from './pages/auth/VerifyEmail';
 import Layout from './components/layout/Layout';
 import ForgotPassword from './pages/auth/ForgotPassword';
+import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 
 const App = () => {
     return (
@@ -31,6 +32,7 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
+                    <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/write" element={<Write />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     {/* <Route path="/posts" element={<Posts/>} /> */}

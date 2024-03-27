@@ -78,7 +78,7 @@ const VerifyEmail = () => {
                             onChange={formik.handleChange}
                             value={formik.values.otp}
                             placeholder="Enter OTP"
-                            className="bg-white focus:border-green-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="bg-white font-medium placeholder-gray-500 focus:border-green-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
                         </div>
                         <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={loading}>

@@ -93,7 +93,7 @@ const Login = () => {
 
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 outline-none focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-50"
+              className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-900 focus:ring-offset-2 focus:ring-offset-green-100"
             >
               Login
             </button>
@@ -102,11 +102,11 @@ const Login = () => {
                 <input type="checkbox" className="mr-2" />
                 <span>Remember me</span>
               </div>
-              <Link to="/reset-email" className="text-blue-600">Forgot password?</Link>
+              <Link to="/reset-email" className="text-green-500">Forgot password?</Link>
             </div>
             <div className="flex">
               <p>Don't have an account <span>
-                <Link to='/register' className=" text-blue-600">Register</Link></span></p>
+                <Link to='/register' className=" text-green-500">Register</Link></span></p>
             </div>
           </form>
         </div>

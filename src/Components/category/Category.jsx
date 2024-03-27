@@ -43,7 +43,7 @@ const Category = () => {
   };
 
   return (
-    <section className="category mt-8">
+    <section className=" pt-16">
       <div className="content">
         <Slider {...settings}>
           {category.map((item) => (

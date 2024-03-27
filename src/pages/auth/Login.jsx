@@ -51,7 +51,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="pt-44 h-screen">
+      <div className="pt-20 h-screen">
         <div className="max-w-md mx-auto shadow-lg p-5 rounded text-gray-500">
           <form onSubmit={handleSubmit} className="space-y-4">
             <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-8 mb-8" />

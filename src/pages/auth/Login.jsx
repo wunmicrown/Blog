@@ -67,7 +67,7 @@ const Login = () => {
                   onChange={loginFormik.handleChange}
                   value={loginFormik.values.email}
                   autoComplete="username"
-                  className="mt-1 p-2 flex-grow shadow   focus:border-green-500 rounded-lg focus:ring-green-500"
+                  className="mt-1 p-2 flex-grow shadow border-gray-300 rounded-lg placeholder-gray-500 focus:border-green-500  focus:ring-green-500"
                   placeholder="Email Address"
                 />
               </div>

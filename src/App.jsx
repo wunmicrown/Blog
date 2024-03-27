@@ -7,6 +7,7 @@ import Register from './pages/auth/Register'
 import Layout from './components/Layout'
 import { ToastContainer } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import VerifyEmail from './pages/auth/VerifyEmail'
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
                     <Route index element={<Homepage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
+                    <Route path="/verify-email" element={<VerifyEmail />} />
                     <Route path="/write" element={<Write/>} />
                     {/* <Route path="/posts" element={<Posts/>} /> */}
 

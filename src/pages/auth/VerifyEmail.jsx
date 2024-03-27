@@ -4,6 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { API_URL } from '../../components/constants/Api';
 import { toast } from 'react-toastify';
+import { FaBlog } from 'react-icons/fa';
 
 const VerifyEmail = () => {
     const navigate = useNavigate();
@@ -23,17 +24,17 @@ const VerifyEmail = () => {
             const savedUser = localStorage.getItem('userDetails');
             if (!savedUser) return navigate("/login");
             const { email } = JSON.parse(savedUser);
-            if (!email) return navigate("/login");  
+            if (!email) return navigate("/login");
 
             try {
                 const response = await axios.post(URL, { ...values, email });
                 console.log(response);
-                if (response.data.user.emailVerified) {
+                if (response.data.user.isEmailVerified) {
                     navigate('/dashboard');
                     toast.success("OTP verified successfully");
-                } else {    
+                } else {
                     // Email not verified
-                    navigate('/login'); // Navigate back to login
+                    navigate('/register'); // Navigate back to login
                     toast.error("Email verification failed");
                 }
             } catch (error) {
@@ -62,22 +63,28 @@ const VerifyEmail = () => {
     return (
         <div className="flex justify-center items-center h-screen">
             <div className="w-full max-w-xs">
-                <div className="bg-[#121212] shadow-md rounded px-8 pt-6 pb-8 mb-4">
-                    <h2 className="block text-center text-xl mb-6 text-blue-700 font-bold">Verify OTP</h2>
+                <div className="shadow-lg rounded px-8 pt-6 pb-8 mb-4">
+                <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-2 mb-6" />
                     {error && <p className="text-red-500 text-xs italic">{error}</p>}
                     <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
+                        <div className="">
+
+                        <label htmlFor="Verify OTP" className="block text-sm mb-2 font-medium text-gray-500">
+                            Verify OTP
+                        </label>
                         <input
                             type="text"
                             name="otp"
                             onChange={formik.handleChange}
                             value={formik.values.otp}
                             placeholder="Enter OTP"
-                            className="bg-white focus:border-blue-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            className="bg-white focus:border-green-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                         />
-                        <button type="submit" className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={loading}>
+                        </div>
+                        <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={loading}>
                             {loading ? 'Verifying...' : 'Verify'}
                         </button>
-                        <button type="button" onClick={handleResendOTP} className="bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={resendLoading}>
+                        <button type="button" onClick={handleResendOTP} className="mb-4  p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-400 to-yellow-200 hover:from-purple-200 hover:to-green-400 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulsee" disabled={resendLoading}>
                             {resendLoading ? 'Resending...' : 'Resend OTP'}
                         </button>
 

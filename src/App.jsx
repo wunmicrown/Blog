@@ -27,7 +27,7 @@ const App = () => {
                 theme="light"
             />
             <Routes>
-                <Route path="/" element={<Layout />}>
+                <Route element={<Layout />}>
                     
                     <Route index element={<Homepage />} />
                     <Route path="/login" element={<Login />} />

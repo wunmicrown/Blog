@@ -8,6 +8,7 @@ import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import VerifyEmail from './pages/auth/VerifyEmail';
 import Layout from './components/layout/Layout';
+import ForgotPassword from './pages/auth/ForgotPassword';
 
 const App = () => {
     return (
@@ -31,6 +32,7 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
                     <Route path="/write" element={<Write />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
                     {/* <Route path="/posts" element={<Posts/>} /> */}
                 </Route>
             </Routes>

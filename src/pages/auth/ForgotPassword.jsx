@@ -5,7 +5,7 @@ import { toast } from "react-toastify";
 import { API_URL } from "../constants/Api";
 
 const ForgotPassword = () => {
-  const URL = `${API_URL}/v1/api/resetEmail`;
+  const URL = `${API_URL}/users/reset-email`;
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ const ForgotPassword = () => {
       const response = await axios.post(URL, { email });
       toast.success(response.data.message);
       if (response.data.status) {
-        navigate(`/confirm-otp?email=${email}`);
+        navigate(`/verify-email?email=${email}`);
       }
     } catch (error) {
       console.error("Error resetting email:", error);

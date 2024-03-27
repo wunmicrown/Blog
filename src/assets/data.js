@@ -1,8 +1,7 @@
 import cover1 from '../assets/imgs/ca3.png'
-import cover3 from '../assets/imgs/ca6.png'
+import cover3 from '../assets/imgs/b6.jpg'
 import cover6 from '../assets/imgs/b9.jpg'
 import cover7 from '../assets/imgs/ca7.png'
-import cover8 from '../assets/imgs/b6.jpg'
 export const category = [
     
   {
@@ -37,6 +36,6 @@ export const category = [
       id: 8,
       category: "Javascript",
       title: "Stay Calm And Surf",
-      cover:cover8
+      cover:cover3
     },
   ]

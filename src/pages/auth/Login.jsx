@@ -11,12 +11,12 @@ const Login = () => {
   const URL = `${API_URL}/users/login`;
   const navigate = useNavigate();
 
-  const loginFormik = useFormik({
+  const { handleChange, handleSubmit, values, errors } = useFormik({
     initialValues: {
       email: '',
       password: '',
     },
-    loginSchema,
+    validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
         const { data } = await axios.post(URL, values);
@@ -53,8 +53,8 @@ const Login = () => {
     <>
       <div className="pt-44 h-screen">
         <div className="max-w-md mx-auto shadow-lg p-5 rounded text-gray-500">
-          <form onSubmit={loginFormik.handleSubmit} className="space-y-4">
-        <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-8 mb-8" />
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-8 mb-8" />
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-500">
                 Email Address
@@ -64,13 +64,14 @@ const Login = () => {
                 <input
                   name="email"
                   type="text"
-                  onChange={loginFormik.handleChange}
-                  value={loginFormik.values.email}
+                  onChange={handleChange}
+                  value={values.email}
                   autoComplete="username"
                   className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-300 rounded-lg focus:ring focus:ring-green-200"
                   placeholder="Email Address"
                 />
               </div>
+              <span className="text-red-500">{errors.email}</span>
             </div>
 
             <div>
@@ -82,13 +83,14 @@ const Login = () => {
                 <input
                   name="password"
                   type="password"
-                  onChange={loginFormik.handleChange}
-                  value={loginFormik.values.password}
+                  onChange={handleChange}
+                  value={values.password}
                   className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-300 rounded-lg focus:ring focus:ring-green-200"
                   placeholder="Password"
                   autoComplete="current-password"
                 />
               </div>
+              <span className="text-red-500">{errors.password}</span>
             </div>
 
             <button

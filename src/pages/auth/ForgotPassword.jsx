@@ -17,6 +17,7 @@ const ForgotPassword = () => {
         try {
             setLoading(true);
             const response = await axios.post(URL, { email });
+            console.log(response);
             toast.success(response.data.message);
             if (response.data.status) {
                 navigate(`/verify-email?email=${email}`);

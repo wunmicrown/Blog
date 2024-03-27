@@ -34,7 +34,7 @@ const VerifyEmail = () => {
                     toast.success("OTP verified successfully");
                 } else {
                     // Email not verified
-                    navigate('/register'); // Navigate back to login
+                    navigate('/login'); // Navigate back to login
                     toast.error("Email verification failed");
                 }
             } catch (error) {

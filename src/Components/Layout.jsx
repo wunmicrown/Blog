@@ -9,7 +9,7 @@ const Layout = () => {
   return (
     <>
       <main>
-        <PublicNavbar />
+        {/* <PublicNavbar /> */}
         <PrivateNavbar />
         <Outlet />
         <Footer />

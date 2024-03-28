@@ -1,4 +1,4 @@
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
@@ -45,7 +45,7 @@ const PrivateNavbar = () => {
                     Home
                   </Link>
                   <Link
-                    to={"/login"}
+                    to={"/posts"}
                     className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-600 hover:text-green-300"
                   >
                     Posts
@@ -56,7 +56,7 @@ const PrivateNavbar = () => {
               <div className="flex items-center">
                 <div className="flex-shrink-0">
                   <Link
-                    to={"/login"}
+                    to={"/create-post"}
                     className="ml-2 relative  items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300  hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
                   >
                     <PlusIcon className="-ml-0.5 h-5 w-5 " aria-hidden="true" />
@@ -85,7 +85,7 @@ const PrivateNavbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to={""}
+                              to={"/dashboard"}
                               className={`${active ? "bg-gray-100" : ""
                                 } block px-4 py-2 text-sm text-gray-700`}
                             >
@@ -96,7 +96,7 @@ const PrivateNavbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to={""}
+                              to={"/profile"}
                               className={`${active ? "bg-gray-100" : ""
                                 } block px-4 py-2 text-sm text-gray-700`}
                             >
@@ -107,7 +107,7 @@ const PrivateNavbar = () => {
                         <Menu.Item>
                           {({ active }) => (
                             <Link
-                              to=""
+                              to="/settings"
                               className={`${active ? "bg-gray-100" : ""
                                 } block px-4 py-2 text-sm text-gray-700`}
                             >
@@ -144,7 +144,7 @@ const PrivateNavbar = () => {
                 Home
               </Link>
               <Link
-                to={"/login"}
+                to={"/posts"}
                 className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-green-600 hover:bg-gray-50 hover:text-green-300 sm:pl-5 sm:pr-6"
               >
                 Posts

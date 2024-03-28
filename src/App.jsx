@@ -11,6 +11,8 @@ import VerifyEmail from './pages/auth/VerifyEmail';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
+import DashboardPath from './components/dashboardsFolder/DashboardPath';
+import Dashboard from './components/dashboardsFolder/Dashboard';
 
 const App = () => {
     return (
@@ -37,7 +39,12 @@ const App = () => {
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/write" element={<Write />} />
-                    {/* <Route path="/posts" element={<Posts/>} /> */}
+
+                    <Route path='/' element={<DashboardPath/>}>
+                        <Route path="/dashboard" element={<Dashboard />} />
+                        {/* <Route path="/posts/:id" element={<Post />} /> */}
+
+                    </Route>
                 </Route>
             </Routes>
         </>

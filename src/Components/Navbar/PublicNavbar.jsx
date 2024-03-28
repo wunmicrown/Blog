@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import { FaBlog } from "react-icons/fa";
 
 const PublicNavbar = () => {
-  const user = true;
+  // const user = true;
   const [profileOpen, setProfileOpen] = useState(false);
 
   const close = () => {

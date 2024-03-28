@@ -5,12 +5,12 @@ import PrivateNavbar from './Navbar/PrivateNavbar';
 import Footer from './Footer';
 
 const Layout = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState(false); // Set initial state to false for not logged in
+  const [isLoggedIn, setIsLoggedIn] = useState(false); 
 
   return (
     <>
       <main>
-        {isLoggedIn ? <PrivateNavbar /> : <PublicNavbar />}
+        {isLoggedIn ? <PrivateNavbar />: <PublicNavbar />}
         <Outlet />
         <Footer />
       </main>

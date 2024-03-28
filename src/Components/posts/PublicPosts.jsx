@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import Loading from '../loading/Loading';
 import Warning from '../loading/Warning';
 import truncatePost from '../../utils/truncatepost';
-import Modal from '../modal/modal';
+import Modal from '../Modal';
 
 const PublicPosts  = () => {
   const URL = `${API_URL}/posts`
@@ -73,7 +73,6 @@ const PublicPosts  = () => {
                       <Link
                        to={``}
                         className="block mb-6 overflow-hidden rounded-md"
-                        onClick={openModal} 
                         >
                         <img className="w-full" src={post?.coverImgUrl} />
                         
@@ -97,7 +96,8 @@ const PublicPosts  = () => {
                       </p>
                       <Link
                         className="inline-flex items-center text-base md:text-lg text-green-500 hover:text-green-600 font-semibold"
-                        to={`/posts/${post?._id}`}
+                        // to={`/posts/${post?._id}`}
+                        onClick={openModal} 
                       >
                         <span className="mr-3">Read Post</span>
                         <svg
@@ -124,7 +124,7 @@ const PublicPosts  = () => {
             {/* {!user?.userdetails && <Warning />} */}
           </div>
         </section>
-      </div>
+      </div>  
     </div>
   );
 };

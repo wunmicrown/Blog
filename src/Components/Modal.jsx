@@ -1,6 +1,7 @@
 // Modal.js
 
 import React from 'react';
+import { FaBlog } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const Modal = ({ closeModal }) => {
@@ -16,8 +17,11 @@ const Modal = ({ closeModal }) => {
           </button>
         </div>
         <hr className='mb-8' />
-        <p className="mb-8">Blogify</p>
-        <p className="mb-8">
+          <div>
+          <FaBlog className=" text-green-500 h-16 w-20 mt-8 mb-8" />
+
+          </div>
+        <p className="mb-8 text-[16px] font-medium text-black">
           We're a place where coders share, stay up-to-date and grow their careers.
         </p>
         <div className="flex flex-col">

@@ -40,12 +40,12 @@ const App = () => {
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/write" element={<Write />} />
 
+                </Route>
                     <Route path='/' element={<DashboardPath/>}>
                         <Route path="/dashboard" element={<Dashboard />} />
                         {/* <Route path="/posts/:id" element={<Post />} /> */}
 
                     </Route>
-                </Route>
             </Routes>
         </>
     );

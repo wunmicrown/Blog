@@ -3,7 +3,8 @@ import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { FaBlog } from "react-icons/fa";
-import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { Bars3Icon, ServerStackIcon, XMarkIcon } from "@heroicons/react/24/outline";
+import { BsSearch } from "react-icons/bs";
 
 const PrivateNavbar = () => {
 
@@ -32,11 +33,12 @@ const PrivateNavbar = () => {
                   </Link>
 
                   <FaBlog className="hidden text-green-400 h-8 w-auto lg:block" />
+                  
                 </div>
                 <div className="hidden md:ml-6 md:flex md:space-x-8">
                   {/* Current: "border-green-600 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-green-300" */}
                   <Link
-                    to={"/"}
+                    to={"/dashboard"}
                     className="
                     inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-900 
                     hover:border-green-600 hover:text-green-300
@@ -44,13 +46,17 @@ const PrivateNavbar = () => {
                   >
                     Home
                   </Link>
-                  <Link
-                    to={"/posts"}
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-600 hover:text-green-300"
-                  >
-                    Posts
-                  </Link>
+                  <div className=" mt-4 ">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      className=" p-20 py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
+                    />
+                    <span className="absolute hover:bg-green-400 pl-2 rounded-lg">
+                    <BsSearch className="absolute top-3 right-5 text-gray-800" size={20} />
 
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="flex items-center">
@@ -63,6 +69,7 @@ const PrivateNavbar = () => {
                     Create Post
                   </Link>
                 </div>
+
                 <div className=" md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                   <Menu as="div" className="relative ml-3">
                     <Menu.Button className="flex rounded-full bg-white text-sm focus:shadow-xl hover:focus:outline-none hover:focus:ring-2 hover:focus:ring-green-500 focus:ring-offset-2">
@@ -135,10 +142,21 @@ const PrivateNavbar = () => {
           </div>
 
           <Disclosure.Panel className="md:hidden">
+          <div className=" mt-4">
+                    <input
+                      type="text"
+                      placeholder="Search..."
+                      className=" py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
+                    />
+                    <span className="absolute hover:bg-green-400 pl-2 rounded-lg">
+                    <BsSearch className="absolute top-3 right-5 text-gray-800" size={20} />
+
+                    </span>
+                  </div>
             <div className="space-y-1 pt-2 pb-3">
               {/* Current: "bg-indigo-50 border-green-600 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-green-600 hover:text-green-300" */}
               <Link
-                to={"/"}
+                to={"/dashboard"}
                 className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-green-600 hover:bg-gray-50 hover:text-green-300 sm:pl-5 sm:pr-6"
               >
                 Home

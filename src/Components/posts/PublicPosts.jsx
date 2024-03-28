@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 import Loading from '../loading/Loading';
 import Warning from '../loading/Warning';
 import truncatePost from '../../utils/truncatepost';
+import Modal from '../modal/modal';
 
 const PublicPosts  = () => {
   const URL = `${API_URL}/posts`
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [selectedPost, setSelectedPost] = useState(null); 
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -27,6 +30,16 @@ const PublicPosts  = () => {
 
     fetchPosts();
   }, []);
+
+    // Function to open the modal and set the selected post
+    const openModal = () => {
+      setIsModalOpen(true);
+    };
+  
+    // Function to close the modal
+    const closeModal = () => {
+      setIsModalOpen(false);
+    };
 
   return (
     <div>
@@ -57,8 +70,13 @@ const PublicPosts  = () => {
                 posts?.posts?.map((post) => {
                   return (
                     <div key={post._id} className="w-full md:w-1/2 px-4 mb-8">
-                      <Link to={`/posts/${post?._id}`} className="block mb-6 overflow-hidden rounded-md">
+                      <Link
+                       to={``}
+                        className="block mb-6 overflow-hidden rounded-md"
+                        onClick={openModal} 
+                        >
                         <img className="w-full" src={post?.coverImgUrl} />
+                        
                       </Link>
                       <div className="mb-4">
                         <span className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm">
@@ -101,6 +119,7 @@ const PublicPosts  = () => {
 
               )}
             </div>
+            {isModalOpen && <Modal />}
                 <Warning/>
             {/* {!user?.userdetails && <Warning />} */}
           </div>

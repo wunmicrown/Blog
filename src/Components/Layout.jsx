@@ -1,8 +1,8 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-import PublicNavbar from '../Navbar/PublicNavbar'
-import PrivateNavbar from '../Navbar/PrivateNavbar'
-import Footer from '../Footer'
+import PublicNavbar from './Navbar/PublicNavbar'
+import PrivateNavbar from './Navbar/PrivateNavbar'
+import Footer from './Footer'
 
 
 const Layout = () => {

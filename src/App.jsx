@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
+import Layout from './components/Layout';
 import Login from './pages/auth/Login';
 import Write from './pages/Write';
 import Homepage from './pages/Homepage';
@@ -7,7 +8,6 @@ import Register from './pages/auth/Register';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import VerifyEmail from './pages/auth/VerifyEmail';
-import Layout from './components/layout/Layout';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';

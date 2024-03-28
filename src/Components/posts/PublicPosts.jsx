@@ -3,8 +3,9 @@ import axios from 'axios';
 import { API_URL } from '../constants/Api';
 import { Link } from 'react-router-dom';
 import Loading from '../loading/Loading';
+import Warning from '../loading/Warning';
 
-const PublicPosts = () => {
+const PublicPosts  = () => {
   const URL = `${API_URL}/posts`
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -99,9 +100,8 @@ const PublicPosts = () => {
 
               )}
             </div>
-
-            
-            {!user?.userdetails && <Warning />}
+                <Warning/>
+            {/* {!user?.userdetails && <Warning />} */}
           </div>
         </section>
       </div>

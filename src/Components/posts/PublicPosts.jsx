@@ -119,7 +119,7 @@ const PublicPosts  = () => {
 
               )}
             </div>
-            {isModalOpen && <Modal />}
+            {isModalOpen && <Modal closeModal={closeModal} />}
                 <Warning/>
             {/* {!user?.userdetails && <Warning />} */}
           </div>

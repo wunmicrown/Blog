@@ -1,6 +1,7 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import PublicNavbar from '../Navbar/PublicNavbar'
+import PrivateNavbar from '../Navbar/PrivateNavbar'
 import Footer from '../Footer'
 
 
@@ -9,7 +10,7 @@ const Layout = () => {
     <>
       <main>
         <PublicNavbar />
-        {/* <PrivateNavbar/> */}
+        <PrivateNavbar />
         <Outlet />
         <Footer />
 

@@ -4,6 +4,7 @@ import { API_URL } from '../constants/Api';
 import { Link } from 'react-router-dom';
 import Loading from '../loading/Loading';
 import Warning from '../loading/Warning';
+import truncatePost from '../../utils/truncatepost';
 
 const PublicPosts  = () => {
   const URL = `${API_URL}/posts`
@@ -69,12 +70,12 @@ const PublicPosts  = () => {
                       </p>
                       <Link
                         className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline"
-                        to={`/posts/${post?._id}`}
+                        to={``}
                       >
                         {post?.title}
                       </Link>
                       <p className="mb-4 text-coolGray-500">
-                        {post?.content}
+                        {truncatePost(post?.content)}
                       </p>
                       <Link
                         className="inline-flex items-center text-base md:text-lg text-green-500 hover:text-green-600 font-semibold"

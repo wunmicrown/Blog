@@ -10,7 +10,6 @@ const Dashboard = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const [searchTerm, setSearchTerm] = useState("");
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);
@@ -26,7 +25,8 @@ const Dashboard = () => {
       setLoading(true);
       try {
         const response = await axios.get(URL, {
-          params: { page, category_id: category },
+          params: { page,
+              category_id: category },
         });
         console.log(response.data);
         setPosts(response.data.posts);
@@ -41,10 +41,9 @@ const Dashboard = () => {
 
     fetchPosts();
   }, [
-    page,
-    //  searchTerm,
-      category
-    ]);
+    page, 
+     category
+  ]);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -88,16 +87,6 @@ const Dashboard = () => {
               <h3 className="mb-4 text-3xl md:text-5xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
                 Read our Trending Articles
               </h3>
-              {/* Search input */}
-              {/* <div className="mb-4">
-                <input
-                  type="text"
-                  placeholder="Search by title..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full p-2 border border-gray-300 rounded"
-                />
-              </div> */}
             </div>
             {/* Categories */}
             <div className="flex flex-wrap justify-center mb-4">

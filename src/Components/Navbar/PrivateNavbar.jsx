@@ -1,13 +1,40 @@
-import { Fragment } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { PlusIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
 import { FaBlog } from "react-icons/fa";
 import { Bars3Icon, ServerStackIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { BsSearch } from "react-icons/bs";
+import axios from "axios";
+import { API_URL } from "../constants/Api";
 
 const PrivateNavbar = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
+const URL=`${API_URL}/categories`
+  useEffect(() => {
+    const fetchPosts = async () => {
+      setLoading(true);
+      try {
+        const {data} = await axios.get(URL, {
+          params: { page, title: searchTerm, category_id: category },
+        });
+        console.log(response.data);
+        setPosts(response.data.posts);
+        setLoading(false);
+      } catch (error) {
+        setError(error);
+        setLoading(false);
+      }
+    };
+
+
+
+    fetchPosts();
+  }, [page, searchTerm]);
   return (
     <Disclosure as="nav" className="bg-white shadow-lg fixed w-full top-0 z-50">
       {({ open }) => (
@@ -149,6 +176,8 @@ const PrivateNavbar = () => {
                     <input
                       type="text"
                       placeholder="Search..."
+                      value={searchTerm}
+                      onChange={(e) => setSearchTerm(e.target.value)}
                       className=" py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
                     />
                     <span className="absolute hover:bg-green-400 pl-2 rounded-lg">

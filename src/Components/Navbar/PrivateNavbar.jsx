@@ -68,7 +68,7 @@ const PrivateNavbar = () => {
                   </div>
                   <div className="flex flex-shrink-0 items-center">
                     {/* Logo here */}
-                    <Link to="/">
+                    <Link to="/dashboard">
                       <FaBlog className="block text-green-400 h-8 w-auto lg:hidden" />
                     </Link>
 

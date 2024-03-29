@@ -13,6 +13,7 @@ const Dashboard = () => {
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);
+  // const [user, setUser] = useState();
   const [loadingCategories, setLoadingCategories] = useState(false);
   const [errorCategories, setErrorCategories] = useState(null);
 
@@ -21,14 +22,12 @@ const Dashboard = () => {
   const handlePrev = () => setPage(page > 1 ? page - 1 : 1);
 
   useEffect(() => {
-    const fetchPosts = async () => {
+    const fetchPostsByCategory = async (categoryName) => {
       setLoading(true);
       try {
-        const response = await axios.get(URL, {
-          params: { page,
-              category_id: category },
+        const response = await axios.get(`${API_URL}/posts`, {
+          params: { category_id: categoryName },
         });
-        console.log(response.data);
         setPosts(response.data.posts);
         setLoading(false);
       } catch (error) {
@@ -36,13 +35,13 @@ const Dashboard = () => {
         setLoading(false);
       }
     };
+    
 
 
-
-    fetchPosts();
+    fetchPostsByCategory();
   }, [
-    page, 
-     category
+    page,
+    category
   ]);
 
   useEffect(() => {
@@ -61,24 +60,24 @@ const Dashboard = () => {
 
     fetchCategories();
   }, []);
-  useEffect(() => {
-    if (error?.message === "Token expired/Invalid") {
-      navigate("/login");
-    }
-  }, [error?.message]);
+  // useEffect(() => {
+  //   const userDetails = async () => {
+  //     try {
+  //       const { data } = await axios.get(`${API_URL}/users/getUser`);
+  //       console.log("Users", data);
+  //       setUser(data.user);
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+
+  //   userDetails();
+  // },);
   return (
     <>
       <div>
         <section className="relative py-24 bg-white">
-          <div
-            className="absolute top-0 left-0 w-full h-full"
-            style={{
-              backgroundImage:
-                'url("flex-ui-assets/elements/pattern-white.svg")',
-              backgroundRepeat: "no-repeat",
-              backgroundPosition: "left top",
-            }}
-          />
+          {/*  */}
           <div className="container relative z-10 px-4 mx-auto">
             <div className="md:max-w-5xl mx-auto mb-8 md:mb-16 text-center">
               <span className="inline-block py-px px-2 mb-4 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-full shadow-sm">
@@ -96,7 +95,7 @@ const Dashboard = () => {
                   onClick={() => setCategory(category._id)}
                   className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
                 >
-                  {category.categoryName} 
+                  {category.categoryName}
                 </button>
               ))}
             </div>
@@ -109,48 +108,37 @@ const Dashboard = () => {
                 </div>
               ) : error ? (
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
-              ) : posts?.post?.length <= 0 ? (
-                <h1>No Post found</h1>
+              ) : posts?.length <= 0 ? (
+                <div className="flex justify-center items-center h-full w-full">
+                  <h1 className="text-2xl">No Post found</h1>
+                </div>
               ) : (
-                posts?.posts?.map((post) => {
+                posts.map((post) => {
                   return (
-                    <Link
-                      to={`/posts/${post?._id}`}
-                      className="w-full md:w-1/2 px-4 mb-8"
-                    >
-                      <a
+                    <div key={post._id} className="w-full md:w-1/2 px-4 mb-8">
+                      <Link
+                        to={``}
                         className="block mb-6 overflow-hidden rounded-md"
-                        href="#"
                       >
-                        <img
-                          className="w-full"
-                          alt="post image"
-                          src={post?.image}
-                        />
-                      </a>
-                      <div className="mb-4">
-                        <a
-                          className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm"
-                          href="#"
-                        >
-                          {post?.category?.name}
-                        </a>
-                      </div>
+                        <img className="w-full" src={post?.coverImgUrl} />
+
+                      </Link>
+                   
                       <p className="mb-2 text-coolGray-500 font-medium">
-                        {new Date(category?.createdAt).toDateString()}
+                        {new Date(post?.createdAt).toDateString()}
                       </p>
-                      <a
+                      <Link
                         className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline"
-                        href="#"
+                        to={``}
                       >
                         {post?.title}
-                      </a>
+                      </Link>
                       <p className="mb-4 text-coolGray-500">
                         {truncatePost(post?.content)}
                       </p>
                       <Link
                         className="inline-flex items-center text-base md:text-lg text-green-500 hover:text-green-600 font-semibold"
-                        to={`/posts/${post?._id}`}
+                      // to={`/posts/${post?._id}`}
                       >
                         <span className="mr-3">Read Post</span>
                         <svg
@@ -166,10 +154,12 @@ const Dashboard = () => {
                           />
                         </svg>
                       </Link>
-                    </Link>
+                    </div>
                   );
                 })
               )}
+
+
             </div>
           </div>
         </section>

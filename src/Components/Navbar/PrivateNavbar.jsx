@@ -137,7 +137,7 @@ const PrivateNavbar = (
                               <Link
                                 to={"/dashboard"}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 {user.username}
                               </Link>
@@ -148,7 +148,7 @@ const PrivateNavbar = (
                               <Link
                                 to={"/dashboard"}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Dashboard
                               </Link>
@@ -159,7 +159,7 @@ const PrivateNavbar = (
                               <Link
                                 to={"/profile"}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Create Post
                               </Link>
@@ -170,7 +170,7 @@ const PrivateNavbar = (
                               <Link
                                 to="/settings"
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Settings
                               </Link>
@@ -181,13 +181,13 @@ const PrivateNavbar = (
                           </div>
                           <Menu.Item>
                             {({ active }) => (
-                              <button
-                                // onClick={logoutHandler}
+                              <Link
+                                to={"/dashboard"}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
-                                Sign out
-                              </button>
+                                Sign Out
+                              </Link>
                             )}
                           </Menu.Item>
                         </Menu.Items>

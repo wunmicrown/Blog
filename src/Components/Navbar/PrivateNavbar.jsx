@@ -192,7 +192,7 @@ const PrivateNavbar = () => {
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyPress={handleKeyPress}
+                  onKeyDown={handleKeyPress}
                   className="py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
                 />
                 <span className="absolute hover:bg-green-400 pl-2 rounded-lg" onClick={handleSearch}>

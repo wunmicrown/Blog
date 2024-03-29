@@ -8,7 +8,9 @@ import { BsSearch } from "react-icons/bs";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
 
-const PrivateNavbar = () => {
+const PrivateNavbar = (
+  {user}
+) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -135,7 +137,18 @@ const PrivateNavbar = () => {
                               <Link
                                 to={"/dashboard"}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
+                              >
+                                {user.username}
+                              </Link>
+                            )}
+                          </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to={"/dashboard"}
+                                className={`${active ? "bg-gray-100" : ""
+                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
                               >
                                 Dashboard
                               </Link>
@@ -146,7 +159,7 @@ const PrivateNavbar = () => {
                               <Link
                                 to={"/profile"}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
                               >
                                 Create Post
                               </Link>
@@ -157,7 +170,7 @@ const PrivateNavbar = () => {
                               <Link
                                 to="/settings"
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
                               >
                                 Settings
                               </Link>
@@ -171,7 +184,7 @@ const PrivateNavbar = () => {
                               <button
                                 // onClick={logoutHandler}
                                 className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700`}
+                                  } block px-4 py-2 text-sm text-gray-700 hover:underline`}
                               >
                                 Sign out
                               </button>

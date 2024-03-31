@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import { API_URL } from '../constants/Api';
 import Loading from '../loading/Loading';
+import PostStats from './PostStats';
 
 const PostsDetails = () => {
     const URL = `${API_URL}/posts`;
@@ -161,7 +162,7 @@ const PostsDetails = () => {
                         }}
                     >
                         {/* Posts stats */}
-                        {/* <PostStats
+                        <PostStats
                   views={post?.post?.postViews}
                   likes={post?.post?.likes.length}
                   dislikes={post?.post?.dislikes.length}
@@ -171,7 +172,7 @@ const PostsDetails = () => {
                   readingTime={calculateReadingtime(post?.post?.content)}
                   postId={postId}
                   claps={post?.post?.claps}
-                /> */}
+                />
                     </div>
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto md:max-w-3xl">

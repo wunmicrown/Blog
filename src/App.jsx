@@ -44,7 +44,7 @@ const App = () => {
                 </Route>
                     <Route path='/' element={<DashboardPath/>}>
                         <Route path="/dashboard" element={<Dashboard />} />
-                        <Route path="/posts/:id" element={<PostsDetails />} />
+                        <Route path="/posts/:postId" element={<PostsDetails />} />
 
                     </Route>
             </Routes>

@@ -118,7 +118,7 @@ const Dashboard = () => {
                 posts.map((post) => (
                   <div key={post._id} className="w-full md:w-1/2 px-4 mb-8">
                     <Link
-                      to={``}
+                      to={`/posts/${post._id}`}
                       className="block mb-6 overflow-hidden rounded-md"
                     >
                       <img className="w-full" src={post?.coverImgUrl} alt={post.title} />
@@ -129,7 +129,7 @@ const Dashboard = () => {
                     </p>
                     <Link
                       className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline"
-                      to={``}
+                      to={`/posts/${post._id}`}
                     >
                       {post?.title}
                     </Link>

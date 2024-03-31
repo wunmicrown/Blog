@@ -13,6 +13,7 @@ import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
 import DashboardPath from './components/dashboardsFolder/DashboardPath';
 import Dashboard from './components/dashboardsFolder/Dashboard';
+import PostsDetails from './components/posts/PostsDetails';
 
 const App = () => {
     return (
@@ -43,7 +44,7 @@ const App = () => {
                 </Route>
                     <Route path='/' element={<DashboardPath/>}>
                         <Route path="/dashboard" element={<Dashboard />} />
-                        {/* <Route path="/posts/:id" element={<Post />} /> */}
+                        <Route path="/posts/:id" element={<PostsDetails />} />
 
                     </Route>
             </Routes>

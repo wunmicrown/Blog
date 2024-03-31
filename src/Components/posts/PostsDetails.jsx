@@ -11,6 +11,7 @@ const PostsDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
+    const [categoryId, setCategoryId] = useState(null);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -56,6 +57,27 @@ const PostsDetails = () => {
 
         fetchPostDetails();
     }, [postId, URL]);
+    // useEffect(() => {
+    //     const categoryDetails = async () => {
+    //         try {
+    //             setLoading(true);
+    //             if (!categoryId) { // Check if categoryId is undefined or null
+    //                 throw new Error('categoryId is undefined');
+    //             }
+    //             const response = await axios.get(`${API_URL}/categories/$${categoryId}`); // Fix URL interpolation
+    //             console.log('categoryId Response:', response.data);
+    //             setCategoryId(response.data);
+    //             setLoading(false);
+    //         } catch (error) {
+    //             console.error('Error fetching category details:', error);
+    //             setError(error);
+    //             setLoading(false);
+    //         }
+    //     };
+    
+    //     categoryDetails();
+    // }, [categoryId]);
+    
 
     //! Get the creator of the post
     const creator = post?.post?.author?._id?.toString();

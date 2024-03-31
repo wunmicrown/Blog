@@ -84,7 +84,7 @@ const Dashboard = () => {
               </h3>
             </div>
             {/* Categories */}
-            <div className="flex flex-wrap justify-center mb-4">
+            {/* <div className="flex flex-wrap justify-center mb-4">
               {loadingCategories ? ( // Show loading indicator while categories are being fetched
                 <Loading />
               ) : error ? (
@@ -100,7 +100,7 @@ const Dashboard = () => {
                   </button>
                 ))
               )}
-            </div>
+            </div> */}
 
             <div className="flex flex-wrap -mx-4 mb-12 md:mb-20">
               {/* loop */}

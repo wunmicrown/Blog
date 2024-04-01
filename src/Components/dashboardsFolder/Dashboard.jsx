@@ -136,7 +136,7 @@ const Dashboard = () => {
                     <p className="mb-4 text-coolGray-500">
                       {truncatePost(post?.content)}
                     </p>
-
+                       {/* like post button */}
                     <div className="flex  gap-4 items-center">
                       <span
                         className={`flex items-center text-base md:text-lg font-semibold ${likedPosts.includes(post._id)

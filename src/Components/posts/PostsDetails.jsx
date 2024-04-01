@@ -4,6 +4,7 @@ import axios from 'axios';
 import { API_URL } from '../constants/Api';
 import Loading from '../loading/Loading';
 import PostStats from './PostStats';
+import calculateReadingtime from '../../utils/calculateReadingtime';
 
 const PostsDetails = () => {
     const URL = `${API_URL}/posts`;
@@ -23,7 +24,7 @@ const PostsDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                setUser(user); // Initialize image source
+                setUser(user);
 
             } catch (error) {
                 console.log('Error message:', error);
@@ -161,24 +162,25 @@ const PostsDetails = () => {
                             height: "100%",
                         }}
                     >
-                        {/* Posts stats */}
+                    </div>
+                    
+                    <div className="container px-4 mx-auto">
+                        <div className="mx-auto md:max-w-3xl">
+                            
+                            <p className="  text-lg font-medium  md:text-xl text-coolGray-500 border-coolGray-100">
+                                {post?.post?.content}
+                            </p>
+                               {/* Posts stats */}
                         <PostStats
                   views={post?.post?.postViews}
-                  likes={post?.post?.likes.length}
-                  dislikes={post?.post?.dislikes.length}
+                //   likes={post?.post?.likes.length}
+                //   dislikes={post?.post?.dislikes.length}
                   postViews={post?.post?.postViews}
                   totalComments={post?.post?.comments?.length}
                   createdAt={post?.post?.createdAt}
                   readingTime={calculateReadingtime(post?.post?.content)}
                   postId={postId}
-                  claps={post?.post?.claps}
                 />
-                    </div>
-                    <div className="container px-4 mx-auto">
-                        <div className="mx-auto md:max-w-3xl">
-                            <p className="pb-10 mb-8 text-lg font-medium border-b md:text-xl text-coolGray-500 border-coolGray-100">
-                                {post?.post?.content}
-                            </p>
                             {/* delete and update icons */}
                             {isCreator && (
                                 <div className="flex justify-end mb-4">
@@ -224,6 +226,8 @@ const PostsDetails = () => {
                                     </button>
                                 </div>
                             )}
+
+                            
                             <h3 className="mb-4 text-2xl font-semibold md:text-3xl text-coolGray-800">
                                 Add a comment
                             </h3>
@@ -232,6 +236,7 @@ const PostsDetails = () => {
                             {/* <AddComment postId={postId} comments={post?.post?.comments} /> */}
                         </div>
                     </div>
+                    
                 </section>
             )}
         </>

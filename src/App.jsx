@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Layout from './components/Layout';
+// import Layout from './components/Layout';
 import Login from './pages/auth/Login';
 import Write from './pages/Write';
 import Homepage from './pages/Homepage';
@@ -31,7 +31,7 @@ const App = () => {
                 theme="light"
             />
             <Routes>
-                <Route element={<Layout />}>
+                {/* <Route element={<Layout />}> */}
                     <Route index element={<Homepage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
@@ -41,7 +41,7 @@ const App = () => {
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/write" element={<Write />} />
 
-                </Route>
+                {/* </Route> */}
                     <Route path='/' element={<DashboardPath/>}>
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/posts/:postId" element={<PostsDetails />} />

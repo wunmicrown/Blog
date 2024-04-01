@@ -11,9 +11,9 @@ import VerifyEmail from './pages/auth/VerifyEmail';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
-import DashboardPath from './components/dashboardsFolder/DashboardPath';
 import Dashboard from './components/dashboardsFolder/Dashboard';
 import PostsDetails from './components/posts/PostsDetails';
+// import DashboardPath from './components/dashboardsFolder/DashboardPath';
 
 const App = () => {
     return (
@@ -42,11 +42,11 @@ const App = () => {
                     <Route path="/write" element={<Write />} />
 
                 {/* </Route> */}
-                    <Route path='/' element={<DashboardPath/>}>
+                    {/* <Route path='/' element={<DashboardPath/>}> */}
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/posts/:postId" element={<PostsDetails />} />
 
-                    </Route>
+                    {/* </Route> */}
             </Routes>
         </>
     );

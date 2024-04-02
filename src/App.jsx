@@ -15,6 +15,7 @@ import DashboardPath from './components/dashboardsFolder/DashboardPath';
 import Dashboard from './components/dashboardsFolder/Dashboard';
 import PostsDetails from './components/posts/PostsDetails';
 import CreatePosts from './components/posts/CreatePosts';
+import UserProfileDetails from './components/dashboardsFolder/UserProfileDetails';
 
 const App = () => {
     return (
@@ -41,6 +42,7 @@ const App = () => {
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/write" element={<Write />} />
+                    <Route path="/user-profile-details" element={<UserProfileDetails  />} />
 
                 </Route>
                     <Route path='/' element={<DashboardPath/>}>

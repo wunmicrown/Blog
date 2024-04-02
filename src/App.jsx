@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/auth/Login';
-
 import Write from './pages/Write';
 import Homepage from './pages/Homepage';
 import Register from './pages/auth/Register';
@@ -12,8 +11,8 @@ import VerifyEmail from './pages/auth/VerifyEmail';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
-import DashboardPath from './components/dashboardsFolder/DashboardPath';
-import Dashboard from './components/dashboardsFolder/Dashboard';
+import DashboardPath from './pages/dashboardsFolder/DashboardPath';
+import Dashboard from './pages/dashboardsFolder/Dashboard';
 import PostsDetails from './components/posts/PostsDetails';
 
 const App = () => {

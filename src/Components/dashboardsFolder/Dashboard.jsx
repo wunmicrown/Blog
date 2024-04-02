@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Loading from "../../components/loading/Loading";
+import Loading from "../loading/Loading";
 import axios from "axios"; // Import Axios for making HTTP requests
-import { API_URL } from "../../components/constants/Api";
+import { API_URL } from "../constants/Api";
 import truncatePost from "../../utils/truncatepost";
 
 const Dashboard = () => {
@@ -27,7 +27,7 @@ const Dashboard = () => {
         const response = await axios.get(`${API_URL}/posts`, {
           params: { category_id: categoryName },
         });
-        console.log("Posts", response);
+        // console.log("Posts", response);
         setPosts(response.data.posts);
         setLoading(false);
       } catch (error) {
@@ -44,7 +44,7 @@ const Dashboard = () => {
       setLoadingCategories(true); // Set loading state to true when fetching categories
       try {
         const { data } = await axios.get(`${API_URL}/categories`);
-        console.log("Categories", data);
+        // console.log("Categories", data);
         setCategories(data.categories);
         setLoadingCategories(false); // Set loading state to false after fetching categories
       } catch (error) {

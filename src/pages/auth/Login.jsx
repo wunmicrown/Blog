@@ -28,7 +28,8 @@ const Login = () => {
         if (data.user?.isEmailVerified) {
 
           toast.success('Login successful');
-          return navigate('/posts/redirect?=create-post');
+          // return navigate('/post/redirect?redirectTo=create-post');
+          return navigate('/create-post');
 
         }
         // Redirect to verify email page if email is not verified

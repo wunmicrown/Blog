@@ -70,7 +70,7 @@ const PrivateNavbar = (
                   </div>
                   <div className="flex flex-shrink-0 items-center">
                     {/* Logo here */}
-                    <Link to="/dashboard">
+                    <Link to="/posts">
                       <FaBlog className="block text-green-400 h-8 w-auto lg:hidden" />
                     </Link>
 
@@ -80,7 +80,7 @@ const PrivateNavbar = (
                   <div className="hidden md:ml-6 md:flex md:space-x-8">
                     {/* Current: "border-green-600 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-green-300" */}
                     <Link
-                      to={"/dashboard"}
+                      to={"/posts"}
                       className="
                       inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-900 
                       hover:border-green-600 hover:text-green-300
@@ -105,7 +105,7 @@ const PrivateNavbar = (
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <Link
-                      to={"/posts/create-post"}
+                      to={"/create-post"}
                       className="ml-2 relative  items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300  hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
                     >
                       <PlusIcon className="-ml-0.5 h-5 w-5 " aria-hidden="true" />
@@ -157,7 +157,7 @@ const PrivateNavbar = (
                           <Menu.Item>
                             {({ active }) => (
                               <Link
-                                to={"/posts/create-post"}
+                                to={"/create-post"}
                                 className={`${active ? "bg-gray-100" : ""
                                   } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >

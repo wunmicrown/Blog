@@ -11,8 +11,8 @@ import VerifyEmail from './pages/auth/VerifyEmail';
 import ForgotPassword from './pages/auth/ForgotPassword';
 import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
-import DashboardPath from './pages/dashboardsFolder/DashboardPath';
-import Dashboard from './pages/dashboardsFolder/Dashboard';
+import DashboardPath from './components/dashboardsFolder/DashboardPath';
+import Dashboard from './components/dashboardsFolder/Dashboard';
 import PostsDetails from './components/posts/PostsDetails';
 import CreatePosts from './components/posts/CreatePosts';
 
@@ -44,9 +44,9 @@ const App = () => {
 
                 </Route>
                     <Route path='/' element={<DashboardPath/>}>
-                        <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/posts" element={<Dashboard />} />
                         <Route path="/posts/:postId" element={<PostsDetails />} />
-                        <Route path="/posts/:postId" element={<CreatePosts />} />
+                        <Route path="/create-post" element={<CreatePosts />} />
 
                     </Route>
             </Routes>

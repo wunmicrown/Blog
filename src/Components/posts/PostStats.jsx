@@ -33,7 +33,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
           },
         }
       );
-      console.log("Like", response);
+      // console.log("Like", response);
       if (response.status === 200) {
         setLikes(likes + 1, "Reactions");
       }
@@ -59,7 +59,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
           },
         }
       );
-      console.log("Dislike", response);
+      // console.log("Dislike", response);
       if (response.status === 200) {
         setDislikes(dislikes + 1);
       }

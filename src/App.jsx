@@ -14,6 +14,7 @@ import PasswordReset from './pages/auth/PasswordReset';
 import DashboardPath from './pages/dashboardsFolder/DashboardPath';
 import Dashboard from './pages/dashboardsFolder/Dashboard';
 import PostsDetails from './components/posts/PostsDetails';
+import CreatePosts from './components/posts/CreatePosts';
 
 const App = () => {
     return (
@@ -45,6 +46,7 @@ const App = () => {
                     <Route path='/' element={<DashboardPath/>}>
                         <Route path="/dashboard" element={<Dashboard />} />
                         <Route path="/posts/:postId" element={<PostsDetails />} />
+                        <Route path="/posts/:postId" element={<CreatePosts />} />
 
                     </Route>
             </Routes>

@@ -105,7 +105,7 @@ const PrivateNavbar = (
                 <div className="flex items-center">
                   <div className="flex-shrink-0">
                     <Link
-                      to={"/create-post"}
+                      to={"/posts/create-post"}
                       className="ml-2 relative  items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300  hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
                     >
                       <PlusIcon className="-ml-0.5 h-5 w-5 " aria-hidden="true" />
@@ -157,7 +157,7 @@ const PrivateNavbar = (
                           <Menu.Item>
                             {({ active }) => (
                               <Link
-                                to={"/profile"}
+                                to={"/posts/create-post"}
                                 className={`${active ? "bg-gray-100" : ""
                                   } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >

@@ -42,15 +42,14 @@ const App = () => {
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/write" element={<Write />} />
-                    <Route path="/user-profile-details" element={<UserProfileDetails  />} />
 
                 </Route>
-                    <Route path='/' element={<DashboardPath/>}>
-                        <Route path="/posts" element={<Dashboard />} />
-                        <Route path="/posts/:postId" element={<PostsDetails />} />
-                        <Route path="/create-post" element={<CreatePosts />} />
-
-                    </Route>
+                <Route path='/' element={<DashboardPath />}>
+                    <Route path="/posts" element={<Dashboard />} />
+                    <Route path="/posts/:postId" element={<PostsDetails />} />
+                    <Route path="/create-post" element={<CreatePosts />} />
+                    <Route path="/user-profile-details" element={<UserProfileDetails />} />
+                </Route>
             </Routes>
         </>
     );

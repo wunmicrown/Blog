@@ -55,7 +55,7 @@ const UserProfileDetails = () => {
         fetchPostDetails();
     }, []);
     return (
-        <div className=' bg-green-50'>
+        <div className=' bg-green-50 h-screen'>
             <div className="pt-20 relative">
                 {user && (
                     <div className='mx-auto w-full max-w-screen-lg'>
@@ -99,7 +99,7 @@ const UserProfileDetails = () => {
                             </div>
                             <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
                             <p className=' text-white p-2 rounded-lg  '
-                                readingTime={calculateReadingtime(post?.post?.content)}
+                                // readingTime={calculateReadingtime(post?.post?.content)}
                             
                             >
                                 1 min read

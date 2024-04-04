@@ -40,7 +40,6 @@ const App = () => {
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
-
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/posts" element={<Dashboard />} />

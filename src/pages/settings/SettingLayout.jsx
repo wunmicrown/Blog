@@ -36,9 +36,12 @@ const SettingLayout = () => {
     }, [])
   
     return (
-      <>
+      < >
         <PrivateNavbar
           user={user}/>
+          <div className="mt-24 ml-32 w-32 ">
+            <p className=" cursor-pointer hover:bg-gray-50 rounded-lg p-2">🙂 <span className=" hover:text-green-500">Profile</span></p>
+          </div>
           <Outlet/>
           <Footer/>
       </>

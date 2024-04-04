@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './components/Layout';
 import Login from './pages/auth/Login';
-import Write from './pages/Write';
 import Homepage from './pages/Homepage';
 import Register from './pages/auth/Register';
 import { ToastContainer } from 'react-toastify';
@@ -41,7 +40,6 @@ const App = () => {
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
-                    <Route path="/write" element={<Write />} />
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>

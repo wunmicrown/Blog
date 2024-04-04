@@ -10,7 +10,7 @@ const Layout = () => {
   return (
     <>
       <main>
-        {/* {isLoggedIn ? <PrivateNavbar />: <PublicNavbar />} */}
+        {isLoggedIn ? <PrivateNavbar />: <PublicNavbar />}
         <Outlet />
         <Footer />
       </main>

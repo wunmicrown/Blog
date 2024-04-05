@@ -8,9 +8,9 @@ import { BsSearch } from "react-icons/bs";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
 
-const PrivateNavbar = (
-  { user }
-) => {
+const PrivateNavbar = () => {
+  const [user, setUser] = useState(null);
+  const [tokenMatch, setTokenMatch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -19,6 +19,29 @@ const PrivateNavbar = (
   const [showConfirmation, setShowConfirmation] = useState(false); // State to control modal visibility
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const userDetails = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        console.log("user", user);
+        setTokenMatch(true);
+        setUser(user); // Initialize image source
+
+      } catch (error) {
+        console.log('Error message:', error);
+        console.log(error.response);
+        setTokenMatch(false);
+        navigate('/login');
+
+      }
+    }
+    userDetails();
+  }, [])
 
   const fetchPosts = async () => {
     setLoading(true);
@@ -51,6 +74,30 @@ const PrivateNavbar = (
     navigate("/login");
     setShowConfirmation(false);
   };
+
+  useEffect(() => {
+    const userDetails = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        console.log("user", user);
+        setTokenMatch(true);
+        setUser(user); // Initialize image source
+
+      } catch (error) {
+        console.log('Error message:', error);
+        console.log(error.response);
+        setTokenMatch(false);
+        navigate('/login');
+
+      }
+    }
+    userDetails();
+  }, [])
 
   return (
     <>
@@ -124,9 +171,9 @@ const PrivateNavbar = (
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:shadow-xl hover:focus:outline-none hover:focus:ring-2 hover:focus:ring-green-500 focus:ring-offset-2">
                         <img
                           className="h-10 w-10 rounded-full"
-                          src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"
-                          alt="User Avatar"
+                          src={user && user.profilePic ? user.profilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic"
                         />
+
                       </Menu.Button>
                       <Transition
                         as={Fragment}

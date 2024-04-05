@@ -6,6 +6,7 @@ import { API_URL } from "../../components/constants/Api";
 import { FaBlog } from "react-icons/fa";
 import Loading from "../../components/loading/Loading";
 import { AiOutlineMail } from "react-icons/ai";
+import Uploadpic from "./profile/Uploadpic";
 
 const ChangeEmail = () => {
   const URL = `${API_URL}/users/change-email`;
@@ -87,6 +88,7 @@ const ChangeEmail = () => {
                         </button>
                     )}
                 </div>
+                <Uploadpic/>
             </div>
       </>
   );

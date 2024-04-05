@@ -16,8 +16,7 @@ import PostsDetails from './components/posts/PostsDetails';
 import CreatePosts from './components/posts/CreatePosts';
 import UserProfileDetails from './components/dashboardsFolder/UserProfileDetails';
 import SettingLayout from './pages/settings/SettingLayout';
-import Profile from './pages/settings/Profile';
-import Account from './pages/settings/Account';
+import ChangeEmail from './pages/settings/ChangeEmail';
 
 const App = () => {
     return (
@@ -51,8 +50,7 @@ const App = () => {
                     <Route path="/user-profile-details" element={<UserProfileDetails />} />
                 </Route>
                     <Route path="/settings" element={<SettingLayout />} >
-                        <Route path="/settings/profile" element={<Profile />} />
-                        <Route path="/settings/account" element={<Account />} />
+                        <Route path="/settings/profile" element={<ChangeEmail />} />
                     </Route>
             </Routes>
         </>

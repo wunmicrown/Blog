@@ -1,7 +1,7 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../constants/Api';
+import { API_URL } from '../../components/constants/Api';
 import { MdEmail, MdOutlineMedicalServices, MdVerifiedUser } from 'react-icons/md';
 import calculateReadingtime from '../../utils/calculateReadingtime';
 

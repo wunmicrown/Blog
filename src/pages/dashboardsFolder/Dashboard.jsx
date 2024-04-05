@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Loading from "../loading/Loading";
+import Loading from "../../components/loading/Loading";
 import axios from "axios"; // Import Axios for making HTTP requests
-import { API_URL } from "../constants/Api";
+import { API_URL } from "../../components/constants/Api";
 import truncatePost from "../../utils/truncatepost";
 
 const Dashboard = () => {

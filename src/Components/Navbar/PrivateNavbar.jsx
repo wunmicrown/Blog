@@ -28,7 +28,6 @@ const PrivateNavbar = () => {
             "Authorization": `Bearer ${token}`
           }
         });
-        console.log("user", user);
         setTokenMatch(true);
         setUser(user); // Initialize image source
 
@@ -84,7 +83,6 @@ const PrivateNavbar = () => {
             "Authorization": `Bearer ${token}`
           }
         });
-        console.log("user", user);
         setTokenMatch(true);
         setUser(user); // Initialize image source
 

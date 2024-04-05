@@ -18,6 +18,7 @@ import UserProfileDetails from './components/dashboardsFolder/UserProfileDetails
 import SettingLayout from './pages/settings/SettingLayout';
 import ChangeEmail from './pages/settings/ChangeEmail';
 import Uploadpic from './pages/settings/profile/Uploadpic';
+import ChangePassword from './pages/settings/ChangePassword';
 
 const App = () => {
     return (
@@ -52,6 +53,7 @@ const App = () => {
                 </Route>
                     <Route path="/settings" element={<SettingLayout />} >
                         <Route path="/settings/profile" element={<ChangeEmail />} />
+                        <Route path="/settings/change-password" element={<ChangePassword />} />
                         <Route path="" element={<Uploadpic />} />
                     </Route>
             </Routes>

@@ -7,6 +7,7 @@ import { FaBlog } from "react-icons/fa";
 import Loading from "../../components/loading/Loading";
 import { AiOutlineMail } from "react-icons/ai";
 import Uploadpic from "./profile/Uploadpic";
+import ChangePassword from "./ChangePassword";
 
 const ChangeEmail = () => {
   const URL = `${API_URL}/users/change-email`;
@@ -23,7 +24,6 @@ const ChangeEmail = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}` // Include the authentication token in the request headers
         }
       });
-      console.log("Change email",response);
       // Display success message
       toast.success(response.data.message);
       // Update email in localStorage
@@ -69,13 +69,6 @@ const ChangeEmail = () => {
                             />
                         </div>
                     </div>
-                    {/* <button
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg"
-          onClick={handleSubmit}
-          disabled={loading}
-        >
-          {loading ? (<Loading/>) : " Send reset otp"}
-        </button> */}
                     {loading ? (
                         <Loading />
                     ) : (
@@ -87,6 +80,8 @@ const ChangeEmail = () => {
                             Change
                         </button>
                     )}
+
+                    <ChangePassword/>
                 </div>
                 <Uploadpic/>
             </div>

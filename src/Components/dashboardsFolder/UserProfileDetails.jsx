@@ -90,7 +90,8 @@ const UserProfileDetails = () => {
                     <div className='mx-auto w-full max-w-screen-sm'>
                         <div className='bg-[#5b5c5b] mx-auto text-white h-auto text-center pt-4 max-w-screen-sm px-4 rounded-lg'>
                             <div className='flex justify-start'>
-                                <img className='w-14 h-14 rounded-full' src={user && user.profilePic ? user.profilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
+                                <img className='w-14 h-14 rounded-full' src={user && user.profilePic ? user.profilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic"
+                                 />
                                 <p className='ml-2 font-semibold text-small flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>
                             </div>
                             <div className='flex flex-col lg:flex-row lg:gap-7 lg:justify-center md:justify-center md:gap-7 md:flex-row mt-4 md:mt-8 xl:flex-row'>

@@ -88,7 +88,7 @@ const Uploadpic = () => {
         <>
             <div className="w-full flex pt-8 shadow-xl  font-serif mt-10">
                 <div className="flex flex-col mx-auto space-y-4">
-                    <h2 cl>Profile image</h2>
+                    <h2 className="text-green-500 font-bold">Profile image</h2>
                     <div className="max-w-xs rounded-full flex flex-col items-center text-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-800 focus:ring-white">
                         <div>
                             <div className="flex items-center justify-center h-48 w-48 rounded-full">
@@ -136,6 +136,7 @@ const Uploadpic = () => {
                         </div>
                     </div>
                 </div>
+                
             </div>
 
         </>

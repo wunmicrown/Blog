@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../../components/constants/Api';
 import { MdEmail, MdOutlineMedicalServices, MdVerifiedUser } from 'react-icons/md';
 import calculateReadingtime from '../../utils/calculateReadingtime';
@@ -66,9 +66,13 @@ const UserProfileDetails = () => {
                         <div className='bg-[#5b5c5b] mx-auto w-full text-white h-auto text-center pt-4 p-20 max-w-screen-lg px-4 rounded-lg'>
                             <p className='pt-8 font-bold text-xl flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>
                             <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
+                                <Link 
+                                    to={'/settings/profile'}
+                                >
                                 <button className='bg-green-500 text-white p-2 rounded-lg hover:bg-green-600'>
                                     Edit profile
                                 </button>
+                                </Link>
                             </div>
                             <div className='flex flex-col lg:flex-row lg:gap-7 lg:justify-center md:justify-center md:gap-7 md:flex-row mt-4 md:mt-8 xl:flex-row'>
                                 <div className='flex items-center'>

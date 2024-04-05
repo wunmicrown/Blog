@@ -115,7 +115,6 @@ const PostsDetails = () => {
                                 alt="post image"
                             />
                             <Link
-                                //    {/* to={`/user-public-profile/${post?.post?.author?._id}` */} 
                                 to={''}
                                 className="flex items-center justify-start mx-2 text-left"
                             >

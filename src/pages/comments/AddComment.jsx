@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { API_URL } from '../../components/constants/Api';
+import CommentsList from './CommentLists';
 
 const AddComment = ({ postId }) => {
   const [formData, setFormData] = useState({
@@ -14,8 +16,7 @@ const AddComment = ({ postId }) => {
     e.preventDefault();
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(
-        '/api/comments/create-comment',
+      const response = await axios.post(`${API_URL}/comment/create-comment`,
         {
           postId,
           content: formData.message
@@ -85,6 +86,8 @@ const AddComment = ({ postId }) => {
         </div>
       </div>
       {/* comment lists */}
+      <CommentsList comments={comments} />
+
     </div>
   );
 };

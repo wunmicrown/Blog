@@ -20,6 +20,7 @@ import ChangeEmail from './pages/settings/ChangeEmail';
 import Uploadpic from './pages/settings/profile/Uploadpic';
 import ChangePassword from './pages/settings/ChangePassword';
 import AddComment from './pages/comments/AddComment';
+import CommentsList from './pages/comments/CommentLists';
 
 const App = () => {
     return (
@@ -57,6 +58,7 @@ const App = () => {
                         <Route path="/settings/change-password" element={<ChangePassword />} />
                         <Route path="" element={<Uploadpic />} />
                         <Route path="" element={<AddComment />} />
+                        <Route path="" element={<CommentsList />} />
                     </Route>
             </Routes>
         </>

@@ -76,10 +76,10 @@ const PostsDetails = () => {
     //             setLoading(false);
     //         }
     //     };
-    
+
     //     categoryDetails();
     // }, [categoryId]);
-    
+
 
     //! Get the creator of the post
     const creator = post?.post?.author?._id?.toString();
@@ -148,7 +148,7 @@ const PostsDetails = () => {
                                 {post?.post?.title}
                             </h2>
 
-                            
+
                         </div>
                     </div>
 
@@ -162,24 +162,24 @@ const PostsDetails = () => {
                         }}
                     >
                     </div>
-                    
+
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto md:max-w-3xl">
-                            
+
                             <p className="  text-lg font-medium  md:text-xl text-coolGray-500 border-coolGray-100">
                                 {post?.post?.content}
                             </p>
-                               {/* Posts stats */}
-                        <PostStats
-                  views={post?.post?.postViews}
-                //   likes={post?.post?.likes.length}
-                //   dislikes={post?.post?.dislikes.length}
-                  postViews={post?.post?.postViews}
-                  totalComments={post?.post?.comments?.length}
-                  createdAt={post?.post?.createdAt}
-                  readingTime={calculateReadingtime(post?.post?.content)}
-                  postId={postId}
-                />
+                            {/* Posts stats */}
+                            <PostStats
+                                // views={post?.post?.postViews}
+                                  likes={post?.post?.likes.length}
+                                  dislikes={post?.post?.dislikes.length}
+                                // postViews={post?.post?.postViews}
+                                // totalComments={post?.post?.comments?.length}
+                                // createdAt={post?.post?.createdAt}
+                                // readingTime={calculateReadingtime(post?.post?.content)}
+                                // postId={postId}
+                            />
                             {/* delete and update icons */}
                             {isCreator && (
                                 <div className="flex justify-end mb-4">
@@ -225,8 +225,10 @@ const PostsDetails = () => {
                                     </button>
                                 </div>
                             )}
-
-                            
+                            <div className='mt-8 mb-16'>
+                                <hr/>
+                                
+                            </div>
                             <h3 className="mb-4 text-2xl font-semibold md:text-3xl text-coolGray-800">
                                 Add a comment
                             </h3>
@@ -235,7 +237,7 @@ const PostsDetails = () => {
                             {/* <AddComment postId={postId} comments={post?.post?.comments} /> */}
                         </div>
                     </div>
-                    
+
                 </section>
             )}
         </>

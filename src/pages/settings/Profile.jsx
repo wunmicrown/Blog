@@ -1,15 +1,19 @@
-import React from 'react'
-
+import React from 'react';
+    
 const Profile = () => {
   return (
-    <>
-        <div className='h-screen'>
-            <div className=' w-64 ml-32 text-center'>
-                    g
-            </div>
-        </div>
-    </>
-  )
-}
+<>
+<div className="h-screen mt-20">
 
-export default Profile
+      {/* Main Content */}
+      <div className="bg-red-400">
+        <p>Main Content</p>
+      </div>
+      </div>
+</>    
+
+ 
+  );
+};
+
+export default Profile;

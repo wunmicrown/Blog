@@ -17,6 +17,7 @@ import CreatePosts from './components/posts/CreatePosts';
 import UserProfileDetails from './components/dashboardsFolder/UserProfileDetails';
 import SettingLayout from './pages/settings/SettingLayout';
 import Profile from './pages/settings/Profile';
+import Account from './pages/settings/Account';
 
 const App = () => {
     return (
@@ -51,6 +52,7 @@ const App = () => {
                 </Route>
                     <Route path="/settings" element={<SettingLayout />} >
                         <Route path="/settings/profile" element={<Profile />} />
+                        <Route path="/settings/account" element={<Account />} />
                     </Route>
             </Routes>
         </>

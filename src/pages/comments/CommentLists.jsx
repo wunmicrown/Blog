@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const CommentsList = ({ comments }) => {
+const CommentsList = ({ commentCreated }) => {
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex space-x-4">
@@ -13,15 +13,15 @@ const CommentsList = ({ comments }) => {
         </div>
         <div className="flex-grow">
           <div>
-            {comments?.length <= 0 ? (
+            {commentCreated?.length <= 0 ? (
               <h2>No Comments</h2>
             ) : (
-              comments?.map((comment) => {
+                commentCreated?.map((comment) => {
                 return (
                   <>
                     <div className="bg-blue-50 px-4 py-3 sm:px-6 flex justify-between items-center">
                       <div>
-                        <h4 className="text-sm font-medium text-blue-600">
+                        <h4 className="text-sm font-medium text-green-600">
                           {comment?.author?.username}
                         </h4>
                         <p className="text-sm text-gray-500">

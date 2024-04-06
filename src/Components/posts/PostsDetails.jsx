@@ -5,6 +5,7 @@ import { API_URL } from '../constants/Api';
 import Loading from '../loading/Loading';
 import PostStats from './PostStats';
 import calculateReadingtime from '../../utils/calculateReadingtime';
+import AddComment from '../../pages/comments/AddComment';
 
 const PostsDetails = () => {
     const URL = `${API_URL}/posts`;
@@ -234,7 +235,8 @@ const PostsDetails = () => {
                             </h3>
 
                             {/* Comment form */}
-                            {/* <AddComment postId={postId} comments={post?.post?.comments} /> */}
+                            <AddComment postId={postId} comments={post?.post?.comments} />
+                            
                         </div>
                     </div>
 

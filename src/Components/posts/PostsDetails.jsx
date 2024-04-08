@@ -48,7 +48,7 @@ const PostsDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log('API Response:', response.data);
+                // console.log('API Response:', response.data);
                 setPost(response.data);
                 setLoading(false);
             } catch (error) {

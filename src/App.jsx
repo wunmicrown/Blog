@@ -53,13 +53,13 @@ const App = () => {
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/user-profile-details" element={<UserProfileDetails />} />
                 </Route>
-                    <Route path="/settings" element={<SettingLayout />} >
-                        <Route path="/settings/profile" element={<ChangeEmail />} />
-                        <Route path="/settings/change-password" element={<ChangePassword />} />
-                        <Route path="" element={<Uploadpic />} />
-                        <Route path="" element={<AddComment />} />
-                        <Route path="" element={<CommentsList />} />
-                    </Route>
+                <Route path="/settings" element={<SettingLayout />} >
+                    <Route path="/settings/profile" element={<ChangeEmail />} />
+                    <Route path="/settings/change-password" element={<ChangePassword />} />
+                    <Route path="" element={<Uploadpic />} />
+                    <Route path="" element={<AddComment />} />
+                    <Route path="" element={<CommentsList />} />
+                </Route>
             </Routes>
         </>
     );

@@ -19,7 +19,7 @@ const CommentsList = ({ comments }) => {
                   <h4 className="text-sm font-medium text-green-600 ml-4">
                     {comment.author}
                   </h4>
-                  <p className="text-sm text-gray-500">
+                  <p className="text-sm text-gray-500 ml-4">
                     {new Date(comment.createdAt).toDateString()}
                   </p>
                 </div>

@@ -2,16 +2,26 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
 
-const PostStats = ({ postId, initialLikes, initialDislikes }) => {
-  const [likes, setLikes] = useState(initialLikes || parseInt(localStorage.getItem("likes")) || 0);
-  const [dislikes, setDislikes] = useState(initialDislikes || parseInt(localStorage.getItem("dislikes")) || 0);
+const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount }) => {
+  const [likes, setLikes] = useState(initialLikes || 0);
+  const [dislikes, setDislikes] = useState(initialDislikes || 0);
+  const [commentsCount, setCommentsCount] = useState(initialCommentsCount || 0);
   const [userLiked, setUserLiked] = useState(false); // Track if the user has liked the post
   const URL = `${API_URL}`;
 
   useEffect(() => {
-    localStorage.setItem("likes", likes);
-    localStorage.setItem("dislikes", dislikes);
-  }, [likes, dislikes]);
+    // Fetch initial comments count
+    const fetchCommentsCount = async () => {
+      try {
+        const response = await axios.get(`${URL}/comment/get-comments/${postId}`);
+        console.log("Comment count", response);
+        setCommentsCount(response.data.length);
+      } catch (error) {
+        console.error("Error fetching comments count:", error);
+      }
+    };
+    fetchCommentsCount();
+  }, [postId, URL]);
 
   useEffect(() => {
     // Check if the user has liked the post when the component mounts
@@ -30,16 +40,18 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
         return;
       }
 
-      if (!userLiked) { // Check if the user has already liked the post
+      if (!userLiked) {
+        // Check if the user has already liked the post
         const response = await axios.put(`${URL}/posts/likes/${postId}`, null, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
+        console.log("Liked response", response);
         if (response.status === 200) {
           setLikes(likes + 1);
-          setUserLiked(true); // Update userLiked state
-          localStorage.setItem(`liked_${postId}`, "true"); // Save user like status
+          setUserLiked(true);
+          localStorage.setItem(`liked_${postId}`, "true");
         }
       }
     } catch (error) {
@@ -47,10 +59,33 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
     }
   };
 
+  const dislikePostHandler = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("User is not authenticated.");
+        return;
+      }
+  
+      const response = await axios.put(`${URL}/posts/dislikes/${postId}`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.status === 200) {
+        setDislikes(dislikes + 1);
+      }
+    } catch (error) {
+      console.error("Error disliking post:", error);
+    }
+  };
+  
+
   return (
 
     <div className="flex flex-wrap items-center justify-center gap-2 p-2 md:justify-start">
       <button className="flex items-center gap-1 m-2 text-2xl text-gray-400">
+        {/* Like icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -66,6 +101,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
         </svg>0
       </button>
       <button className="flex items-center gap-1 m-2 text-2xl text-gray-400">
+        {/* Dislike icon */}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
           <path
             strokeLinecap="round"
@@ -75,8 +111,9 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
       </button>
       
       <div
-        className="flex items-center gap-1 m-2 text-2xl text-gray-400"
-      ><svg
+        className="flex items-center gap-1 m-2 text-2xl text-gray-400">
+          {/* Comment icon */}
+          <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
@@ -92,7 +129,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes }) => {
 
           </path>
         </svg>
-        0
+        {commentsCount}
       </div>
       <div className="flex items-center gap-1 m-2 text-2xl text-gray-400"
       >

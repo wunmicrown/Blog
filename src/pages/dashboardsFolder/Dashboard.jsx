@@ -116,19 +116,19 @@ const Dashboard = () => {
                 </div>
               ) : (
                 posts.map((post) => (
-                  <div key={post._id} className="w-full md:w-1/2 px-4 mb-8">
+                  <div key={post._id} className="w-full md:w-1/2 px-4 mb-28">
                     <Link
                       to={`/posts/${post._id}`}
                       className="block mb-6 overflow-hidden rounded-md"
                     >
-                      <img className="w-full" src={post?.coverImgUrl} alt={post.title} />
+                      <img className="w-full h-80" src={post?.coverImgUrl} alt={post.title} />
                     </Link>
                     
                     <p className="mb-2 text-coolGray-500 font-medium">
                       {new Date(post?.createdAt).toDateString()}
                     </p>
                     <Link
-                      className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline"
+                      className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:translate-x-1 transition-all duration-300 ease-in-out hover:text-green-300 "
                       to={`/posts/${post._id}`}
                     >
                       {post?.title}

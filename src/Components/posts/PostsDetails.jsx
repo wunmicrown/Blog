@@ -107,6 +107,7 @@ const PostsDetails = () => {
                         backgroundImage: 'url("flex-ui-assets/elements/pattern-white.svg")',
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center top",
+                        height:"100%"
                     }}
                 >
                     <div className="container px-4 mx-auto">

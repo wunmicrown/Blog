@@ -74,7 +74,7 @@ const PublicPosts  = () => {
                        to={``}
                         className="block mb-6 overflow-hidden rounded-md"
                         >
-                        <img className="w-full" src={post?.coverImgUrl} />
+                        <img className="w-full h-80" src={post?.coverImgUrl} />
                         
                       </Link>
                       <div className="mb-4">
@@ -86,7 +86,7 @@ const PublicPosts  = () => {
                         {new Date(post?.createdAt).toDateString()}
                       </p>
                       <Link
-                        className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:underline"
+                        className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:translate-x-1  transition-all duration-300 ease-in-out hover:text-green-300"
                         to={``}
                       >
                         {post?.title}

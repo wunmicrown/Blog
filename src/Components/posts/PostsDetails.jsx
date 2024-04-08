@@ -25,6 +25,7 @@ const PostsDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
+                // console.log("User", user);
                 setUser(user);
 
             } catch (error) {

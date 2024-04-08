@@ -5,7 +5,26 @@ import { API_URL } from "../../components/constants/Api";
 import { toast } from "react-toastify";
 
 const AddComment = ({ postId }) => {
-  const URL=`${API_URL}`
+  const URL = `${API_URL}`
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    const fetchUserDetails = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const { data: user } = await axios.get(`${URL}/users/getUser`, {
+          headers: {
+            "Authorization": `Bearer ${token}`
+          }
+        });
+        setUser(user);
+
+      } catch (error) {
+        console.log('Error message:', error);
+        console.log(error.response);
+      }
+    }
+    fetchUserDetails();
+  }, [])
   const [formData, setFormData] = useState({
     message: "",
   });
@@ -16,6 +35,7 @@ const AddComment = ({ postId }) => {
     const fetchComments = async () => {
       try {
         const response = await axios.get(`${URL}/comment/get-comments/${postId}`);
+        // console.log(response.data);
         setComments(response.data.comments);
       } catch (error) {
         console.error("Error fetching comments:", error);
@@ -27,23 +47,41 @@ const AddComment = ({ postId }) => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`${URL}/comment/create-comment`, {
-        postId,
-        content: formData.message,
-      });
+      const token = localStorage.getItem('token');
+      let authorAvatar = null;
+      if (user && user.profilePic) {
+        authorAvatar = user.profilePic;
+      }
+      const response = await axios.post(
+        `${URL}/comment/create-comment`,
+        {
+          postId,
+          content: formData.message,
+          authorAvatar: authorAvatar,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        }
+      );
+  
+      // Update comments state with the newly added comment
+      setComments([...comments, response.data.commentCreated]);
+  
       toast.success("Comment created successfully!");
-    // fetching of comments again to update the list
-      fetchComments();
+  
       // Clear form data
       setFormData({ message: "" });
     } catch (error) {
       console.error("Error submitting comment:", error);
     }
   };
+  
+
 
 
   return (
@@ -107,4 +145,3 @@ const AddComment = ({ postId }) => {
 };
 
 export default AddComment;
-  

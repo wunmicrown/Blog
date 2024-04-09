@@ -23,8 +23,6 @@ const Uploadpic = () => {
             } catch (error) {
                 console.log('Error message:', error);
                 console.log(error.response);
-                navigate('/login');
-
             }
         }
         userDetails();

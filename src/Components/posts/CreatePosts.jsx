@@ -134,7 +134,12 @@ const CreatePosts = () => {
                 onChange={fieldChanged}
                 value={post.categoryId || ''}
               >
-                <option key="0" disabled value={0}>--Select category--</option>
+                <option
+                  key="0"
+                // disabled value={0}
+                >
+                  --Select category--
+                </option>
                 {categories.map((category) => (
                   <option key={category._id} value={category.categoryId}>
                     {category.categoryName}

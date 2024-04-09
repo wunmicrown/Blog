@@ -97,34 +97,39 @@ const CreatePosts = () => {
 
   return (
     <div className="wrapper h-screen">
-      <Card className="shadow-sm border-0 mt-2 ">
+      <Card className="shadow-sm border-0 mt-2 bg-[#F5F5F6]">
         <CardBody>
-          <h3>What's going on in your mind?</h3>
           <Form onSubmit={createPost}>
 
-            <div className="mt-20">
-              <Label for="image">Select Post banner</Label>
-              <Input id="image" type="file" onChange={handleFileChange} />
+            <div className="pt-28 ml-16">
+              <label htmlFor="image" className="relative cursor-pointer  border-4 border-gray-200 text-[#D6D6D7] bg-[#504d4d] rounded-md p-2">
+                <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                {image ? (
+                  <span className="">{image.name}</span>
+                ) : (
+                  <span className="font-bold ">Add a cover image</span>
+                )}
+              </label>
             </div>
-            <div className="my-3 mt-3">
-              <Label for="title">Post title</Label>
-              <Input
+
+            <div className="my-3 mt-10 ml-16">
+              <input
                 type="text"
                 id="title"
-                placeholder="Enter here"
-                className="rounded-0 bg-lime-200 text-gray-400"
+                placeholder="New post title here..."
+                className="outline-none bg-transparent text-gray-700 font-extrabold text-2xl py-2 px-3 "
                 name="title"
                 onChange={fieldChanged}
                 value={post.title}
               />
             </div>
-            <div className="my-3">
-              <Label for="category">Post Category</Label>
+
+            <div className="my-3 ml-16">
               <Input
                 type="select"
                 id="category"
                 placeholder="Enter here"
-                className="rounded-0"
+                className="rounded-0 border-4 border-gray-200 text-[#D6D6D7] bg-[#504d4d] rounded-md p-2"
                 name="categoryId"
                 onChange={fieldChanged}
                 value={post.categoryId || ''}
@@ -139,18 +144,17 @@ const CreatePosts = () => {
 
             </div>
             <div className="my-3">
-              <Label for="content">Post Content</Label>
               <JoditEditor
-                className="rounded bg-red-800"
+                className="rounded p-8"
                 ref={editor}
                 value={post.content}
                 onChange={(newContent) => contentFieldChanged(newContent)}
               />
             </div>
 
-            <Container className="text-center text-white">
-              <Button type="submit" className="rounded-0 bg-green-500">Create Post</Button>
-              <Button className="rounded-0 ms-2 bg-red-500">Reset Content</Button>
+            <Container className="text-start text-white ml-10 pb-8">
+              <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
+              <Button className="rounded-sm ms-2 text-gray-600 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
             </Container>
           </Form>
         </CardBody>

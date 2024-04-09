@@ -15,6 +15,8 @@ const PostsDetails = () => {
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
     const [categoryId, setCategoryId] = useState(null);
+    const [likes, setLikes] = useState(0);
+    const [dislikes, setDislikes] = useState(0);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -25,16 +27,13 @@ const PostsDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                // console.log("User", user);
                 setUser(user);
-
             } catch (error) {
-                console.log('Error message:', error);
-                console.log(error.response);
+                console.error('Error fetching user details:', error);
             }
         }
         fetchUserDetails();
-    }, [])
+    }, []);
 
     useEffect(() => {
         const fetchPostDetails = async () => {
@@ -49,9 +48,10 @@ const PostsDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                // console.log('API Response:', response.data);
                 setPost(response.data);
                 setLoading(false);
+                setLikes(response.data.post.likes.length);
+                setDislikes(response.data.post.dislikes.length);
             } catch (error) {
                 console.error('Error fetching post details:', error);
                 setError(error);
@@ -61,33 +61,49 @@ const PostsDetails = () => {
 
         fetchPostDetails();
     }, [postId, URL]);
-    // useEffect(() => {
-    //     const categoryDetails = async () => {
-    //         try {
-    //             setLoading(true);
-    //             if (!categoryId) { // Check if categoryId is undefined or null
-    //                 throw new Error('categoryId is undefined');
-    //             }
-    //             const response = await axios.get(`${API_URL}/categories/$${categoryId}`); // Fix URL interpolation
-    //             console.log('categoryId Response:', response.data);
-    //             setCategoryId(response.data);
-    //             setLoading(false);
-    //         } catch (error) {
-    //             console.error('Error fetching category details:', error);
-    //             setError(error);
-    //             setLoading(false);
-    //         }
-    //     };
 
-    //     categoryDetails();
-    // }, [categoryId]);
-
-
-    //! Get the creator of the post
-    const creator = post?.post?.author?._id?.toString();
-    const loginUser = user?.user?._id?.toString(); // Access user state here
-
-    const isCreator = creator === loginUser;
+    const handleLikePost = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('User is not authenticated.');
+                return;
+            }
+            const response = await axios.put(`${URL}/posts/likes/${postId}`, null, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                // Update likes count based on the response data
+                setLikes(response.data.likes.length);
+            }
+        } catch (error) {
+            console.error('Error liking post:', error);
+        }
+    };
+    
+    const handleDislikePost = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('User is not authenticated.');
+                return;
+            }
+            const response = await axios.put(`${URL}/posts/dislikes/${postId}`, null, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                // Update dislikes count based on the response data
+                setDislikes(response.data.dislikes.length);
+            }
+        } catch (error) {
+            console.error('Error disliking post:', error);
+        }
+    };
+    
 
     if (loading) {
         return <div><Loading /></div>;
@@ -96,6 +112,11 @@ const PostsDetails = () => {
     if (error || !post) {
         return <div>Error: Unable to fetch post details</div>;
     }
+        //! Get the creator of the post
+        const creator = post?.post?.author?._id?.toString();
+        const loginUser = user?.user?._id?.toString(); // Access user state here
+    
+        const isCreator = creator === loginUser;
     return (
         <>
             {error ? (
@@ -107,7 +128,6 @@ const PostsDetails = () => {
                         backgroundImage: 'url("flex-ui-assets/elements/pattern-white.svg")',
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center top",
-                        height:"100%"
                     }}
                 >
                     <div className="container px-4 mx-auto">
@@ -174,14 +194,12 @@ const PostsDetails = () => {
                             </p>
                             {/* Posts stats */}
                             <PostStats
-                                // views={post?.post?.postViews}
-                                  likes={post?.post?.likes.length}
-                                  dislikes={post?.post?.dislikes.length}
-                                // postViews={post?.post?.postViews}
-                                // totalComments={post?.post?.comments?.length}
-                                // createdAt={post?.post?.createdAt}
-                                // readingTime={calculateReadingtime(post?.post?.content)}
-                                // postId={postId}
+                                likes={likes}
+                                dislikes={dislikes}
+                                commentsCount={post.post.comments.length} // Update with actual comment count from the post object
+                                postId={postId}
+                                handleLike={handleLikePost} // Pass like handler function
+                                handleDislike={handleDislikePost} // Pass dislike handler function
                             />
                             {/* delete and update icons */}
                             {isCreator && (
@@ -229,8 +247,8 @@ const PostsDetails = () => {
                                 </div>
                             )}
                             <div className='mt-8 mb-16'>
-                                <hr/>
-                                
+                                <hr />
+
                             </div>
                             <h3 className="mb-4 text-2xl font-semibold md:text-3xl text-coolGray-800">
                                 Add a comment
@@ -238,7 +256,7 @@ const PostsDetails = () => {
 
                             {/* Comment form */}
                             <AddComment postId={postId} comments={post?.post?.comments} />
-                            
+                                
                         </div>
                     </div>
 

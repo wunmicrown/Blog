@@ -13,9 +13,9 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
     // Fetch initial comments count
     const fetchCommentsCount = async () => {
       try {
-        const response = await axios.get(`${URL}/comment/get-comments/${postId}`);
-        console.log("Comment count", response);
-        setCommentsCount(response.data.length);
+        const {data} = await axios.get(`${URL}/comment/get-comments/${postId}`);
+        console.log("Comment count", data);
+        setCommentsCount(data.commentsCount);
       } catch (error) {
         console.error("Error fetching comments count:", error);
       }
@@ -79,12 +79,35 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
       console.error("Error disliking post:", error);
     }
   };
-  
+  const deleteCommentHandler = async (commentId) => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        console.error("User is not authenticated.");
+        return;
+      }
+
+      const response = await axios.delete(`${API_URL}/comments/delete/${commentId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      
+      if (response.status === 200) {
+        // Call a function to refresh comments count or update UI as needed
+        console.log("Comment deleted successfully");
+      }
+    } catch (error) {
+      console.error("Error deleting comment:", error);
+    }
+  };
 
   return (
 
     <div className="flex flex-wrap items-center justify-center gap-2 p-2 md:justify-start">
-      <button className="flex items-center gap-1 m-2 text-2xl text-gray-400">
+      <button className="flex items-center gap-1 m-2 text-2xl text-gray-400"
+        onClick={likePostHandler}
+      >
         {/* Like icon */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +123,9 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
           </path>
         </svg>0
       </button>
-      <button className="flex items-center gap-1 m-2 text-2xl text-gray-400">
+      <button className="flex items-center gap-1 m-2 text-2xl text-gray-400" 
+        onClick={dislikePostHandler}
+      >
         {/* Dislike icon */}
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="w-6 h-6">
           <path
@@ -129,27 +154,9 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
 
           </path>
         </svg>
-        {commentsCount}
+        {commentsCount}comment
       </div>
-      <div className="flex items-center gap-1 m-2 text-2xl text-gray-400"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          strokeWidth="1.5"
-          stroke="currentColor"
-          className="w-6 h-6"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z">
-
-          </path>
-        </svg>
-        1 min read
-      </div>
+      
     </div>
    
   );

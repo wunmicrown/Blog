@@ -67,6 +67,6 @@ const Category = () => {
       </div>
     </section>
   );
-};
+}
 
-export default Category;
+export default Category

@@ -1,11 +1,11 @@
 import React from 'react'
-import Category from '../components/Category'
 import PublicPosts from './posts/PublicPosts'
+import Category from '../components/Category'
 
 const Homepage = () => {
   return (
     <>
-      <Category/>
+      <Category />
       <PublicPosts />
     </>
   )

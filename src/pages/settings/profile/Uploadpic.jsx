@@ -8,6 +8,7 @@ const Uploadpic = () => {
     const fileInputRef = useRef(null);
     const [user, setUser] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
+
     useEffect(() => {
         const userDetails = async () => {
             try {
@@ -17,7 +18,7 @@ const Uploadpic = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                setUser(user); // Initialize image source
+                setUser(user);
 
             } catch (error) {
                 console.log('Error message:', error);

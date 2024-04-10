@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import JoditEditor from "jodit-react";
+import DOMPurify from 'dompurify'; 
 import { toast } from "react-toastify";
 import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
 import axios from 'axios';
@@ -41,10 +42,9 @@ const CreatePosts = () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
       // console.log("Categories Res", response.data);
-      setCategories(response.data.categories); // Access categories array from response
+      setCategories(response.data.categories); 
     } catch (error) {
       console.error('Error fetching categories:', error);
-      // Handle error
     }
   };
 
@@ -170,7 +170,7 @@ const CreatePosts = () => {
               <JoditEditor
                 className="rounded p-8"
                 ref={editor}
-                value={post.content}
+                value={DOMPurify.sanitize(post.content)} 
                 onChange={(newContent) => contentFieldChanged(newContent)}
               />
             </div>

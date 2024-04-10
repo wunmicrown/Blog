@@ -12,8 +12,6 @@ import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
 import DashboardPath from './pages/dashboardsFolder/DashboardPath';
 import Dashboard from './pages/dashboardsFolder/Dashboard';
-import PostsDetails from './components/posts/PostsDetails';
-import CreatePosts from './components/posts/CreatePosts';
 import UserProfileDetails from './pages/dashboardsFolder/UserProfileDetails';
 import SettingLayout from './pages/settings/SettingLayout';
 import ChangeEmail from './pages/settings/ChangeEmail';
@@ -21,6 +19,8 @@ import Uploadpic from './pages/settings/profile/Uploadpic';
 import ChangePassword from './pages/settings/ChangePassword';
 import AddComment from './pages/comments/AddComment';
 import CommentsList from './pages/comments/CommentLists';
+import CreatePosts from './pages/posts/CreatePosts';
+import PostsDetails from './pages/posts/PostsDetails';
 
 const App = () => {
     return (

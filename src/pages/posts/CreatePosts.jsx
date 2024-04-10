@@ -4,7 +4,7 @@ import DOMPurify from 'dompurify';
 import { toast } from "react-toastify";
 import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
 import axios from 'axios';
-import { API_URL } from "../constants/Api";
+import { API_URL } from "../../components/constants/Api";
 
 const CreatePosts = () => {
   const editor = useRef(null);

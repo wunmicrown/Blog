@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_URL } from '../constants/Api';
+import { API_URL } from '../../components/constants/Api';
 import { Link } from 'react-router-dom';
-import Loading from '../loading/Loading';
-import Warning from '../loading/Warning';
 import truncatePost from '../../utils/truncatepost';
-import Modal from '../Modal';
+import Modal from '../../components/Modal';
+import Loading from '../../components/loading/Loading';
+import  Warning  from '../../components/loading/Warning';
 
 const PublicPosts  = () => {
   const URL = `${API_URL}/posts`
@@ -120,7 +120,7 @@ const PublicPosts  = () => {
               )}
             </div>
             {isModalOpen && <Modal closeModal={closeModal} />}
-                <Warning/>
+                <Warning />
             {/* {!user?.userdetails && <Warning />} */}
           </div>
         </section>

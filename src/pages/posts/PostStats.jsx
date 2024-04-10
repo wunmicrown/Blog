@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { API_URL } from "../constants/Api";
+import { API_URL } from "../../components/constants/Api";
 
 const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount }) => {
   const [likes, setLikes] = useState(initialLikes || 0);

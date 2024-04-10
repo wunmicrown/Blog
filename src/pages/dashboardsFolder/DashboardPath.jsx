@@ -19,7 +19,7 @@ const DashboardPath = () => {
             "Authorization": `Bearer ${token}`
           }
       });
-      console.log("user", user);
+      // console.log("user", user);
       setTokenMatch(true);
       setUser(user); // Initialize image source
 

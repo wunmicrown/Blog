@@ -17,7 +17,6 @@ const Uploadpic = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log("user", user);
                 setUser(user); // Initialize image source
 
             } catch (error) {

@@ -1,20 +1,20 @@
 import React, { useState, useEffect, useRef } from "react";
 import JoditEditor from "jodit-react";
 import { toast } from "react-toastify";
-import { Card, CardBody, Form, Label, Input, Container, Button } from 'reactstrap';
+import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
 import axios from 'axios';
 import { API_URL } from "../constants/Api";
 
 const CreatePosts = () => {
   const editor = useRef(null);
   const [categories, setCategories] = useState([]);
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState('');
+  const [image, setImage] = useState('');
   const [post, setPost] = useState({
     title: '',
     content: '',
-    categoryId: null // Set initial state to null
+    category: null
   });
-  const [image, setImage] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -26,6 +26,7 @@ const CreatePosts = () => {
           }
         });
         setUser(user);
+        // console.log("User", user);
       } catch (error) {
         console.error('Error fetching user:', error);
         // Handle error
@@ -39,7 +40,7 @@ const CreatePosts = () => {
   const loadAllCategoriesFromBackend = async () => {
     try {
       const response = await axios.get(`${API_URL}/categories`);
-      console.log("Categories Res", response.data);
+      // console.log("Categories Res", response.data);
       setCategories(response.data.categories); // Access categories array from response
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -48,7 +49,11 @@ const CreatePosts = () => {
   };
 
   const fieldChanged = (event) => {
-    setPost({ ...post, [event.target.name]: event.target.value });
+    if (event.target.name === 'category') {
+      setPost({ ...post, category: event.target.value });
+    } else {
+      setPost({ ...post, [event.target.name]: event.target.value });
+    }
   }
 
   const contentFieldChanged = (data) => {
@@ -68,28 +73,41 @@ const CreatePosts = () => {
       return;
     }
 
-    if (!post.categoryId) {
+    if (!post.category) {
       toast.error("Select some category !!");
       return;
     }
 
-    post['userId'] = user.id;
+    // Create a new FormData object
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('content', post.content);
+    formData.append('category', post.category);
+    formData.append('userId', user._id);
+    if (image) {
+      formData.append('image', image);
+    }
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${API_URL}/posts/create`, post, {
+      const response = await axios.post(`${API_URL}/posts/create`, formData, {
         headers: {
-          "Authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
         }
       });
-      console.log("Posst", response.data);
+      console.log("Post", response.data);
       toast.success("Post Created !!");
       setPost({ title: '', content: '', category: null });
+      setImage(null); // Reset image state to null
+
     } catch (error) {
       console.error('Error creating post:', error);
       toast.error("Post not created due to some error !!");
     }
   }
+
+
 
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
@@ -127,12 +145,11 @@ const CreatePosts = () => {
             <div className="my-3 ml-16">
               <Input
                 type="select"
-                id="category"
                 placeholder="Enter here"
                 className="rounded-0 border-4 border-gray-200 text-[#D6D6D7] bg-[#504d4d] rounded-md p-2"
-                name="categoryId"
+                name="category"
                 onChange={fieldChanged}
-                value={post.categoryId || ''}
+                value={post.category || ''}
               >
                 <option
                   key="0"
@@ -141,10 +158,11 @@ const CreatePosts = () => {
                   --Select category--
                 </option>
                 {categories.map((category) => (
-                  <option key={category._id} value={category.categoryId}>
+                  <option key={category._id} value={category._id}> {/* Use category._id as value */}
                     {category.categoryName}
                   </option>
                 ))}
+
               </Input>
 
             </div>

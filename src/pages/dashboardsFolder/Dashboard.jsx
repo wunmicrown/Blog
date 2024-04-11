@@ -6,15 +6,14 @@ import { API_URL } from "../constants/Api";
 import truncatePost from "../../utils/truncatepost";
 
 const Dashboard = () => {
-  const navigate = useNavigate();
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [category, setCategory] = useState("");
   const [page, setPage] = useState(1);
   const [categories, setCategories] = useState([]);
-  const [likedPosts, setLikedPosts] = useState([]); // State to track liked posts
-  const [loadingCategories, setLoadingCategories] = useState(false); // State to track loading categories
+  const [likedPosts, setLikedPosts] = useState([]);
+  const [loadingCategories, setLoadingCategories] = useState(false);
 
   const handleNext = () => setPage(page + 1);
   const handlePrev = () => setPage(page > 1 ? page - 1 : 1);
@@ -40,15 +39,15 @@ const Dashboard = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      setLoadingCategories(true); // Set loading state to true when fetching categories
+      setLoadingCategories(true);
       try {
         const { data } = await axios.get(`${API_URL}/api/v1/categories`);
         // console.log("Categories", data);
         setCategories(data.categories);
-        setLoadingCategories(false); // Set loading state to false after fetching categories
+        setLoadingCategories(false);
       } catch (error) {
         setErrorCategories(error);
-        setLoadingCategories(false); // Set loading state to false if there's an error fetching categories
+        setLoadingCategories(false);
       }
     };
 
@@ -83,8 +82,8 @@ const Dashboard = () => {
               </h3>
             </div>
             {/* Categories */}
-            {/* <div className="flex flex-wrap justify-center mb-4">
-              {loadingCategories ? ( // Show loading indicator while categories are being fetched
+            <div className="flex flex-wrap justify-center mb-4">
+              {loadingCategories ? (
                 <Loading />
               ) : error ? (
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
@@ -99,7 +98,7 @@ const Dashboard = () => {
                   </button>
                 ))
               )}
-            </div> */}
+            </div>
 
             <div className="flex flex-wrap -mx-4 mb-12 md:mb-20">
               {/* loop */}
@@ -122,7 +121,7 @@ const Dashboard = () => {
                     >
                       <img className="w-full h-80" src={post?.coverImgUrl} alt={post.title} />
                     </Link>
-                    
+
                     <p className="mb-2 text-coolGray-500 font-medium">
                       {new Date(post?.createdAt).toDateString()}
                     </p>
@@ -135,12 +134,12 @@ const Dashboard = () => {
                     <p className="mb-4 text-coolGray-500">
                       {truncatePost(post?.content)}
                     </p>
-                       {/* like post button */}
+                    {/* like post button */}
                     <div className="flex  gap-4 items-center">
                       <span
                         className={`flex items-center text-base md:text-lg font-semibold ${likedPosts.includes(post._id)
-                            ? "bg-red-600 text-gray-300"
-                            : "red"
+                          ? "bg-red-600 text-gray-300"
+                          : "red"
                           }  text-gray-800  rounded`}
                         onClick={() => handleLikeClick(post._id)}
                       >
@@ -161,17 +160,17 @@ const Dashboard = () => {
                           : " Reactions"}
                       </span>
                       <div className="flex">
-                         <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        className="w-4 h-4 ml-1 mt-2 text-gray-400 hover:text-gray-600"
-                      >
-                        <path
-                          d="M21 2H3a1 1 0 00-1 1v14a1 1 0 001 1h5.937l2.041 2.775A1 1 0 0012.836 22H21a1 1 0 001-1V3a1 1 0 00-1-1zM12 17.618L8.764 15H4V4h16v11H12.118zM12 12a1 1 0 00-1 1v1a1 1 0 001 1h6.764L12 17.618z"
-                        />
-                      </svg>
-                      Comments
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 24 24"
+                          fill="currentColor"
+                          className="w-4 h-4 ml-1 mt-2 text-gray-400 hover:text-gray-600"
+                        >
+                          <path
+                            d="M21 2H3a1 1 0 00-1 1v14a1 1 0 001 1h5.937l2.041 2.775A1 1 0 0012.836 22H21a1 1 0 001-1V3a1 1 0 00-1-1zM12 17.618L8.764 15H4V4h16v11H12.118zM12 12a1 1 0 00-1 1v1a1 1 0 001 1h6.764L12 17.618z"
+                          />
+                        </svg>
+                        Comments
                       </div>
                     </div>
                   </div>

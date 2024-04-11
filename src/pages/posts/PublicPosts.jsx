@@ -20,7 +20,7 @@ const PublicPosts  = () => {
       try {
         const { data } = await axios.get(URL);
         // console.log(data);
-        setPosts(data); // Assuming the response data is an array of posts
+        setPosts(data); 
         setLoading(false);
       } catch (error) {
         setError(error);

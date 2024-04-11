@@ -9,7 +9,7 @@ import axios from "axios";
 import { API_URL } from "../constants/Api";
 
 const PrivateNavbar = () => {
-  const [user, setUser] = useState(null);
+    const [user, setUser] = useState(null);
   const [tokenMatch, setTokenMatch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
@@ -317,4 +317,5 @@ const PrivateNavbar = () => {
   );
 };
 
-export default PrivateNavbar;
+export default PrivateNavbar
+

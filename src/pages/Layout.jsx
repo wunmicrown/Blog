@@ -22,8 +22,8 @@
 import React, { useState } from 'react'
 import { Outlet } from 'react-router-dom'
 import Footer from './Footer'
-import PrivateNavbar from '../components/Navbar/PrivateNavbar'
-import PublicNavbar from '../components/Navbar/PublicNavbar'
+import PrivateNavbar from '../components/Navbar/PrivateNavbar';
+import PublicNavbar from '../components/Navbar/PublicNavbar';
 
 const Layout = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false); 

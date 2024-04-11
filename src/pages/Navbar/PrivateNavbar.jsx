@@ -6,7 +6,7 @@ import { FaBlog } from "react-icons/fa";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { BsSearch } from "react-icons/bs";
 import axios from "axios";
-import { API_URL } from "../constants/Api";
+import { API_URL } from "../../components/constants/Api";
 
 const PrivateNavbar = () => {
     const [user, setUser] = useState(null);

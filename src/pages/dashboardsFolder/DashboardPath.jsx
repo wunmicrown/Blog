@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Outlet, useNavigate } from 'react-router-dom'
-import PrivateNavbar from '../../components/Navbar/PrivateNavbar'
+import PrivateNavbar from '../Navbar/PrivateNavbar'
 import Footer from '../Footer'
 import { API_URL } from '../../components/constants/Api'
 import axios from 'axios'

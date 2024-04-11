@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import PrivateNavbar from "../../components/Navbar/PrivateNavbar";
+import PrivateNavbar from "../Navbar/PrivateNavbar";
 import Footer from "../Footer";
 
 const SettingLayout = () => {

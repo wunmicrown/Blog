@@ -8,7 +8,7 @@ import Loading from "../loading/Loading";
 import { FaBlog } from "react-icons/fa";
 
 const ForgotPassword = () => {
-    const URL = `${API_URL}/users/reset-email`;
+    const URL = `${API_URL}/api/v1/users/reset-email`;
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
     const navigate = useNavigate();

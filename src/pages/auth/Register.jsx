@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { FaBlog } from "react-icons/fa";
 
 const SignUp = () => {
-  const URL = `${API_URL}/users/register`;
+  const URL = `${API_URL}/api/v1/users/register`;
   const navigate = useNavigate();
 
   const onSubmit = async (values) => {

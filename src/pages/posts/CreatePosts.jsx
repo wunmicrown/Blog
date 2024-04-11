@@ -21,7 +21,7 @@ const CreatePosts = () => {
     const fetchData = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+        const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
           headers: {
             "Authorization": `Bearer ${token}`
           }
@@ -40,7 +40,7 @@ const CreatePosts = () => {
 
   const loadAllCategoriesFromBackend = async () => {
     try {
-      const response = await axios.get(`${API_URL}/categories`);
+      const response = await axios.get(`${API_URL}/api/v1/categories`);
       // console.log("Categories Res", response.data);
       setCategories(response.data.categories); 
     } catch (error) {
@@ -90,7 +90,7 @@ const CreatePosts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${API_URL}/posts/create`, formData, {
+      const response = await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data",

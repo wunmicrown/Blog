@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 import { FaBlog } from "react-icons/fa";
 
 const Login = () => {
-  const URL = `${API_URL}/users/login`;
+  const URL = `${API_URL}/api/v1/users/login`;
   const navigate = useNavigate();
 
   const { handleChange, handleSubmit, values, errors } = useFormik({

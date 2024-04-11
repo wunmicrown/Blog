@@ -8,7 +8,8 @@ import Loading from '../loading/Loading';
 import  Warning  from '../loading/Warning';
 
 const PublicPosts  = () => {
-  const URL = `${API_URL}/posts`
+  const URL = `${API_URL}/api/v1/posts`
+  console.log("URL",URL);
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

@@ -7,7 +7,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
   const [dislikes, setDislikes] = useState(initialDislikes || 0);
   const [commentsCount, setCommentsCount] = useState(initialCommentsCount || 0);
   const [userLiked, setUserLiked] = useState(false); // Track if the user has liked the post
-  const URL = `${API_URL}`;
+  const URL = `${API_URL}/api/v1`;
 
   useEffect(() => {
     // Fetch initial comments count
@@ -87,7 +87,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
         return;
       }
 
-      const response = await axios.delete(`${API_URL}/comments/delete/${commentId}`, {
+      const response = await axios.delete(`${API_URL}/api/v1/comments/delete/${commentId}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { API_URL } from "../constants/Api";
 
 const ChangePassword = () => {
-  const URL = `${API_URL}/users/change-password`;
+  const URL = `${API_URL}/api/v1/users/change-password`;
   const navigate = useNavigate();
   const [message, setMessage] = useState('');
   const [data, setData] = useState({

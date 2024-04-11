@@ -10,7 +10,7 @@ import Uploadpic from "./profile/Uploadpic";
 import ChangePassword from "./ChangePassword";
 
 const ChangeEmail = () => {
-  const URL = `${API_URL}/users/change-email`;
+  const URL = `${API_URL}/api/v1/users/change-email`;
   const [email, setEmail] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();

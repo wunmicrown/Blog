@@ -11,7 +11,7 @@ const PasswordResetVerification = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState('');
     const [resendLoading, setResendLoading] = useState(false);
-    const URL = `${API_URL}/users/verify-email`;
+    const URL = `${API_URL}/api/v1/users/verify-email`;
 
     const formik = useFormik({
         initialValues: {

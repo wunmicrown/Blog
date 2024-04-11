@@ -18,12 +18,13 @@ const PrivateNavbar = () => {
   const [posts, setPosts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false); // State to control modal visibility
   const navigate = useNavigate();
+  const URL = `${API_URL}/api/v1/users/getUser`;
 
   useEffect(() => {
     const userDetails = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+        const { data: user } = await axios.get(URL, {
           headers: {
             "Authorization": `Bearer ${token}`
           }
@@ -45,7 +46,7 @@ const PrivateNavbar = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_URL}/posts`, {
+      const response = await axios.get(`${API_URL}/api/v1/posts`, {
         params: { page, title: searchTerm },
       });
       setPosts(response.data.posts);
@@ -78,7 +79,7 @@ const PrivateNavbar = () => {
     const userDetails = async () => {
       try {
         const token = localStorage.getItem('token');
-        const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+        const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
           headers: {
             "Authorization": `Bearer ${token}`
           }

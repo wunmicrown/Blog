@@ -5,7 +5,7 @@ import { API_URL } from "../constants/Api";
 import { toast } from "react-toastify";
 
 const AddComment = ({ postId }) => {
-  const URL = `${API_URL}`
+  const URL = `${API_URL}/api/v1`
   const [user, setUser] = useState(null);
   useEffect(() => {
     const fetchUserDetails = async () => {

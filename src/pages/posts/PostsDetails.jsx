@@ -9,7 +9,7 @@ import { API_URL } from '../constants/Api';
 
 
 const PostsDetails = () => {
-        const URL = `${API_URL}/posts`;
+        const URL = `${API_URL}/api/v1/posts`;
         const { postId } = useParams();
         const [post, setPost] = useState(null);
         const [loading, setLoading] = useState(true);
@@ -23,7 +23,7 @@ const PostsDetails = () => {
             const fetchUserDetails = async () => {
                 try {
                     const token = localStorage.getItem('token');
-                    const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+                    const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
                         headers: {
                             "Authorization": `Bearer ${token}`
                         }

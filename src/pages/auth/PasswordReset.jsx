@@ -8,7 +8,7 @@ import { FaBlog } from "react-icons/fa";
 import Loading from "../loading/Loading";
 
 const PasswordReset = () => {
-    const URL = `${API_URL}/users/reset-password`;
+    const URL = `${API_URL}/api/v1/users/reset-password`;
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [params] = useSearchParams();

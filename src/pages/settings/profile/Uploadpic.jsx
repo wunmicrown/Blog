@@ -13,7 +13,7 @@ const Uploadpic = () => {
         const userDetails = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const { data: user } = await axios.get(`${API_URL}/users/getUser`, {
+                const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
@@ -60,7 +60,7 @@ const Uploadpic = () => {
 
         try {
             const token = localStorage.getItem('token');
-            const { data } = await axios.post(`${API_URL}/users/create/uploads`, formData, {
+            const { data } = await axios.post(`${API_URL}/api/v1/users/create/uploads`, formData, {
                 headers: {
                     "Authorization": `Bearer ${token}`,
                     "Content-Type": "multipart/form-data"

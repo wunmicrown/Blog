@@ -21,7 +21,7 @@ const Login = () => {
       try {
         const { data } = await axios.post(URL, values);
 
-        console.log(data);
+        // console.log(data);
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         // Redirect to dashboard if email is verified

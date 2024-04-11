@@ -7,7 +7,7 @@ export const category = [
   {
     id: 1,
     category: "Technology",
-    title: "There's always light at the end of the tunnel",
+    title: "Advances That Will Light Up Tomorrow",
     cover:cover1,
   },
   
@@ -15,7 +15,7 @@ export const category = [
     {
       id: 4,
       category: "Javascript",
-      title: "There's always light at the end of the tunnel",
+      title: "Mastering the Language of the Web",
       cover: cover3
     },
     
@@ -23,19 +23,19 @@ export const category = [
     {
       id: 2,
       category: "Web devlopment",
-      title: "Becoming a Dragonfly",
+      title: "Crafting Digital Worlds",
       cover:cover6,
     },
     {
       id: 7,
       category: "Technology",
-      title: "Stay Calm And Surf",
+      title: "Advances That Will Light Up Tomorrow",
       cover:cover7,
     },
     {
       id: 8,
       category: "Javascript",
-      title: "Stay Calm And Surf",
+      title: "Mastering the Language of the Web",
       cover:cover3
     },
   ]

@@ -2,9 +2,9 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API_URL } from "../../components/constants/Api";
+import { API_URL } from "../constants/Api";
 import { AiOutlineMail } from "react-icons/ai";
-import Loading from "../../components/loading/Loading";
+import Loading from "../loading/Loading";
 import { FaBlog } from "react-icons/fa";
 
 const ForgotPassword = () => {

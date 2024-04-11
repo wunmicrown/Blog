@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { API_URL } from '../../components/constants/Api';
+import { API_URL } from '../constants/Api';
 import { toast } from 'react-toastify';
 import { FaBlog } from 'react-icons/fa';
 

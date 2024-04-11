@@ -4,8 +4,8 @@ import axios from 'axios';
 import PostStats from './PostStats';
 // import calculateReadingtime from '../../utils/calculateReadingtime';
 import AddComment from '../comments/AddComment';
-import Loading from '../../components/loading/Loading';
-import { API_URL } from '../../components/constants/Api';
+import Loading from '../loading/Loading';
+import { API_URL } from '../constants/Api';
 
 
 const PostsDetails = () => {

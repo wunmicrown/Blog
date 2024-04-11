@@ -2,8 +2,8 @@ import axios from "axios";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
 import { AiOutlineUser, AiOutlineLock } from "react-icons/ai";
-import { loginSchema } from "../../components/validationSchema/loginSchema";
-import { API_URL } from "../../components/constants/Api";
+import { loginSchema } from "../validationSchema/loginSchema";
+import { API_URL } from "../constants/Api";
 import { toast } from "react-toastify";
 import { FaBlog } from "react-icons/fa";
 

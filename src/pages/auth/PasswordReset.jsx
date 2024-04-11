@@ -3,9 +3,9 @@ import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import { toast } from "react-toastify";
-import { API_URL } from "../../components/constants/Api";
+import { API_URL } from "../constants/Api";
 import { FaBlog } from "react-icons/fa";
-import Loading from "../../components/loading/Loading";
+import Loading from "../loading/Loading";
 
 const PasswordReset = () => {
     const URL = `${API_URL}/users/reset-password`;

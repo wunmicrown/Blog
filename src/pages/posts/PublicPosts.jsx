@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { API_URL } from '../../components/constants/Api';
+import { API_URL } from '../constants/Api';
 import { Link } from 'react-router-dom';
 import truncatePost from '../../utils/truncatepost';
-import Modal from '../../components/Modal';
-import Loading from '../../components/loading/Loading';
-import  Warning  from '../../components/loading/Warning';
+import Modal from '../Modal';
+import Loading from '../loading/Loading';
+import  Warning  from '../loading/Warning';
 
 const PublicPosts  = () => {
   const URL = `${API_URL}/posts`

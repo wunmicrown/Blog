@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { AiOutlineCamera, AiOutlineEdit } from 'react-icons/ai';
 import axios from "axios";
 import { toast } from "react-toastify";
-import { API_URL } from "../../../components/constants/Api";
+import { API_URL } from "../../constants/Api";
 
 const Uploadpic = () => {
     const fileInputRef = useRef(null);

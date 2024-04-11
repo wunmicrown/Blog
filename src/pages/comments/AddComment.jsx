@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import CommentsList from "./CommentLists";
 import axios from "axios";
-import { API_URL } from "../../components/constants/Api";
+import { API_URL } from "../constants/Api";
 import { toast } from "react-toastify";
 
 const AddComment = ({ postId }) => {

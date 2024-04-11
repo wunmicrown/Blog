@@ -298,7 +298,7 @@ const PrivateNavbar = () => {
               <div className="space-y-1 pt-2 pb-3">
                 {/* Current: "bg-indigo-50 border-green-600 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-green-600 hover:text-green-300" */}
                 <Link
-                  to={"/dashboard"}
+                  to={"/posts"}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-green-600 hover:bg-gray-50 hover:text-green-300 sm:pl-5 sm:pr-6"
                 >
                   Home

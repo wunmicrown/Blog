@@ -21,7 +21,7 @@ const UserProfileDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log("user", user);
+                // console.log("user", user);
                 setTokenMatch(true);
                 setUser(user); // Initialize image source
 
@@ -44,7 +44,7 @@ const UserProfileDetails = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log('post Response:', response.data);
+                // console.log('post Response:', response.data);
                 setPost(response.data);
             } catch (error) {
                 console.error('Error fetching post details:', error);

@@ -15,7 +15,7 @@ const SignUp = () => {
     try {
 
       const response = await axios.post(URL, values);
-      console.log(response);
+      // console.log(response);
       localStorage.setItem('userDetails', JSON.stringify(response.data.user));
 
       toast.success("User registered successfully. Verification OTP sent to email.");

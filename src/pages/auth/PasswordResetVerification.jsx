@@ -28,7 +28,7 @@ const PasswordResetVerification = () => {
 
             try {
                 const response = await axios.post(URL, { ...values, email });
-                console.log(response);
+                // console.log(response);
                 if (response.data.user.isEmailVerified) {
                     navigate('/reset-password'); // Navigate to reset password page
                     toast.success("OTP verified successfully");

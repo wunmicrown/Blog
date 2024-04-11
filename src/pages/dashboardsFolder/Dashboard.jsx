@@ -16,7 +16,6 @@ const Dashboard = () => {
   const [likedPosts, setLikedPosts] = useState([]); // State to track liked posts
   const [loadingCategories, setLoadingCategories] = useState(false); // State to track loading categories
 
-  const URL = `${API_URL}/api/v1/posts`
   const handleNext = () => setPage(page + 1);
   const handlePrev = () => setPage(page > 1 ? page - 1 : 1);
 

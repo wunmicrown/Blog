@@ -40,7 +40,7 @@ const SignUp = () => {
       <section>
         <main className=" pt-20 pb-5">
           <div className="max-w-md mx-auto shadow-lg p-6 rounded">
-          <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-4 mb-4" />
+            <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-4 mb-4" />
 
             <form onSubmit={handleSubmit}>
               <div className="mb-4">

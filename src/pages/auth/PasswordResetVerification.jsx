@@ -64,22 +64,22 @@ const PasswordResetVerification = () => {
         <div className="flex justify-center items-center h-screen">
             <div className="w-full max-w-xs">
                 <div className="shadow-lg rounded px-8 pt-6 pb-8 mb-4">
-                <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-2 mb-6" />
+                    <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-2 mb-6" />
                     {error && <p className="text-red-500 text-xs italic">{error}</p>}
                     <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
                         <div className="">
 
-                        <label htmlFor="Verify OTP" className="block text-sm mb-2 font-medium text-gray-500">
-                            Verify OTP
-                        </label>
-                        <input
-                            type="text"
-                            name="otp"
-                            onChange={formik.handleChange}
-                            value={formik.values.otp}
-                            placeholder="Enter OTP"
-                            className="bg-white font-medium placeholder-gray-500 focus:border-green-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        />
+                            <label htmlFor="Verify OTP" className="block text-sm mb-2 font-medium text-gray-500">
+                                Verify OTP
+                            </label>
+                            <input
+                                type="text"
+                                name="otp"
+                                onChange={formik.handleChange}
+                                value={formik.values.otp}
+                                placeholder="Enter OTP"
+                                className="bg-white font-medium placeholder-gray-500 focus:border-green-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            />
                         </div>
                         <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={loading}>
                             {loading ? 'Verifying...' : 'Verify'}

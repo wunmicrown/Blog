@@ -6,8 +6,8 @@ const SettingLayout = () => {
     return (
         <>
             <PrivateNavbar />
-                {/* Outlet for rendering child routes */}
-                <Outlet />
+            {/* Outlet for rendering child routes */}
+            <Outlet />
             <Footer />
         </>
     )

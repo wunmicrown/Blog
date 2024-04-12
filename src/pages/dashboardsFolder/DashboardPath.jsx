@@ -11,35 +11,35 @@ const DashboardPath = () => {
   const [tokenMatch, setTokenMatch] = useState(false);
 
   useEffect(() => {
-   const userDetails= async () =>{
-    try {
-      const token = localStorage.getItem('token');
-      const { data:user} = await axios.get(`${API_URL}/api/v1/users/getUser`, {
-        headers: {
+    const userDetails = async () => {
+      try {
+        const token = localStorage.getItem('token');
+        const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
+          headers: {
             "Authorization": `Bearer ${token}`
           }
-      });
-      // console.log("user", user);
-      setTokenMatch(true);
-      setUser(user); // Initialize image source
+        });
+        // console.log("user", user);
+        setTokenMatch(true);
+        setUser(user); // Initialize image source
 
-    } catch (error) {
-      console.log('Error message:', error);
-      console.log(error.response);
-      setTokenMatch(false);
-      navigate('/login');
+      } catch (error) {
+        console.log('Error message:', error);
+        console.log(error.response);
+        setTokenMatch(false);
+        navigate('/login');
 
+      }
     }
-   }
     userDetails();
   }, [])
 
   return (
     <>
       <PrivateNavbar
-        user={user}/>
-        <Outlet/>
-        <Footer/>
+        user={user} />
+      <Outlet />
+      <Footer />
     </>
   )
 }

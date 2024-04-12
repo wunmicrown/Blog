@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
-import useCommentsCount from "./useCommentsCount";
+import useCommentsCount from "../comments/useCommentsCount";
 
 const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount }) => {
   const [likes, setLikes] = useState(initialLikes || 0);
   const [dislikes, setDislikes] = useState(initialDislikes || 0);
   const [userLiked, setUserLiked] = useState(false); 
-  const URL = `${API_URL}/api/v1`;
   const commentsCount = useCommentsCount(postId, URL, initialCommentsCount);
-  
+  console.log("commentCount", commentsCount);
   useEffect(() => {
     // Check if the user has liked the post when the component mounts
     const checkUserLiked = () => {
@@ -29,7 +28,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
 
       if (!userLiked) {
         // Check if the user has already liked the post
-        const response = await axios.put(`${URL}/posts/likes/${postId}`, null, {
+        const response = await axios.put(`${API_URL}/api/v1/posts/likes/${postId}`, null, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -54,7 +53,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
         return;
       }
   
-      const response = await axios.put(`${URL}/posts/dislikes/${postId}`, null, {
+      const response = await axios.put(`${API_URL}/api/v1/posts/dislikes/${postId}`, null, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

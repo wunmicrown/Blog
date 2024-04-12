@@ -190,9 +190,9 @@ const PostsDetails = () => {
                         <div className="container px-4 mx-auto">
                             <div className="mx-auto md:max-w-3xl">
     
-                                <p className="  text-lg font-medium  md:text-xl text-coolGray-500 border-coolGray-100">
+                                <div className="  text-lg font-medium  md:text-xl text-coolGray-500 border-coolGray-100">
                                     {post?.post?.content}
-                                </p>
+                                </div>
                                 {/* Posts stats */}
                                 <PostStats
                                     likes={likes}

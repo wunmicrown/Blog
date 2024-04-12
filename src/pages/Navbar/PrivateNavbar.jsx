@@ -9,7 +9,7 @@ import axios from "axios";
 import { API_URL } from "../constants/Api";
 
 const PrivateNavbar = () => {
-    const [user, setUser] = useState(null);
+  const [user, setUser] = useState(null);
   const [tokenMatch, setTokenMatch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
@@ -100,9 +100,6 @@ const PrivateNavbar = () => {
 
   return (
     <>
-      {/* {loading && (
-    <div className="bg-green-500 h-1 w-ful"></div>
-  )} */}
 
       <Disclosure as="nav" className="bg-white shadow-lg fixed w-full top-0 z-50">
         {({ open }) => (

@@ -35,9 +35,9 @@ const ForgotPassword = () => {
 
             <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
                 <div className="w-96 p-6 bg-white rounded-xl shadow-md">
-                <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-8 mb-8" />
+                    <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-8 mb-8" />
                     <p className="text-gray-600 text-center mb-4">
-                    Enter your email address and we'll send you an <span className="text-green-600 font-bold">OTP</span> to reset your password
+                        Enter your email address and we'll send you an <span className="text-green-600 font-bold">OTP</span> to reset your password
                     </p>
                     <div>
                         <label htmlFor="email" className="block text-sm font-medium text-gray-700">

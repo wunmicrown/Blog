@@ -1,4 +1,4 @@
-    import { BsShieldLock } from "react-icons/bs";
+import { BsShieldLock } from "react-icons/bs";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, useSearchParams } from "react-router-dom";
@@ -43,7 +43,7 @@ const PasswordReset = () => {
             setMessage('Please accept terms and conditions');
             return;
         }
-            // Add email field to the data object
+        // Add email field to the data object
         data.email = email;
 
         try {
@@ -64,7 +64,7 @@ const PasswordReset = () => {
             } else {
                 setMessage('An error occurred. Please try again later.');
             }
-        }finally {
+        } finally {
             setLoading(false);
         }
     };
@@ -73,7 +73,7 @@ const PasswordReset = () => {
     return (
         <div className="flex justify-center items-center h-screen ">
             <div className="p-8 rounded-lg shadow-lg w-96">
-            <FaBlog className=" text-green-500 h-16 mx-auto w-full mb-10" />
+                <FaBlog className=" text-green-500 h-16 mx-auto w-full mb-10" />
 
                 <div className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md  transform transition-all duration-500 ease-in-out hover:scale-105 mb-4 text-center text-green-600  flex items-center justify-center animate-pulse">
                     <BsShieldLock className="inline-block text-green-500 text-4xl mr-2" />
@@ -116,18 +116,18 @@ const PasswordReset = () => {
                     <label htmlFor="termsAccepted" className="text-sm text-gray-400">I accept the Terms and Conditions</label>
                 </div>
                 {loading ? (
-                        <Loading />
-                    ) : (
-                        <button
+                    <Loading />
+                ) : (
+                    <button
                         className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse"
-                            onClick={handleSubmit}
-                            disabled={loading}
-                        >
-                            Reset Password
-                        </button>
-                    )}
-            
-            </div>      
+                        onClick={handleSubmit}
+                        disabled={loading}
+                    >
+                        Reset Password
+                    </button>
+                )}
+
+            </div>
         </div>
     );
 };

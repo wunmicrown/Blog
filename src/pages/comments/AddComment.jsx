@@ -68,19 +68,19 @@ const AddComment = ({ postId }) => {
           }
         }
       );
-  
+
       // Update comments state with the newly added comment
       setComments([...comments, response.data.commentCreated]);
-  
+
       toast.success("Comment created successfully!");
-  
+
       // Clear form data
       setFormData({ message: "" });
     } catch (error) {
       console.error("Error submitting comment:", error);
     }
   };
-  
+
 
 
 

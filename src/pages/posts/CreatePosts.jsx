@@ -38,7 +38,7 @@ const CreatePosts = () => {
   const loadAllCategoriesFromBackend = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/v1/categories`);
-      setCategories(response.data.categories); 
+      setCategories(response.data.categories);
     } catch (error) {
       console.error('Error fetching categories:', error);
     }

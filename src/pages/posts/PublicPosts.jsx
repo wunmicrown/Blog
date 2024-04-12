@@ -19,7 +19,7 @@ const PublicPosts = () => {
     const fetchPosts = async () => {
       try {
         const { data } = await axios.get(URL);
-        console.log(data);
+        // console.log(data);
         setPosts(data);
         setLoading(false);
       } catch (error) {

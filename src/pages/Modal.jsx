@@ -17,10 +17,10 @@ const Modal = ({ closeModal }) => {
           </button>
         </div>
         <hr className='mb-8' />
-          <div>
+        <div>
           <FaBlog className=" text-green-500 h-16 w-20 mt-8 mb-8" />
 
-          </div>
+        </div>
         <p className="mb-8 text-[16px] font-medium text-black">
           We're a place where coders share, stay up-to-date and grow their careers.
         </p>

@@ -66,7 +66,7 @@ const Uploadpic = () => {
                     "Content-Type": "multipart/form-data"
                 }
             });
-            console.log("data", data);
+            // console.log("data", data);
 
             setUser(prevData => ({
                 ...prevData,
@@ -134,7 +134,7 @@ const Uploadpic = () => {
                         </div>
                     </div>
                 </div>
-                
+
             </div>
 
         </>

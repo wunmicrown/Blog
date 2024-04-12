@@ -26,7 +26,7 @@ import PublicNavbar from './Navbar/PublicNavbar';
 import PrivateNavbar from './Navbar/PrivateNavbar';
 
 const Layout = () => {
-    const [isLoggedIn, setIsLoggedIn] = useState(false); 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   return (
     <>
       <div>

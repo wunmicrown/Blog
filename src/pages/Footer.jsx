@@ -8,7 +8,7 @@ const Footer = () => {
         <div className="flex justify-center items-center">
           <p className="text-sm">&copy; 2024 Your Blog App. All rights reserved.</p>
           <div className="flex space-x-4">
-             {/* <Link to={"#"} className="hover:text-gray-400">About</Link> */}
+            {/* <Link to={"#"} className="hover:text-gray-400">About</Link> */}
           </div>
         </div>
       </div>

@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { API_URL } from '../constants/Api';
 
-const useCommentsCount = (postId, URL,initialCommentsCount) => {
-    const [commentsCount, setCommentsCount] = useState(initialCommentsCount || 0);
+const useCommentsCount = (postId, URL, initialCommentsCount) => {
+  const [commentsCount, setCommentsCount] = useState(initialCommentsCount || 0);
 
   useEffect(() => {
     const fetchCommentsCount = async () => {

@@ -16,7 +16,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
   const [likedPosts, setLikedPosts] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(false);
   const commentsCount = useCommentsCount(postId, URL, initialCommentsCount);
-  console.log("Comment test", commentsCount)
+  // console.log("Comment test", commentsCount)
   const handleNext = () => setPage(page + 1);
   const handlePrev = () => setPage(page > 1 ? page - 1 : 1);
 
@@ -44,7 +44,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
       setLoadingCategories(true);
       try {
         const { data } = await axios.get(`${API_URL}/api/v1/categories`);
-        console.log("Categories", data);
+        // console.log("Categories", data);
         setCategories(data.categories);
         setLoadingCategories(false);
       } catch (error) {

@@ -22,13 +22,13 @@ const PasswordResetVerification = () => {
             setError('');
 
             const savedUser = localStorage.getItem('userDetails');
-            if (!savedUser) return navigate("/login");
+            if (!savedUser) return navigate("/reset-password");
             const { email } = JSON.parse(savedUser);
-            if (!email) return navigate("/login");
+            if (!email) return navigate("/reset-password");
 
             try {
                 const response = await axios.post(URL, { ...values, email });
-                // console.log(response);
+                console.log(response);
                 if (response.data.user.isEmailVerified) {
                     navigate('/reset-password'); // Navigate to reset password page
                     toast.success("OTP verified successfully");

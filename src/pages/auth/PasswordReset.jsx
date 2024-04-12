@@ -9,6 +9,7 @@ import Loading from "../loading/Loading";
 
 const PasswordReset = () => {
     const URL = `${API_URL}/api/v1/users/reset-password`;
+    console.log
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
     const [params] = useSearchParams();

@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import JoditEditor from "jodit-react";
-import DOMPurify from 'dompurify'; 
 import { toast } from "react-toastify";
 import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
 import axios from 'axios';
@@ -27,10 +26,8 @@ const CreatePosts = () => {
           }
         });
         setUser(user);
-        // console.log("User", user);
       } catch (error) {
         console.error('Error fetching user:', error);
-        // Handle error
       }
     };
 
@@ -41,7 +38,6 @@ const CreatePosts = () => {
   const loadAllCategoriesFromBackend = async () => {
     try {
       const response = await axios.get(`${API_URL}/api/v1/categories`);
-      // console.log("Categories Res", response.data);
       setCategories(response.data.categories); 
     } catch (error) {
       console.error('Error fetching categories:', error);
@@ -78,7 +74,6 @@ const CreatePosts = () => {
       return;
     }
 
-    // Create a new FormData object
     const formData = new FormData();
     formData.append('title', post.title);
     formData.append('content', post.content);
@@ -96,18 +91,14 @@ const CreatePosts = () => {
           "Content-Type": "multipart/form-data",
         }
       });
-      console.log("Post", response.data);
       toast.success("Post Created !!");
       setPost({ title: '', content: '', category: null });
-      setImage(null); // Reset image state to null
-
+      setImage(null);
     } catch (error) {
       console.error('Error creating post:', error);
       toast.error("Post not created due to some error !!");
     }
   }
-
-
 
   const handleFileChange = (event) => {
     setImage(event.target.files[0]);
@@ -118,7 +109,6 @@ const CreatePosts = () => {
       <Card className="shadow-sm border-0 mt-2 bg-[#F5F5F6]">
         <CardBody>
           <Form onSubmit={createPost}>
-
             <div className="pt-28 ml-16">
               <label htmlFor="image" className="relative cursor-pointer  border-4 border-gray-200 text-[#D6D6D7] bg-[#504d4d] rounded-md p-2">
                 <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
@@ -129,7 +119,6 @@ const CreatePosts = () => {
                 )}
               </label>
             </div>
-
             <div className="my-3 mt-10 ml-16">
               <input
                 type="text"
@@ -141,7 +130,6 @@ const CreatePosts = () => {
                 value={post.title}
               />
             </div>
-
             <div className="my-3 ml-16">
               <Input
                 type="select"
@@ -151,30 +139,22 @@ const CreatePosts = () => {
                 onChange={fieldChanged}
                 value={post.category || ''}
               >
-                <option
-                  key="0"
-                // disabled value={0}
-                >
-                  --Select category--
-                </option>
+                <option key="0">--Select category--</option>
                 {categories.map((category) => (
-                  <option key={category._id} value={category._id}> {/* Use category._id as value */}
+                  <option key={category._id} value={category._id}>
                     {category.categoryName}
                   </option>
                 ))}
-
               </Input>
-
             </div>
             <div className="my-3">
               <JoditEditor
                 className="rounded p-8"
                 ref={editor}
-                value={DOMPurify.sanitize(post.content)} 
+                value={post.content}
                 onChange={(newContent) => contentFieldChanged(newContent)}
               />
             </div>
-
             <Container className="text-start text-white ml-10 pb-8">
               <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
               <Button className="rounded-sm ms-2 text-gray-600 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>

@@ -1,28 +1,15 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
+import useCommentsCount from "./useCommentsCount";
 
 const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount }) => {
   const [likes, setLikes] = useState(initialLikes || 0);
   const [dislikes, setDislikes] = useState(initialDislikes || 0);
-  const [commentsCount, setCommentsCount] = useState(initialCommentsCount || 0);
-  const [userLiked, setUserLiked] = useState(false); // Track if the user has liked the post
+  const [userLiked, setUserLiked] = useState(false); 
   const URL = `${API_URL}/api/v1`;
-
-  useEffect(() => {
-    // Fetch initial comments count
-    const fetchCommentsCount = async () => {
-      try {
-        const {data} = await axios.get(`${URL}/comment/get-comments/${postId}`);
-        console.log("Comment count", data);
-        setCommentsCount(data.commentsCount);
-      } catch (error) {
-        console.error("Error fetching comments count:", error);
-      }
-    };
-    fetchCommentsCount();
-  }, [postId, URL]);
-
+  const commentsCount = useCommentsCount(postId, URL, initialCommentsCount);
+  
   useEffect(() => {
     // Check if the user has liked the post when the component mounts
     const checkUserLiked = () => {
@@ -101,6 +88,7 @@ const PostStats = ({ postId, initialLikes, initialDislikes, initialCommentsCount
       console.error("Error deleting comment:", error);
     }
   };
+
 
   return (
 

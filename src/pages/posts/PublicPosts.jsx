@@ -5,22 +5,22 @@ import { Link } from 'react-router-dom';
 import truncatePost from '../../utils/truncatepost';
 import Modal from '../Modal';
 import Loading from '../loading/Loading';
-import  Warning  from '../loading/Warning';
+import Warning from '../loading/Warning';
 
-const PublicPosts  = () => {
+const PublicPosts = () => {
   const URL = `${API_URL}/api/v1/posts`
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [selectedPost, setSelectedPost] = useState(null); 
-  const [isModalOpen, setIsModalOpen] = useState(false); 
+  const [selectedPost, setSelectedPost] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const { data } = await axios.get(URL);
-        // console.log(data);
-        setPosts(data); 
+        console.log(data);
+        setPosts(data);
         setLoading(false);
       } catch (error) {
         setError(error);
@@ -31,15 +31,15 @@ const PublicPosts  = () => {
     fetchPosts();
   }, []);
 
-    // Function to open the modal and set the selected post
-    const openModal = () => {
-      setIsModalOpen(true);
-    };
-  
-    // Function to close the modal
-    const closeModal = () => {
-      setIsModalOpen(false);
-    };
+  // Function to open the modal and set the selected post
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
@@ -71,11 +71,11 @@ const PublicPosts  = () => {
                   return (
                     <div key={post._id} className="w-full md:w-1/2 px-4 mb-8">
                       <Link
-                       to={``}
+                        to={``}
                         className="block mb-6 overflow-hidden rounded-md"
-                        >
+                      >
                         <img className="w-full h-80" src={post?.coverImgUrl} />
-                        
+
                       </Link>
                       <div className="mb-4">
                         <span className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm">
@@ -97,7 +97,7 @@ const PublicPosts  = () => {
                       <Link
                         className="inline-flex items-center text-base md:text-lg text-green-500 hover:text-green-600 font-semibold"
                         // to={`/posts/${post?._id}`}
-                        onClick={openModal} 
+                        onClick={openModal}
                       >
                         <span className="mr-3">Read Post</span>
                         <svg
@@ -120,11 +120,10 @@ const PublicPosts  = () => {
               )}
             </div>
             {isModalOpen && <Modal closeModal={closeModal} />}
-                <Warning />
-            {/* {!user?.userdetails && <Warning />} */}
+            <Warning />
           </div>
         </section>
-      </div>  
+      </div>
     </div>
   );
 };

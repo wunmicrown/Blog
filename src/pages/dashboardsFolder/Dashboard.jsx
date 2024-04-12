@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "../loading/Loading";
-import axios from "axios"; // Import Axios for making HTTP requests
+import axios from "axios"; 
 import { API_URL } from "../constants/Api";
 import truncatePost from "../../utils/truncatepost";
 
@@ -25,7 +25,7 @@ const Dashboard = () => {
         const response = await axios.get(`${API_URL}/api/v1/posts`, {
           params: { category_id: categoryName },
         });
-        // console.log("Posts", response);
+        console.log("Posts", response);
         setPosts(response.data.posts);
         setLoading(false);
       } catch (error) {
@@ -42,7 +42,7 @@ const Dashboard = () => {
       setLoadingCategories(true);
       try {
         const { data } = await axios.get(`${API_URL}/api/v1/categories`);
-        // console.log("Categories", data);
+        console.log("Categories", data);
         setCategories(data.categories);
         setLoadingCategories(false);
       } catch (error) {
@@ -82,7 +82,7 @@ const Dashboard = () => {
               </h3>
             </div>
             {/* Categories */}
-            <div className="flex flex-wrap justify-center mb-4">
+            {/* <div className="flex flex-wrap justify-center mb-4">
               {loadingCategories ? (
                 <Loading />
               ) : error ? (
@@ -95,10 +95,11 @@ const Dashboard = () => {
                     className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
                   >
                     {category.categoryName}
+                    {category.createdAt}
                   </button>
                 ))
               )}
-            </div>
+            </div> */}
 
             <div className="flex flex-wrap -mx-4 mb-12 md:mb-20">
               {/* loop */}

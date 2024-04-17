@@ -190,7 +190,7 @@ const PostsDetails = () => {
                         <div className="mx-auto md:max-w-3xl">
 
                             <div className="  text-lg font-medium  md:text-xl text-coolGray-500 border-coolGray-100">
-                                <div dangerouslySetInnerHTML={{ __html:(post?.post?.content) }}></div>
+                                <div dangerouslySetInnerHTML={{ __html: (post?.post?.content) }}></div>
                             </div>
                             {/* Posts stats */}
                             <PostStats

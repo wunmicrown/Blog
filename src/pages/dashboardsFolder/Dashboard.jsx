@@ -135,7 +135,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
                       {post?.title}
                     </Link>
                     <div className="mb-4 text-coolGray-500">
-                      {truncatePost(post?.content)}
+                      <div dangerouslySetInnerHTML={{ __html: truncatePost(post?.content) }}></div>
                     </div>
                     {/* like post button */}
                     <div className="flex  gap-4 items-center">

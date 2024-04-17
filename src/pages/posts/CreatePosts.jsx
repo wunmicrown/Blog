@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import JoditEditor from "jodit-react";
 import { toast } from "react-toastify";
-import { Card, CardBody, Form, Input, Container, Button, Placeholder } from 'reactstrap';
+import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
 import axios from 'axios';
 import { API_URL } from "../constants/Api";
 import { MdFileUpload } from "react-icons/md";
@@ -9,9 +9,6 @@ import { MdFileUpload } from "react-icons/md";
 const CreatePosts = () => {
   const editor = useRef(null);
   const [content, setContent] = useState('');
-
-
-
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState('');
   const [image, setImage] = useState('');
@@ -57,10 +54,10 @@ const CreatePosts = () => {
     }
   }
 
-  const contentFieldChanged = (data) => {
-    setPost({ ...post, 'content': data });
+  const contentFieldChanged = (newContent) => {
+    // Update the content field in the post state with the new content
+    setPost({ ...post, content: newContent });
   }
-
   const createPost = async (event) => {
     event.preventDefault();
 
@@ -110,7 +107,7 @@ const CreatePosts = () => {
   }
 
   return (
-    <div className="  bg-green-50">
+    <div className="  bg-green-50 overflow-x-hidden">
       <div className="wrapper min-h-screen">
         <Card className="shadow-sm border-0 mt-2 bg-[#3d3d3e] w-full lg:w-[90%] xl:w-[80%] mx-auto">
           <CardBody>
@@ -169,9 +166,8 @@ const CreatePosts = () => {
                   className="rounded p-4 lg:p-8 h-96 lg:h-auto"
                   ref={editor}
                   value={post.content}
-                  // onBlur={(newContent) => setContent(newContent)} 
-                  onChange={(newContent) => contentFieldChanged(newContent)}
-
+                  onBlur={(newContent) => setContent(newContent)}
+                  onChange={contentFieldChanged}
                 />
               </div>
 

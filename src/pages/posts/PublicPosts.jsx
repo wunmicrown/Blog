@@ -92,7 +92,7 @@ const PublicPosts = () => {
                         {post?.title}
                       </Link>
                       <p className="mb-4 text-coolGray-500">
-                        {truncatePost(post?.content)}
+                      <div dangerouslySetInnerHTML={{ __html: truncatePost(post?.content) }}></div>
                       </p>
                       <Link
                         className="inline-flex items-center text-base md:text-lg text-green-500 hover:text-green-600 font-semibold"

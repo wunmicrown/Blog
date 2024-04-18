@@ -176,6 +176,7 @@ const CreatePosts = () => {
                 <Button className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
               </Container>
             </Form>
+            
           </CardBody>
         </Card>
       </div>

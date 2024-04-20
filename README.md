@@ -45,7 +45,6 @@ Deployment:
 
 Render (for backend)
 Vercel (for frontend)
-
 Others:
 
 Git & GitHub (for version control)
@@ -55,10 +54,9 @@ RESTful API design principles
 
 - [Frontend](https://blog-app-system.vercel.app) deployed on Vercel
 
-
 ## Source Link to backend code
-- [Backend](https://github.com/wunmicrown/blog-backend) deployed on Render
 
+- [Backend](https://github.com/wunmicrown/blog-backend) deployed on Render
 
 ## Author
 

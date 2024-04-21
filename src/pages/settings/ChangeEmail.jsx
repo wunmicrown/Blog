@@ -12,7 +12,7 @@ import ChangePassword from "./ChangePassword";
 const ChangeEmail = () => {
   const URL = `${API_URL}/api/v1/users/change-email`;
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState(""); // Add state for password
+  const [password, setPassword] = useState(""); 
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import PublicNavbar from '../pages/Navbar/PublicNavbar';
+import PublicNavbar from '../src/pages/Navbar/PublicNavbar';
 
 describe('PublicNavbar', () => {
   test('renders navigation links', () => {

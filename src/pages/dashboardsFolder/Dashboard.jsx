@@ -27,7 +27,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
         const response = await axios.get(`${API_URL}/api/v1/posts`, {
           params: { category_id: categoryName },
         });
-        // console.log("Posts", response);
+        console.log("Posts", response);
         setPosts(response.data.posts);
         setLoading(false);
       } catch (error) {
@@ -133,6 +133,14 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
                     >
                       {post?.title}
                     </Link>
+                    <div className="mb-4">
+                      {/* Mapping through tags */}
+                      {post.tags.map((tag, index) => (
+                        <button key={index} className="hover:bg-[#3f6155] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer">
+                         <span className='text-green-300'>#</span> {tag}
+                        </button>
+                      ))}
+                    </div>
                     <div className="mb-4 text-coolGray-500">
                       <div dangerouslySetInnerHTML={{ __html: truncatePost(post?.content) }}></div>
                     </div>

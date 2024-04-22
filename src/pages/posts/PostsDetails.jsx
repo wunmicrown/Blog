@@ -171,6 +171,9 @@ const PostsDetails = () => {
                             <h2 className="mb-4 text-3xl font-bold leading-tight tracking-tighter md:text-5xl text-darkCoolGray-900">
                                 {post?.post?.title}
                             </h2>
+                            <div className=' ml-6 flex items-center mb-6 gap-8 text-sm md:text-base font-small text-coolGray-500 mt-2'>
+                                    <div className='hover:bg-[#3e5b50] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer'><span className='text-green-300'>#</span>{post?.post?.tags}</div>
+                            </div>
 
                         </div>
                     </div>

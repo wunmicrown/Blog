@@ -11,7 +11,8 @@ const CreatePosts = () => {
   const [content, setContent] = useState('');
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState('');
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState('');
   const [post, setPost] = useState({
     title: '',
     content: '',
@@ -58,6 +59,18 @@ const CreatePosts = () => {
     // Update the content field in the post state with the new content
     setPost({ ...post, content: newContent });
   }
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+    setImage(selectedFile);
+    // Create a preview of the selected image
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImagePreview(reader.result);
+    };
+    reader.readAsDataURL(selectedFile);
+  }
+
   const createPost = async (event) => {
     event.preventDefault();
 
@@ -96,27 +109,24 @@ const CreatePosts = () => {
       toast.success("Post Created !!");
       setPost({ title: '', content: '', category: null });
       setImage(null);
+      setImagePreview('');
     } catch (error) {
       console.error('Error creating post:', error);
       toast.error("Post not created due to some error !!");
     }
   }
 
-  const handleFileChange = (event) => {
-    setImage(event.target.files[0]);
-  }
-
   return (
     <div className="  bg-green-50 overflow-x-hidden">
       <div className="wrapper min-h-screen">
-        <Card className="shadow-sm border-0 mt-2 bg-[#3d3d3e] w-full lg:w-[90%] xl:w-[80%] mx-auto">
+        <Card className=" p-4 shadow-sm border-0 mt-2 bg-[#3d3d3e] w-full lg:w-[90%] xl:w-[80%] mx-auto">
           <CardBody>
             <Form onSubmit={createPost}>
               <div className=" lg:pt-24 sm:pt-24 md:pt-24 pt-24 flex justify-end  mr-16">
-                <label htmlFor="image" className="relative cursor-pointer border-4 border-gray-200 text-[#D6D6D7] bg-[#171717] rounded-md p-2 ">
+                <label htmlFor="image" className=" p-4 relative cursor-pointer border-4 border-gray-200 text-[#D6D6D7] bg-[#171717] rounded-md ">
                   <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                  {image ? (
-                    <span className="">{image.name}</span>
+                  {imagePreview ? (
+                    <img src={imagePreview} alt="Selected Image" className="w-full h-70 rounded-md" />
                   ) : (
                     <div className="flex items-center">
                       <MdFileUpload size={24} className="mr-2" />
@@ -176,7 +186,7 @@ const CreatePosts = () => {
                 <Button className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
               </Container>
             </Form>
-            
+
           </CardBody>
         </Card>
       </div>

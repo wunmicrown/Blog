@@ -84,7 +84,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
               </h3>
             </div>
             {/* Categories */}
-            {/* <div className="flex flex-wrap justify-center mb-4">
+            {/* { <div className="flex flex-wrap justify-center mb-4">
               {loadingCategories ? (
                 <Loading />
               ) : error ? (
@@ -97,11 +97,10 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
                     className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
                   >
                     {category.categoryName}
-                    {category.createdAt}
                   </button>
                 ))
               )}
-            </div> */}
+            </div> } */}
 
             <div className="flex flex-wrap -mx-4 mb-12 md:mb-20">
               {/* loop */}

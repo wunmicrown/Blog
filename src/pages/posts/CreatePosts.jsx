@@ -5,7 +5,7 @@ import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
 import axios from 'axios';
 import { API_URL } from "../constants/Api";
 import { MdFileUpload, MdCancel } from "react-icons/md";
-import PostPreview from "./PostPreview"; 
+import PostPreview from "./PostPreview";
 const CreatePosts = () => {
   const editor = useRef(null);
   const [content, setContent] = useState('');
@@ -26,18 +26,18 @@ const CreatePosts = () => {
     event.preventDefault();
 
     if (post.title.trim() === '') {
-        toast.error("title: can't be blank !!");
-        return;
+      toast.error("title: can't be blank !!");
+      return;
     }
 
     if (post.content.trim() === '') {
-        toast.error("Post content is required !!");
-        return;
+      toast.error("Post content is required !!");
+      return;
     }
 
     if (!post.category) {
-        toast.error("Select some category !!");
-        return;
+      toast.error("Select some category !!");
+      return;
     }
 
     const formData = new FormData();
@@ -46,27 +46,27 @@ const CreatePosts = () => {
     formData.append('category', post.category);
     formData.append('userId', user._id);
     if (image) {
-        formData.append('image', image);
+      formData.append('image', image);
     }
     formData.append('tags', post.tags.join(','));
 
     try {
-        const token = localStorage.getItem('token');
-        const response = await axios.post(`${API_URL}/api/v1/posts/saveDraft`, formData, {
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                "Content-Type": "multipart/form-data",
-            }
-        });
-        toast.success("Draft saved !!");
-        setPost({ title: '', content: '', category: null, tags: [] });
-        setImage(null);
-        setImagePreview('');
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`${API_URL}/api/v1/posts/saveDraft`, formData, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "multipart/form-data",
+        }
+      });
+      toast.success("Draft saved !!");
+      setPost({ title: '', content: '', category: null, tags: [] });
+      setImage(null);
+      setImagePreview('');
     } catch (error) {
-        console.error('Error saving draft:', error);
-        toast.error("Draft not saved due to some error !!");
+      console.error('Error saving draft:', error);
+      toast.error("Draft not saved due to some error !!");
     }
-}
+  }
 
   useEffect(() => {
     const fetchData = async () => {
@@ -202,13 +202,13 @@ const CreatePosts = () => {
           <CardBody>
             {showPreview ? (
               <PostPreview
-              post={post}
-              imagePreview={imagePreview}
-              onClose={handlePreviewClose}
-              handlePublish={createPost} // Pass the createPost function
-              handleSaveDraft={saveDraft} // Pass the saveDraft function
-          />
-          
+                post={post}
+                imagePreview={imagePreview}
+                onClose={handlePreviewClose}
+                handlePublish={createPost}
+                handleSaveDraft={saveDraft}
+              />
+
             ) : (
               <>
                 <div className=" text-white mt-20 gap-4 flex justify-end mr-16">

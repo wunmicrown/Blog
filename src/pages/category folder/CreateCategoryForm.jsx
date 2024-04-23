@@ -8,26 +8,27 @@ const CreateCategoryForm = () => {
     const [categoryName, setCategoryName] = useState('');
     const [description, setDescription] = useState('');
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const token = localStorage.getItem('token');
         const formData = { categoryName, description };
-        axios.post(`${API_URL}/api/v1/categories/create`, formData, {
-            headers: {
-                "Authorization": `Bearer ${token}`
-            }
-        })
-            .then(response => {
-                console.log('Category created successfully:', response.data);
-                toast.success('Category created successfully:', response.data);
-                setCategoryName('');
-                setDescription('');
-            })
-            .catch(error => {
-                console.error('Error creating category:', error);
-                toast.error('Error creating category:', error);
+
+        try {
+            const response = await axios.post(`${API_URL}/api/v1/categories/create`, formData, {
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
             });
+            console.log('Category created successfully:', response.data);
+            toast.success('Category created successfully:', response.data);
+            setCategoryName('');
+            setDescription('');
+        } catch (error) {
+            console.error('Error creating category:', error);
+            toast.error('Error creating category:', error);
+        }
     };
+
 
     return (
         <div className="mt-20  min-h-screen">

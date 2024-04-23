@@ -89,7 +89,6 @@ const PrivateNavbar = () => {
 
       } catch (error) {
         console.log('Error message:', error);
-        console.log(error.response);
         setTokenMatch(false);
         navigate('/login');
 

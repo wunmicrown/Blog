@@ -1,6 +1,6 @@
 import React from 'react'
 import PublicPosts from '../pages/posts/PublicPosts'
-import Category from '../pages/Category'
+import Category from './category folder/Category'
 
 const Homepage = () => {
   return (

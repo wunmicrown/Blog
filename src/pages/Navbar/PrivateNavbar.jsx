@@ -211,6 +211,17 @@ const PrivateNavbar = () => {
                               </Link>
                             )}
                           </Menu.Item>
+                          <Menu.Item>
+                            {({ active }) => (
+                              <Link
+                                to={'/posts'}
+                                className={`${active ? "bg-gray-100" : ""
+                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                              >
+                                Category
+                              </Link>
+                            )}
+                          </Menu.Item>
                           <div>
                             <hr className=" mb-4" />
                           </div>

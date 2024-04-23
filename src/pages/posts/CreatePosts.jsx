@@ -22,6 +22,52 @@ const CreatePosts = () => {
   });
   const [showPreview, setShowPreview] = useState(false);
 
+  const saveDraft = async (event) => {
+    event.preventDefault();
+
+    if (post.title.trim() === '') {
+        toast.error("title: can't be blank !!");
+        return;
+    }
+
+    if (post.content.trim() === '') {
+        toast.error("Post content is required !!");
+        return;
+    }
+
+    if (!post.category) {
+        toast.error("Select some category !!");
+        return;
+    }
+
+    const formData = new FormData();
+    formData.append('title', post.title);
+    formData.append('content', post.content);
+    formData.append('category', post.category);
+    formData.append('userId', user._id);
+    if (image) {
+        formData.append('image', image);
+    }
+    formData.append('tags', post.tags.join(','));
+
+    try {
+        const token = localStorage.getItem('token');
+        const response = await axios.post(`${API_URL}/api/v1/posts/saveDraft`, formData, {
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "multipart/form-data",
+            }
+        });
+        toast.success("Draft saved !!");
+        setPost({ title: '', content: '', category: null, tags: [] });
+        setImage(null);
+        setImagePreview('');
+    } catch (error) {
+        console.error('Error saving draft:', error);
+        toast.error("Draft not saved due to some error !!");
+    }
+}
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -94,7 +140,7 @@ const CreatePosts = () => {
     event.preventDefault();
 
     if (post.title.trim() === '') {
-      toast.error("Post title is required !!");
+      toast.error("title: can't be blank !!");
       return;
     }
 
@@ -156,11 +202,13 @@ const CreatePosts = () => {
           <CardBody>
             {showPreview ? (
               <PostPreview
-               post={post} 
-               imagePreview={imagePreview}
-                onClose={handlePreviewClose}
-                
-                />
+              post={post}
+              imagePreview={imagePreview}
+              onClose={handlePreviewClose}
+              handlePublish={createPost} // Pass the createPost function
+              handleSaveDraft={saveDraft} // Pass the saveDraft function
+          />
+          
             ) : (
               <>
                 <div className=" text-white mt-20 gap-4 flex justify-end mr-16">

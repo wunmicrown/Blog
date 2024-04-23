@@ -25,7 +25,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
         const response = await axios.get(`${API_URL}/api/v1/posts`, {
           params: { category_id: categoryName },
         });
-        console.log("Posts", response);
+        // console.log("Posts", response);
         setPosts(response.data.posts);
         setLoading(false);
       } catch (error) {

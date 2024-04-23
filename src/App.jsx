@@ -52,12 +52,12 @@ const App = () => {
                     <Route path="/posts" element={<Dashboard />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/create-post" element={<CreatePosts />} />
+                    <Route path="/create-category" element={<CreateCategoryForm />} />
                     <Route path="/user-profile-details" element={<UserProfileDetails />} />
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />
                     <Route path="/settings/change-password" element={<ChangePassword />} />
-                    <Route path="/settings/create-category" element={<CreateCategoryForm />} />
                     <Route path="" element={<Uploadpic />} />
                     <Route path="" element={<AddComment />} />
                     <Route path="" element={<CommentsList />} />

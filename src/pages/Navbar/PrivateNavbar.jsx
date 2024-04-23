@@ -12,11 +12,11 @@ const PrivateNavbar = () => {
   const [user, setUser] = useState(null);
   const [tokenMatch, setTokenMatch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [posts, setPosts] = useState([]);
-  const [showConfirmation, setShowConfirmation] = useState(false); // State to control modal visibility
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [noResults, setNoResults] = useState(false);
   const navigate = useNavigate();
   const URL = `${API_URL}/api/v1/users/getUser`;
 
@@ -30,26 +30,26 @@ const PrivateNavbar = () => {
           }
         });
         setTokenMatch(true);
-        setUser(user); // Initialize image source
+        setUser(user);
 
       } catch (error) {
         console.log('Error message:', error);
         console.log(error.response);
         setTokenMatch(false);
         navigate('/login');
-
       }
     }
     userDetails();
-  }, [])
+  }, []);
 
   const fetchPosts = async () => {
     setLoading(true);
     try {
       const response = await axios.get(`${API_URL}/api/v1/posts`, {
-        params: { page, title: searchTerm },
+        params: { page: 1, title: searchTerm },
       });
       setPosts(response.data.posts);
+      setNoResults(response.data.posts.length === 0);
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -57,45 +57,22 @@ const PrivateNavbar = () => {
     }
   };
 
-  useEffect(() => {
-    fetchPosts();
-  }, []);
-
   const handleSearch = () => {
     fetchPosts();
+    setSearchTerm("");
   };
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       fetchPosts();
+      setSearchTerm("");
     }
   };
+
   const handleSignOut = () => {
     navigate("/login");
     setShowConfirmation(false);
   };
-
-  useEffect(() => {
-    const userDetails = async () => {
-      try {
-        const token = localStorage.getItem('token');
-        const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
-          headers: {
-            "Authorization": `Bearer ${token}`
-          }
-        });
-        setTokenMatch(true);
-        setUser(user); // Initialize image source
-
-      } catch (error) {
-        console.log('Error message:', error);
-        setTokenMatch(false);
-        navigate('/login');
-
-      }
-    }
-    userDetails();
-  }, [])
 
   return (
     <>
@@ -310,9 +287,12 @@ const PrivateNavbar = () => {
           </>
         )}
       </Disclosure>
+
+      {noResults && (
+        <div className="text-red-500 mt-20 ">No results match that query</div>
+      )}
     </>
   );
 };
 
-export default PrivateNavbar
-
+export default PrivateNavbar;

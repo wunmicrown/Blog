@@ -61,16 +61,18 @@ const CreatePosts = () => {
           "Content-Type": "multipart/form-data",
         }
       });
+      // console.log('Draft saved:', response.data);
       toast.success("Draft saved !!");
       setPost({ title: '', content: '', category: null, tags: [] });
       setImage(null);
       setImagePreview('');
+      setDraftSaved(true);
     } catch (error) {
       console.error('Error saving draft:', error);
       toast.error("Draft not saved due to some error !!");
     }
+  };
 
-  }
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {

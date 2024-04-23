@@ -21,6 +21,7 @@ import AddComment from './pages/comments/AddComment';
 import CommentsList from './pages/comments/CommentLists';
 import CreatePosts from './pages/posts/CreatePosts';
 import PostsDetails from './pages/posts/PostsDetails';
+import CreateCategoryForm from './pages/category folder/CreateCategoryForm';
 
 const App = () => {
     return (
@@ -56,6 +57,7 @@ const App = () => {
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />
                     <Route path="/settings/change-password" element={<ChangePassword />} />
+                    <Route path="/settings/create-category" element={<CreateCategoryForm />} />
                     <Route path="" element={<Uploadpic />} />
                     <Route path="" element={<AddComment />} />
                     <Route path="" element={<CommentsList />} />

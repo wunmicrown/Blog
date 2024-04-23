@@ -73,7 +73,17 @@ const PrivateNavbar = () => {
     navigate("/login");
     setShowConfirmation(false);
   };
-
+  useEffect(() => {
+    let timer;
+    if (noResults) {
+      timer = setTimeout(() => {
+        setNoResults(false);
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [noResults]);
   return (
     <>
 
@@ -289,7 +299,7 @@ const PrivateNavbar = () => {
       </Disclosure>
 
       {noResults && (
-        <div className="text-red-500 mt-20 ">No results match that query</div>
+        <div className="text-red-500 mt-20 text-center">No results match that query</div>
       )}
     </>
   );

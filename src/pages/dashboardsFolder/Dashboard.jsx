@@ -17,8 +17,6 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
   const [loadingCategories, setLoadingCategories] = useState(false);
   const commentsCount = useCommentsCount(postId, URL, initialCommentsCount);
   // console.log("Comment test", commentsCount)
-  const handleNext = () => setPage(page + 1);
-  const handlePrev = () => setPage(page > 1 ? page - 1 : 1);
 
   useEffect(() => {
     const fetchPostsByCategory = async (categoryName) => {
@@ -211,22 +209,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
             </div>
           </div>
         </section>
-        {/* Pagination buttons */}
-        <div className="flex justify-center items-center my-4 space-x-2">
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handlePrev}
-          >
-            Prev
-          </button>
-          <button
-            className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-            onClick={handleNext}
-          >
-            Next
-          </button>
-        </div>
-      </div>
+       </div>
     </>
   );
 };

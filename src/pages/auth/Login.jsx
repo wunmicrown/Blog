@@ -6,11 +6,13 @@ import { loginSchema } from "../validationSchema/loginSchema";
 import { API_URL } from "../constants/Api";
 import { toast } from "react-toastify";
 import { FaBlog } from "react-icons/fa";
+import { useState } from "react";
+import Loading from "../loading/Loading";
 
 const Login = () => {
   const URL = `${API_URL}/api/v1/users/login`;
   const navigate = useNavigate();
-
+const [loading, setLoading] = useState(false);
   const { handleChange, handleSubmit, values, errors } = useFormik({
     initialValues: {
       email: '',
@@ -19,6 +21,7 @@ const Login = () => {
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
+        setLoading(true)
         const { data } = await axios.post(URL, values);
 
         // console.log(data);
@@ -29,21 +32,17 @@ const Login = () => {
 
           toast.success('Login successful');
           // return navigate('/post/redirect?redirectTo=create-post');
-          return navigate('/create-post');
+          return navigate('/posts');
 
         }
         // Redirect to verify email page if email is not verified
-        toast.warning('Please verify your email before accessing the dashboard');
-        navigate('/verifyEmail');
+        toast.error('Please verify your email before accessing the dashboard');
+        navigate('/verify-email');
 
       }
       catch (error) {
-        console.error('Login failed:', error);
-        if (error.response && error.response.status === 404) {
-          toast.error(error.response.data.message);
-        } else {
-          toast.error('An error occurred while logging in');
-        }
+        toast.error(error.response.data.message)
+        setLoading(false)
       }
     },
 
@@ -93,13 +92,23 @@ const Login = () => {
               </div>
               <span className="text-red-500">{errors.password}</span>
             </div>
-
-            <button
+            {loading ? (
+              <Loading />
+            ) : (
+              <button
+              type="submit"
+                className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
+                disabled={loading}
+              >
+                Login
+              </button>
+            )}
+            {/* <button
               type="submit"
               className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
             >
               Login
-            </button>
+            </button> */}
             <div className="flex justify-between">
               <div>
                 <input type="checkbox" className="mr-2" />

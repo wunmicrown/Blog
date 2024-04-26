@@ -28,13 +28,11 @@ const VerifyEmail = () => {
 
             try {
                 const response = await axios.post(URL, { ...values, email });
-                // console.log(response);
                 if (response.data.user.isEmailVerified) {
                     navigate('/posts');
                     toast.success("OTP verified successfully");
                 } else {
-                    // Email not verified
-                    navigate('/login'); // Navigate back to login
+                    navigate('/login');
                     toast.error("Email verification failed");
                 }
             } catch (error) {
@@ -46,18 +44,22 @@ const VerifyEmail = () => {
         },
     });
 
-    const handleResendOTP = () => {
+    const handleResendOTP = async () => {
         setResendLoading(true);
-        axios.post(`${API_URL}/resendSignupOTP`, { email })
-            .then(() => {
-                alert('OTP has been resent successfully!');
-            })
-            .catch(() => {
-                alert('Failed to resend OTP. Please try again later.');
-            })
-            .finally(() => {
-                setResendLoading(false);
-            });
+        try {
+            const savedUser = localStorage.getItem('userDetails');
+            if (!savedUser) throw new Error("User not found");
+            const { email } = JSON.parse(savedUser);
+            if (!email) throw new Error("Email not found");
+
+            await axios.post(`${API_URL}/api/v1/users/resend-otp`, { email });
+            toast.success('OTP has been resent successfully!');
+        } catch (error) {
+            console.error('Failed to resend OTP:', error);
+            toast.error('Failed to resend OTP. Please try again later.');
+        } finally {
+            setResendLoading(false);
+        }
     };
 
     return (
@@ -68,7 +70,6 @@ const VerifyEmail = () => {
                     {error && <p className="text-red-500 text-xs italic">{error}</p>}
                     <form onSubmit={formik.handleSubmit} className="flex flex-col gap-4">
                         <div className="">
-
                             <label htmlFor="Verify OTP" className="block text-sm mb-2 font-medium text-gray-500">
                                 Verify OTP
                             </label>
@@ -87,7 +88,6 @@ const VerifyEmail = () => {
                         <button type="button" onClick={handleResendOTP} className="mb-4  p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-400 to-yellow-200 hover:from-purple-200 hover:to-green-400 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulsee" disabled={resendLoading}>
                             {resendLoading ? 'Resending...' : 'Resend OTP'}
                         </button>
-
                     </form>
                 </div>
             </div>

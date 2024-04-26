@@ -46,18 +46,22 @@ const PasswordResetVerification = () => {
         },
     });
 
-    const handleResendOTP = () => {
+    const handleResendOTP = async () => {
         setResendLoading(true);
-        axios.post(`${API_URL}/resendSignupOTP`, { email })
-            .then(() => {
-                alert('OTP has been resent successfully!');
-            })
-            .catch(() => {
-                alert('Failed to resend OTP. Please try again later.');
-            })
-            .finally(() => {
-                setResendLoading(false);
-            });
+        try {
+            const savedUser = localStorage.getItem('userDetails');
+            if (!savedUser) throw new Error("User not found");
+            const { email } = JSON.parse(savedUser);
+            if (!email) throw new Error("Email not found");
+
+            await axios.post(`${API_URL}/api/v1/users/resend-otp`, { email });
+            toast.success('OTP has been resent successfully!');
+        } catch (error) {
+            console.error('Failed to resend OTP:', error);
+            toast.error('Failed to resend OTP. Please try again later.');
+        } finally {
+            setResendLoading(false);
+        }
     };
 
     return (

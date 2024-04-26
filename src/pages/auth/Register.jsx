@@ -6,14 +6,16 @@ import { API_URL } from "../constants/Api";
 import { registerSchema } from "../validationSchema/registerSchema";
 import { toast } from "react-toastify";
 import { FaBlog } from "react-icons/fa";
+import Loading from "../loading/Loading";
+import { useState } from "react";
 
 const SignUp = () => {
   const URL = `${API_URL}/api/v1/users/register`;
   const navigate = useNavigate();
-
+  const [loading, setLoading] = useState(false);
   const onSubmit = async (values) => {
     try {
-
+      setLoading(true)
       const response = await axios.post(URL, values);
       // console.log(response);
       localStorage.setItem('userDetails', JSON.stringify(response.data.user));
@@ -22,6 +24,7 @@ const SignUp = () => {
       navigate("/verify-email");
     } catch (error) {
       toast.error(`Sign up failed: ${error.response.data}`);
+      setLoading(false)
     }
   };
 
@@ -97,12 +100,23 @@ const SignUp = () => {
                 </div>
                 <span className="text-red-500">{errors.password}</span>
               </div>
+              {loading ? (
+                <Loading />
+              ) : (
+                <button
+                  className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse"
+                  type="submit"
+                  disabled={loading}
+                >
+                  Sign Up
+                </button>
+              )}
 
-              <button
-                type="submit"
+
+              {/* <button
                 className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"              >
                 Sign Up
-              </button>
+              </button> */}
               <div className="text-center mt-4">
                 <p className="text-gray-500">Already have an account?</p>
                 <Link to="/login" className="text-green-400 hover:underline">Login here</Link>

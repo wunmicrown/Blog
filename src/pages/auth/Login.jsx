@@ -31,7 +31,6 @@ const [loading, setLoading] = useState(false);
         if (data.user?.isEmailVerified) {
 
           toast.success('Login successful');
-          // return navigate('/post/redirect?redirectTo=create-post');
           return navigate('/posts');
 
         }

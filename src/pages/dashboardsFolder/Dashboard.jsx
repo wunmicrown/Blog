@@ -109,8 +109,8 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
               ) : error ? (
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
               ) : posts?.length <= 0 ? (
-                <div className="flex justify-center items-center h-full w-full">
-                  <h1 className="text-2xl">No Post found</h1>
+                <div className="flex justify-center items-center  w-full   h-screen">
+                  <h1 className="text-2xl font-bold mb-20">No Post found</h1>
                 </div>
               ) : (
                 posts.map((post) => (

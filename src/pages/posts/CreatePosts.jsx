@@ -251,18 +251,17 @@ const CreatePosts = () => {
                     </button>
                   </div>
                   {<Form onSubmit={createPost}>
-                    <div className=" lg:pt-10 sm:pt-10 md:pt-10 flex justify-end mr-16">
-                      <label htmlFor="image" className=" p-4 relative cursor-pointer border-4 border-gray-200 text-[#D6D6D7] bg-[#171717] rounded-md ">
-                        <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-                        {imagePreview ? (
-                          <img src={imagePreview} alt="Selected Image" className="w-full h-70 rounded-md" />
-                        ) : (
-                          <div className="flex items-center">
-                            <MdFileUpload size={24} className="mr-2" />
-                            <span className="font-bold ">Add a cover image</span>
-                          </div>
-                        )}
-                      </label>
+                    <div className="lg:pt-10 sm:pt-10 md:pt-10 flex justify-evenly 16">
+                      <div className="border-4 w-3/6  rounded-md flex items-center justify-center">
+                        {imagePreview && <img src={imagePreview} alt="Selected Image" className=" rounded-md" />}
+                      </div>
+                      <div className="mt-16 mb-16">
+                        <label htmlFor="image" className="flex p-4 relative cursor-pointer border-4 border-gray-200 text-[#D6D6D7] bg-[#171717] rounded-md">
+                          <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 opacity-0 cursor-pointer" />
+                          <MdFileUpload size={24} className="mr-2" />
+                          <span className="font-bold">{imagePreview ? <div className="!h-[10px]">Change a cover image</div> : 'Add a cover image'}</span>
+                        </label>
+                      </div>
                     </div>
                     <div className="my-3 mt-8 ml-4 lg:ml-16 p-4 lg:p-8">
                       <label htmlFor="title" className="text-gray-200 font-xl text-lg mb-4">Title</label>

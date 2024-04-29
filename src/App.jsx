@@ -22,6 +22,7 @@ import CommentsList from './pages/comments/CommentLists';
 import CreatePosts from './pages/posts/CreatePosts';
 import PostsDetails from './pages/posts/PostsDetails';
 import CreateCategoryForm from './pages/category folder/CreateCategoryForm';
+import SignUp from './pages/auth/Register';
 
 const App = () => {
     return (
@@ -45,12 +46,13 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} />
+                    <Route path="/forgot-password" element={<ForgotPassword />} /> 
                     <Route path="/reset-password" element={<PasswordReset />} />
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/posts" element={<Dashboard />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
+                    <Route path="/blog-app/admin" element={<SignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
                     <Route path="/profile"element={<UserProfileDetails />} />

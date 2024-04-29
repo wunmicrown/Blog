@@ -9,22 +9,21 @@ import { FaBlog } from "react-icons/fa";
 import Loading from "../loading/Loading";
 import { useState } from "react";
 
-const SignUp = () => {
-  const URL = `${API_URL}/api/v1/users/register`;
+const AdminSignUp = () => {
+  const URL = `${API_URL}/api/v1/users/register`; // Endpoint for admin registration
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
+
   const onSubmit = async (values) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post(URL, values);
-      // console.log(response);
       localStorage.setItem('userDetails', JSON.stringify(response.data.user));
-
-      toast.success("User registered successfully. Verification OTP sent to email.");
-      navigate("/verify-email");
+      toast.success("Admin registered successfully.");
+      navigate("/verify-email"); // Redirect to admin dashboard after successful registration
     } catch (error) {
-      toast.error(`Sign up failed: ${error.response.data}`);
-      setLoading(false)
+      toast.error(`Admin sign up failed: ${error.response.data}`);
+      setLoading(false);
     }
   };
 
@@ -41,9 +40,9 @@ const SignUp = () => {
   return (
     <>
       <section>
-        <main className=" pt-20 pb-5">
+        <main className="pt-20 pb-5">
           <div className="max-w-md mx-auto shadow-lg p-6 rounded">
-            <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-4 mb-4" />
+            <FaBlog className="text-green-500 h-16 mx-auto w-full mt-4 mb-4" />
 
             <form onSubmit={handleSubmit}>
               <div className="mb-4">
@@ -63,7 +62,6 @@ const SignUp = () => {
                   />
                 </div>
                 <span className="text-red-500">{errors.username}</span>
-
               </div>
 
               <div className="mb-4">
@@ -109,13 +107,13 @@ const SignUp = () => {
                   type="submit"
                   disabled={loading}
                 >
-                  Sign Up
+                  Sign Up as Admin
                 </button>
               )}
 
               <div className="text-center mt-4">
-                <p className="text-gray-500">Already have an account?</p>
-                <Link to="/login" className="text-green-400 hover:underline">Login here</Link>
+                <p className="text-gray-500">Already have an admin account?</p>
+                <Link to="/login" className="text-green-400 hover:underline">Admin Login here</Link>
               </div>
             </form>
           </div>
@@ -125,4 +123,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default AdminSignUp;

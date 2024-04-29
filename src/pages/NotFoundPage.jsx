@@ -1,17 +1,20 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NotFoundPage = () => {
   return (
     <>
-        <div className='flex justify-center'>
-            <div className=' w-2/4 h-48 border-4 rounded-sm bg-green-400'>
-                <div className=' bg-black p-8'>
-                    <h1 className='text-white text-4xl font-bold'>404</h1>
+        <div className='flex justify-center mt-52'>
+            <div className=' w-72 h-auto border-8 p-2 border-green-400 rounded-3xl bg-green-400'>
+                <div className=' bg-black pt-20 h-72 rounded-3xl'>
+                    <h1 className='text-white text-8xl font-bold text-center'>404</h1>
                 </div>
             </div>
         </div>
-                    <p className='text-white text-2xl font-bold text-center'>This page does not existReturn to Home Page</p>
-                    <p className='text-white text-2xl font-bold text-center'>Return to Home Page</p>
+                    <p className='text-lg text-semibold mt-6 text-center'>This page does not exist</p>
+                    <Link to={'/'}>
+                    <p className='text-xl font-small text-center mt-8 underline text-green-400'>Return to Home Page</p>
+                    </Link>
     </>
   )
 }

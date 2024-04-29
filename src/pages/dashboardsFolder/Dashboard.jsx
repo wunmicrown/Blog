@@ -6,7 +6,7 @@ import { API_URL } from "../constants/Api";
 import truncatePost from "../../utils/truncatepost";
 import useCommentsCount from "../comments/useCommentsCount";
 
-const Dashboard = ({ postId, initialCommentsCount }) => {
+const Dashboard = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -15,7 +15,6 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
   const [categories, setCategories] = useState([]);
   const [likedPosts, setLikedPosts] = useState([]);
   const [loadingCategories, setLoadingCategories] = useState(false);
-  const commentsCount = useCommentsCount(postId, URL, initialCommentsCount);
   // console.log("Comment test", commentsCount)
 
   useEffect(() => {
@@ -199,7 +198,7 @@ const Dashboard = ({ postId, initialCommentsCount }) => {
 
                           </path>
                         </svg>
-                        {commentsCount} comment
+                        Number of comments
                       </div>
                     </div>
                   </div>

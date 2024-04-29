@@ -53,7 +53,7 @@ const App = () => {
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
-                    <Route path="/user-profile-details" element={<UserProfileDetails />} />
+                    <Route path="/profile"element={<UserProfileDetails />} />
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />

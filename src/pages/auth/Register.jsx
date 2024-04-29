@@ -57,6 +57,7 @@ const SignUp = () => {
                     name="username"
                     onChange={handleChange}
                     value={values.username}
+                    autoComplete="false"
                     placeholder="username"
                     className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-200 rounded-lg focus:ring focus:ring-green-200"
                   />
@@ -104,7 +105,7 @@ const SignUp = () => {
                 <Loading />
               ) : (
                 <button
-                  className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse"
+                  className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
                   type="submit"
                   disabled={loading}
                 >
@@ -112,11 +113,6 @@ const SignUp = () => {
                 </button>
               )}
 
-
-              {/* <button
-                className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"              >
-                Sign Up
-              </button> */}
               <div className="text-center mt-4">
                 <p className="text-gray-500">Already have an account?</p>
                 <Link to="/login" className="text-green-400 hover:underline">Login here</Link>

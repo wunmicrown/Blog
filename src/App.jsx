@@ -23,6 +23,7 @@ import CreatePosts from './pages/posts/CreatePosts';
 import PostsDetails from './pages/posts/PostsDetails';
 import CreateCategoryForm from './pages/category folder/CreateCategoryForm';
 import SignUp from './pages/auth/Register';
+import NotFoundPage from './pages/NotFoundPage';
 
 const App = () => {
     return (
@@ -64,6 +65,8 @@ const App = () => {
                     <Route path="" element={<AddComment />} />
                     <Route path="" element={<CommentsList />} />
                 </Route>
+                {/* route for handling non-existing routes */}
+                <Route path="*" element={<NotFoundPage />} />
             </Routes>
         </>
     );

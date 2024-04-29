@@ -10,19 +10,24 @@ import Loading from "../loading/Loading";
 import { useState } from "react";
 
 const AdminSignUp = () => {
-  const URL = `${API_URL}/api/v1/users/register`; // Endpoint for admin registration
+  const URL = `${API_URL}/api/v1/users/register`;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
 
   const onSubmit = async (values) => {
     try {
       setLoading(true);
-      const response = await axios.post(URL, values);
+      const token=localStorage.getItem('token')
+      const response = await axios.post(URL, values,{
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
       localStorage.setItem('userDetails', JSON.stringify(response.data.user));
-      toast.success("Admin registered successfully.");
-      navigate("/verify-email"); // Redirect to admin dashboard after successful registration
+      toast.success("User registered successfully.");
+      navigate("/verify-email");
     } catch (error) {
-      toast.error(`Admin sign up failed: ${error.response.data}`);
+      toast.error(`Sign up failed: ${error.response.data}`);
       setLoading(false);
     }
   };
@@ -32,6 +37,7 @@ const AdminSignUp = () => {
       username: "",
       email: "",
       password: "",
+      userType: "User",
     },
     validationSchema: registerSchema,
     onSubmit,
@@ -99,6 +105,21 @@ const AdminSignUp = () => {
                 </div>
                 <span className="text-red-500">{errors.password}</span>
               </div>
+
+              <div className="mb-4">
+                <label htmlFor="userType" className="block text-sm font-medium text-gray-500">
+                  Register As
+                </label>
+                <select
+                  name="userType"
+                  onChange={handleChange}
+                  value={values.userType}
+                  className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-200 rounded-lg focus:ring focus:ring-green-200"
+                >
+                  <option value="Admin">Admin</option>
+                </select>
+              </div>
+
               {loading ? (
                 <Loading />
               ) : (

@@ -3,7 +3,7 @@ import React from 'react';
 const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDraft }) => {
     return (
         <>
-            <div className="text-white">
+            <div className="text-white h-sreen">
                 <div className="text-white mt-20 gap-4 flex justify-end">
                     <button onClick={onClose} className="p-4 rounded-sm hover:text-green-400 font-semibold  hover:cursor-pointer">
                         Edit
@@ -13,9 +13,11 @@ const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDra
                     </button>
                 </div>
                 <div className='p-6'>
-                    {imagePreview && <img src={imagePreview} alt="Cover" />}
+                    {imagePreview && <img src={imagePreview} alt="Cover" className=' w-full h-96' />}
                 </div>
-                <div className=' ml-6 mb-8 mt-6 text-3xl font-bold leading-tight tracking-tighter md:text-5xl text-darkCoolGray-900'>{post.title}</div>
+                <div className=' ml-6 mb-8 mt-6 text-3xl font-bold leading-tight tracking-tighter md:text-5xl text-darkCoolGray-900'>
+                    {post.title}
+                </div>
                 <div>
                     <div className=' ml-6 inline-block px-3 py-1 mb-4 text-xs font-medium leading-5 text-green-500 uppercase bg-green-100 rounded-full shadow-sm'>Category: {post.category}</div>
                     <div className=' ml-6 flex items-center mb-6 gap-3 text-sm md:text-base font-small text-coolGray-500 mt-2'>

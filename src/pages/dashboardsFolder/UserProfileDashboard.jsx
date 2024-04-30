@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants/Api';
 import { MdEmail, MdVerifiedUser } from 'react-icons/md';
-import calculateReadingtime from '../../utils/calculateReadingtime';
+// import calculateReadingtime from '../../utils/calculateReadingtime';
 
 const UserProfileDashboard = () => {
     const navigate = useNavigate();
@@ -23,7 +23,7 @@ const UserProfileDashboard = () => {
                 });
                 // console.log("user", user);
                 setTokenMatch(true);
-                setUser(user); // Initialize image source
+                setUser(user);// Initialize image source
 
             } catch (error) {
                 console.log('Error message:', error);

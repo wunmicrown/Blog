@@ -24,6 +24,7 @@ import CreateCategoryForm from './pages/category folder/CreateCategoryForm';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminSignUp from './pages/Admin/AdminSignUp';
 import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard';
+// import PostPreview from './pages/posts/PostPreview';
 
 const App = () => {
     return (
@@ -57,6 +58,7 @@ const App = () => {
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
                     <Route path="/profile"element={<UserProfileDashboard />} />
+                    {/* <Route path="/preview"element={<PostPreview />} /> */}
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />

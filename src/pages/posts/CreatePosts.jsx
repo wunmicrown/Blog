@@ -7,6 +7,7 @@ import { API_URL } from "../constants/Api";
 import { MdFileUpload, MdCancel } from "react-icons/md";
 import PostPreview from "./PostPreview";
 import DraftModal from "./DraftModal";
+// import { useNavigate } from "react-router-dom";
 const CreatePosts = () => {
   const editor = useRef(null);
   const [content, setContent] = useState('');
@@ -206,6 +207,11 @@ const CreatePosts = () => {
       setPost({ title: '', content: '', category: null, tags: [] });
       setImage(null);
       setImagePreview('');
+      // Redirect to the preview page
+      // navigate({
+      //   pathname: '/preview',
+      //   state: { postId: response.data.postId }
+      // });
     } catch (error) {
       console.error('Error creating post:', error);
       toast.error("Post not created due to some error !!");
@@ -346,7 +352,6 @@ const CreatePosts = () => {
                     <Container className="text-start text-white pb-8 ml-4 lg:ml-16">
                       <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
                       <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
-
                     </Container>
                   </Form>}
                 </>

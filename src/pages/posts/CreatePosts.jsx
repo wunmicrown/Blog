@@ -252,14 +252,14 @@ const CreatePosts = () => {
                   </div>
                   {<Form onSubmit={createPost}>
                     <div className="lg:pt-10 sm:pt-10 md:pt-10 flex justify-evenly 16">
-                      <div className="border-4 w-3/6  rounded-md flex items-center justify-center">
-                        {imagePreview && <img src={imagePreview} alt="Selected Image" className=" rounded-md" />}
+                      <div className="border-4 w-3/6 h-60 rounded-md flex items-center justify-center">
+                        {imagePreview && <img src={imagePreview} alt="Selected Image" className=" rounded-md w-full h-full" />}
                       </div>
                       <div className="mt-16 mb-16">
                         <label htmlFor="image" className="flex p-4 relative cursor-pointer border-4 border-gray-200 text-[#D6D6D7] bg-[#171717] rounded-md">
                           <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 opacity-0 cursor-pointer" />
                           <MdFileUpload size={24} className="mr-2" />
-                          <span className="font-bold">{imagePreview ? <div className="!h-[10px]">Change a cover image</div> : 'Add a cover image'}</span>
+                          <span className="font-bold">{imagePreview ? <div className="!h-[10px]">Change</div> : 'Add a cover image'}</span>
                         </label>
                       </div>
                     </div>

@@ -344,7 +344,7 @@ const CreatePosts = () => {
                     </div>
 
                     <Container className="text-start text-white pb-8 ml-4 lg:ml-16">
-                      <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Saving</Button>
+                      <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
                       <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
 
                     </Container>

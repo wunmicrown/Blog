@@ -12,7 +12,6 @@ import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
 import DashboardPath from './pages/dashboardsFolder/DashboardPath';
 import Dashboard from './pages/dashboardsFolder/Dashboard';
-import UserProfileDetails from './pages/dashboardsFolder/UserProfileDetails';
 import SettingLayout from './pages/settings/SettingLayout';
 import ChangeEmail from './pages/settings/ChangeEmail';
 import Uploadpic from './pages/settings/profile/Uploadpic';
@@ -24,6 +23,7 @@ import PostsDetails from './pages/posts/PostsDetails';
 import CreateCategoryForm from './pages/category folder/CreateCategoryForm';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminSignUp from './pages/Admin/AdminSignUp';
+import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard';
 
 const App = () => {
     return (
@@ -56,7 +56,7 @@ const App = () => {
                     <Route path="/blog-app/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
-                    <Route path="/profile"element={<UserProfileDetails />} />
+                    <Route path="/profile"element={<UserProfileDashboard />} />
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />

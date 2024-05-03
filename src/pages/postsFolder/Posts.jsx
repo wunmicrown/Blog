@@ -113,12 +113,12 @@ const Posts = () => {
                 </div>
               ) : (
                 posts.map((post) => (
-                  <div key={post.id} className="w-full md:w-1/2 px-4 mb-28">
+                  <div key={post.id} className="w-full md:w-1/3 px-4 mb-8">
                     <Link
                       to={`/posts/${post.id}`}
                       className="block mb-6 overflow-hidden rounded-md"
                     >
-                      <img className="w-full h-80" src={post?.coverImgUrl} alt={post.title} />
+                      <img className="h-40 w-full" src={post?.coverImgUrl} alt={post.title} />
                     </Link>
 
                     <div className="mb-4">
@@ -139,11 +139,11 @@ const Posts = () => {
                     </Link>
                     <div className="mb-4">
                       {/* Mapping through tags */}
-                      {/* {post.tags.map((tag, index) => (
+                      {post.tags.map((tag, index) => (
                         <button key={index} className="hover:bg-[#3f6155] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer">
                          <span className='text-green-300'>#</span> {tag}
                         </button>
-                      ))} */}
+                      ))}
                     </div>
                     <div className="mb-4 text-coolGray-500">
                       <div dangerouslySetInnerHTML={{ __html: truncatePost(post?.content) }}></div>

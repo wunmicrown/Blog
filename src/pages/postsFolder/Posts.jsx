@@ -6,7 +6,8 @@ import { API_URL } from "../constants/Api";
 import truncatePost from "../../utils/truncatepost";
 import useCommentsCount from "../comments/useCommentsCount";
 
-const Dashboard = () => {
+const Posts = () => {
+
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -24,7 +25,7 @@ const Dashboard = () => {
         const response = await axios.get(`${API_URL}/api/v1/posts`, {
           params: { category_id: categoryName },
         });
-        // console.log("Posts", response);
+        console.log("Posts", response);
         setPosts(response.data.posts);
         setLoading(false);
       } catch (error) {
@@ -63,9 +64,8 @@ const Dashboard = () => {
         // If post is not liked, add to liked posts
         return [...prevLikedPosts, postId];
       }
-    });
-  };
-
+    })};
+  
   return (
     <>
       <div>
@@ -80,7 +80,7 @@ const Dashboard = () => {
                 Read our Trending Articles
               </h3>
             </div>
-            {/* Categories */}
+          {/* Categories */}
             {/* { <div className="flex flex-wrap justify-center mb-4">
               {loadingCategories ? (
                 <Loading />
@@ -99,7 +99,7 @@ const Dashboard = () => {
               )}
             </div> } */}
 
-            <div className="flex flex-wrap -mx-4 mb-12 md:mb-20">
+            <div className="flex flex-wrap mx-4 mb-12 md:mb-20 ">
               {/* loop */}
               {loading ? (
                 <div className="flex justify-center items-center h-full w-full">
@@ -113,30 +113,37 @@ const Dashboard = () => {
                 </div>
               ) : (
                 posts.map((post) => (
-                  <div key={post._id} className="w-full md:w-1/2 px-4 mb-28">
+                  <div key={post.id} className="w-full md:w-1/2 px-4 mb-28">
                     <Link
-                      to={`/posts/${post._id}`}
+                      to={`/posts/${post.id}`}
                       className="block mb-6 overflow-hidden rounded-md"
                     >
                       <img className="w-full h-80" src={post?.coverImgUrl} alt={post.title} />
                     </Link>
 
+                    <div className="mb-4">
+                        <Link
+                        //  to={`/user/${post.authorId}`} 
+                         className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm">
+                          {post?.authorUsername}
+                        </Link>
+                      </div>
                     <p className="mb-2 text-coolGray-500 font-medium">
                       {new Date(post?.createdAt).toDateString()}
                     </p>
                     <Link
                       className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:translate-x-1 transition-all duration-300 ease-in-out hover:text-green-300 "
-                      to={`/posts/${post._id}`}
+                      to={`/posts/${post.id}`}
                     >
                       {post?.title}
                     </Link>
                     <div className="mb-4">
                       {/* Mapping through tags */}
-                      {post.tags.map((tag, index) => (
+                      {/* {post.tags.map((tag, index) => (
                         <button key={index} className="hover:bg-[#3f6155] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer">
                          <span className='text-green-300'>#</span> {tag}
                         </button>
-                      ))}
+                      ))} */}
                     </div>
                     <div className="mb-4 text-coolGray-500">
                       <div dangerouslySetInnerHTML={{ __html: truncatePost(post?.content) }}></div>
@@ -198,7 +205,7 @@ const Dashboard = () => {
 
                           </path>
                         </svg>
-                        Number of comments
+                         comments
                       </div>
                     </div>
                   </div>
@@ -210,7 +217,7 @@ const Dashboard = () => {
         </section>
        </div>
     </>
-  );
-};
+  )
+}
 
-export default Dashboard;
+export default Posts

@@ -106,8 +106,8 @@ const PrivateNavbar = () => {
                   </div>
                   <div className="flex flex-shrink-0 items-center">
                     {/* Logo here */}
-                    <Link to="/posts">
-                      <FaBlog className="block text-green-400 h-8 w-auto lg:hidden" />
+                    <Link to="/home">
+                      <FaBlog className="block text-green-400 h-8 w-auto lg:hidden hover:cursor-pointer" />
                     </Link>
 
                     <FaBlog className="hidden text-green-400 h-8 w-auto lg:block" />
@@ -115,7 +115,7 @@ const PrivateNavbar = () => {
                   <div className="hidden md:ml-6 md:flex md:space-x-8">
                     {/* Current: "border-green-600 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-green-300" */}
                     <Link
-                      to={"/posts"}
+                      to={"/home"}
                       className="
                       inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-900 
                       hover:border-green-600 hover:text-green-300
@@ -293,13 +293,13 @@ const PrivateNavbar = () => {
               <div className="space-y-1 pt-2 pb-3">
                 {/* Current: "bg-indigo-50 border-green-600 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-green-600 hover:text-green-300" */}
                 <Link
-                  to={"/posts"}
+                  to={"/home"}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-green-600 hover:bg-gray-50 hover:text-green-300 sm:pl-5 sm:pr-6"
                 >
                   Home
                 </Link>
                 <Link
-                  to={"/posts"}
+                  to={"/home"}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-green-600 hover:bg-gray-50 hover:text-green-300 sm:pl-5 sm:pr-6"
                 >
                   Posts

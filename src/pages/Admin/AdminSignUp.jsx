@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import { AiOutlineUser, AiOutlineMail, AiOutlineLock } from "react-icons/ai";
 import { API_URL } from "../constants/Api";
@@ -8,8 +8,14 @@ import { toast } from "react-toastify";
 import { FaBlog } from "react-icons/fa";
 import Loading from "../loading/Loading";
 import { useState } from "react";
+import NotFoundPage from "../NotFoundPage";
 
 const AdminSignUp = () => {
+  const params =  useParams()
+
+  const  routeKey = params.key
+
+ 
   const URL = `${API_URL}/api/v1/users/register`;
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
@@ -43,10 +49,13 @@ const AdminSignUp = () => {
     onSubmit,
   });
 
-  return (
-    <>
-      <section>
-        <main className="pt-20 pb-5">
+  return (<>
+    <div>
+      { routeKey != import.meta.env.VITE_ADMIN_ROUTE_KEY ?
+        <NotFoundPage />
+        :
+        <section>
+          <main className="pt-20 pb-5">
           <div className="max-w-md mx-auto shadow-lg p-6 rounded">
             <FaBlog className="text-green-500 h-16 mx-auto w-full mt-4 mb-4" />
 
@@ -139,9 +148,10 @@ const AdminSignUp = () => {
             </form>
           </div>
         </main>
-      </section>
-    </>
-  );
+        </section>
+      }
+    </div>    
+  </>);
 };
 
 export default AdminSignUp;

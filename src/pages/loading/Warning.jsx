@@ -25,4 +25,4 @@ const Warning = () => {
     )
 }
 
-export default Warning
+export default Warning; 

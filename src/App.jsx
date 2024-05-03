@@ -11,19 +11,19 @@ import ForgotPassword from './pages/auth/ForgotPassword';
 import PasswordResetVerification from './pages/auth/PasswordResetVerification';
 import PasswordReset from './pages/auth/PasswordReset';
 import DashboardPath from './pages/dashboardsFolder/DashboardPath';
-import Dashboard from './pages/dashboardsFolder/Dashboard';
 import SettingLayout from './pages/settings/SettingLayout';
 import ChangeEmail from './pages/settings/ChangeEmail';
 import Uploadpic from './pages/settings/profile/Uploadpic';
 import ChangePassword from './pages/settings/ChangePassword';
 import AddComment from './pages/comments/AddComment';
 import CommentsList from './pages/comments/CommentLists';
-import CreatePosts from './pages/posts/CreatePosts';
-import PostsDetails from './pages/posts/PostsDetails';
+import CreatePosts from './pages/postsFolder/CreatePosts';
+import PostsDetails from './pages/postsFolder/PostsDetails';
 import CreateCategoryForm from './pages/category folder/CreateCategoryForm';
 import NotFoundPage from './pages/NotFoundPage';
 import AdminSignUp from './pages/Admin/AdminSignUp';
 import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard';
+import Posts from './pages/postsFolder/Posts';
 // import PostPreview from './pages/posts/PostPreview';
 
 const App = () => {
@@ -43,21 +43,24 @@ const App = () => {
             />
             <Routes>
                 <Route element={<Layout />}>
-                    <Route index element={<Homepage />} />
+                    <Route path='/' index element={<Homepage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
+                    <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} /> 
                     <Route path="/reset-password" element={<PasswordReset />} />
+                    <Route path="/user/:id" element={<DashboardPath />} />
+
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
-                    <Route path="/posts" element={<Dashboard />} />
+                    <Route path="/home" element={<Posts />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
-                    <Route path="/blog-app/admin" element={<AdminSignUp />} />
+                    <Route path="/profile"element={<UserProfileDashboard />} />
+                    <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
-                    <Route path="/profile"element={<UserProfileDashboard />} />
                     {/* <Route path="/preview"element={<PostPreview />} /> */}
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >

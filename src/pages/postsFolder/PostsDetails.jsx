@@ -50,12 +50,13 @@ const PostsDetails = () => {
                     }
                 });
                 setPost(response.data);
+                console.log("postId",response.data);
                 setLoading(false);
                 setLikes(response.data.post.likes.length);
                 setDislikes(response.data.post.dislikes.length);
             } catch (error) {
                 console.error('Error fetching post details:', error);
-                setError(error);
+                setError(error.message);
                 setLoading(false);
             }
         };
@@ -134,7 +135,7 @@ const PostsDetails = () => {
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto mb-12 text-center md:max-w-2xl">
                             <img
-                                className="w-full mx-auto mb-4"
+                                className="w-full h-60 mx-auto mb-4"
                                 src={post?.post?.coverImgUrl}
                                 alt="post image"
                             />

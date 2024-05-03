@@ -90,15 +90,15 @@ const Posts = () => {
               ) : error ? (
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
               ) : (
-                categories.map((category) => (
-                  <button
-                    key={category._id}
-                    onClick={() => setCategory(category._id)}
-                    className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
-                  >
-                    {category.categoryName}
-                  </button>
-                ))
+                // categories.map((category) => (
+                //   <button
+                //     key={category._id}
+                //     onClick={() => setCategory(category._id)}
+                //     className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
+                //   >
+                //     {category.categoryName}
+                //   </button>
+                // ))
               )}
             </div>}
 

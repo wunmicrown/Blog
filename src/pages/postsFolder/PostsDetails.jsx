@@ -50,7 +50,6 @@ const PostsDetails = () => {
                     }
                 });
                 setPost(response.data);
-                console.log("postId",response.data);
                 setLoading(false);
                 setLikes(response.data.post.likes.length);
                 setDislikes(response.data.post.dislikes.length);
@@ -173,7 +172,7 @@ const PostsDetails = () => {
                                 {post?.post?.title}
                             </h2>
                             <div className=' ml-6 flex items-center mb-6 gap-8 text-sm md:text-base font-small text-coolGray-500 mt-2'>
-                                    <div className='hover:bg-[#3e5b50] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer'><span className='text-green-300'>#</span>{post?.post?.tags}</div>
+                                <div className='hover:bg-[#3e5b50] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer'><span className='text-green-300'>#</span>{post?.post?.tags}</div>
                             </div>
 
                         </div>

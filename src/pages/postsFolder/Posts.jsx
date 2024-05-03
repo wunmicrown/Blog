@@ -65,13 +65,12 @@ const Posts = () => {
         // If post is not liked, add to liked posts
         return [...prevLikedPosts, postId];
       }
-    })
-  };
-
+    })};
+  
   return (
     <>
       <div>
-        <Category />
+      <Category />
         <section className="relative py-24 bg-white">
           {/*  */}
           <div className="container relative z-10 px-4 mx-auto">
@@ -83,24 +82,24 @@ const Posts = () => {
                 Read our Trending Articles
               </h3>
             </div>
-            {/* Categories */}
-            {<div className="flex flex-wrap justify-center mb-4">
+          {/* Categories */}
+            {/* { <div className="flex flex-wrap justify-center mb-4">
               {loadingCategories ? (
                 <Loading />
               ) : error ? (
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
               ) : (
-                // categories.map((category) => (
-                //   <button
-                //     key={category._id}
-                //     onClick={() => setCategory(category._id)}
-                //     className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
-                //   >
-                //     {category.categoryName}
-                //   </button>
-                // ))
+                categories.map((category) => (
+                  <button
+                    key={category._id}
+                    onClick={() => setCategory(category._id)}
+                    className="mx-2 my-2 px-4 py-2 text-white bg-gradient-to-r from-green-500 to-blue-500 rounded"
+                  >
+                    {category.categoryName}
+                  </button>
+                ))
               )}
-            </div>}
+            </div> } */}
 
             <div className="flex flex-wrap mx-4 mb-12 md:mb-20 ">
               {/* loop */}
@@ -125,12 +124,12 @@ const Posts = () => {
                     </Link>
 
                     <div className="mb-4">
-                      <Link
+                        <Link
                         //  to={`/user/${post.authorId}`} 
-                        className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm">
-                        {post?.authorUsername}
-                      </Link>
-                    </div>
+                         className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm">
+                          {post?.authorUsername}
+                        </Link>
+                      </div>
                     <p className="mb-2 text-coolGray-500 font-medium">
                       {new Date(post?.createdAt).toDateString()}
                     </p>
@@ -144,7 +143,7 @@ const Posts = () => {
                       {/* Mapping through tags */}
                       {post.tags.map((tag, index) => (
                         <button key={index} className="hover:bg-[#3f6155] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer">
-                          <span className='text-green-300'>#</span> {tag}
+                         <span className='text-green-300'>#</span> {tag}
                         </button>
                       ))}
                     </div>
@@ -208,7 +207,7 @@ const Posts = () => {
 
                           </path>
                         </svg>
-                        comments
+                         comments
                       </div>
                     </div>
                   </div>
@@ -218,7 +217,7 @@ const Posts = () => {
             </div>
           </div>
         </section>
-      </div>
+       </div>
     </>
   )
 }

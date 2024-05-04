@@ -23,7 +23,7 @@ const SignUp = () => {
       toast.success("User registered successfully. Verification OTP sent to email.");
       navigate("/verify-email");
     } catch (error) {
-      toast.error(`Sign up failed: ${error.response.data}`);
+      toast.warning(`Sign up failed: ${error.response.data}`);
       setLoading(false)
     }
   };

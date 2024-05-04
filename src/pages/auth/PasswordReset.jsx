@@ -55,8 +55,6 @@ const PasswordReset = () => {
                 setMessage(res.data.message);
                 toast.success(res.data.message);
                 navigate("/login");
-            } else {
-                // Handle other status codes if needed
             }
         } catch (error) {
             console.error(error);

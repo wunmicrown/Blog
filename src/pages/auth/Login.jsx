@@ -35,7 +35,7 @@ const [loading, setLoading] = useState(false);
 
         }
         // Redirect to verify email page if email is not verified
-        toast.error('Please verify your email before accessing the dashboard');
+        toast.warning('Please verify your email before accessing the dashboard');
         navigate('/verify-email');
 
       }

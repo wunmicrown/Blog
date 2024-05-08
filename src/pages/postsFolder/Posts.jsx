@@ -102,7 +102,7 @@ const Posts = () => {
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
               ) : posts.length === 0 ? (
                 <div className="flex justify-center items-center w-full">
-                  <h1 className="text-2xl font-bold mb-20">No Latest Articles found</h1>
+                  <h1 className="text-2xl font-bold mb-20">No Latest Article yet</h1>
                 </div>
               ) : (
                 posts.map((post) => (
@@ -224,7 +224,7 @@ const Posts = () => {
                 <h3 className="text-red-500 text-center">{error?.message}</h3>
               ) : trendingPosts.length === 0 ? (
                 <div className="flex justify-center items-center w-full ">
-                  <h1 className="text-2xl font-bold mb-20 ">No Trending Articles found</h1>
+                  <h1 className="text-2xl font-bold mb-20 ">No Trending Article yet</h1>
                 </div>
               ) : (
                 trendingPosts.map((post) => (

@@ -3,15 +3,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants/Api';
 import { MdEmail, MdVerifiedUser } from 'react-icons/md';
-// import calculateReadingtime from '../../utils/calculateReadingtime';
+import Posts from '../postsFolder/Posts';
+import calculateReadingtime from '../../utils/calculateReadingtime';
 
 const UserProfileDashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [tokenMatch, setTokenMatch] = useState(false);
-    const [post, setPost] = useState(null);
+    const [posts, setPosts] = useState(null);
     const [error, setError] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
+    const readingTime = posts && posts.latestPosts ? calculateReadingtime(posts.latestPosts.map(post => post.content).join(' ')) : 0;
 
 
     useEffect(() => {
@@ -23,21 +25,19 @@ const UserProfileDashboard = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                // console.log("user", user);
                 setTokenMatch(true);
-                setUser(user);// Initialize image source
+                setUser(user);
                 setIsAdmin(user && user.userType === 'Admin');
-
             } catch (error) {
                 console.log('Error message:', error);
                 console.log(error.response);
                 setTokenMatch(false);
                 navigate('/login');
-
             }
         }
         userDetails();
     }, []);
+
     useEffect(() => {
         const fetchPostDetails = async () => {
             try {
@@ -47,21 +47,21 @@ const UserProfileDashboard = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                // console.log('post Response:', response.data);
-                setPost(response.data);
+                setPosts(response.data);
             } catch (error) {
                 console.error('Error fetching post details:', error);
                 setError(error);
             }
         };
 
-        fetchPostDetails();
-    }, []);
+        if (user) {
+            fetchPostDetails();
+        }
+    }, [user]);
+
     return (
-
         <>
-            <div className=' bg-green-50 h-screen'>
-
+            <div className=' bg-green-50 h-auto'>
                 {isAdmin ? (
                     <div className="pt-20 border flex text-center lg:mt-0">
                         {/* Render admin-specific information */}
@@ -97,7 +97,6 @@ const UserProfileDashboard = () => {
                                                 <p className='ml-2 cursor-pointer hover:text-green-400'>{user.email}</p>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             )}
@@ -112,15 +111,32 @@ const UserProfileDashboard = () => {
                                             <p className='ml-2 font-semibold text-small flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>
                                         </div>
                                         <div className='flex flex-col lg:flex-row lg:gap-7 lg:justify-center md:justify-center md:gap-7 md:flex-row mt-4 md:mt-8 xl:flex-row'>
-
-                                        </div>
-                                        <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
-                                            <p className=' text-white p-2 rounded-lg  '
-                                            // readingTime={calculateReadingtime(post?.post?.content)}
-
-                                            >
-                                                1 min read
-                                            </p>
+                                            {posts && posts.latestPosts && posts.latestPosts.length > 0 ? (
+                                                <div className='mx-auto w-full max-w-screen-sm'>
+                                                    <div className='bg-[#5b5c5b] mx-auto text-white h-auto text-center pt-4 max-w-screen-sm px-4 rounded-lg'>
+                                                        <Posts posts={posts.latestPosts} />
+                                                        <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
+                                                            <p className="text-lg text-yellow-500 font-bold">{!isNaN(readingTime) ? <span>{readingTime} Min</span> : null}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            ) : (
+                                                <div className='mb-20'>
+                                                    <div className='flex justify-center'>
+                                                        <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt="" />
+                                                    </div>
+                                                    <div>
+                                                        <p>
+                                                            This is where you can manage your posts, but you haven't written anything yet.
+                                                        </p>
+                                                        <Link to={'/create-post'}>
+                                                            <button className='p-2 rounded-md mt-4 bg-green-400 text-white '>
+                                                                write your first post
+                                                            </button>
+                                                        </Link>
+                                                    </div>
+                                                </div>
+                                            )}
                                         </div>
 
                                     </div>
@@ -131,7 +147,6 @@ const UserProfileDashboard = () => {
                 )}
             </div>
         </>
-
     );
 }
 

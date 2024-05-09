@@ -3,6 +3,9 @@ import { Link } from "react-router-dom";
 import truncatePost from "../../utils/truncatepost";
 
 const Posts = ({ posts }) => {
+  if (!posts || !Array.isArray(posts)) {
+    return <div>No posts found</div>;
+}
   return (
     <>
 

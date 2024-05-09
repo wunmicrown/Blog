@@ -2,10 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import PostStats from './PostStats';
-// import calculateReadingtime from '../../utils/calculateReadingtime';
 import AddComment from '../comments/AddComment';
 import Loading from '../loading/Loading';
 import { API_URL } from '../constants/Api';
+import calculateReadingtime from '../../utils/calculateReadingtime';
 
 
 const PostsDetails = () => {
@@ -18,6 +18,7 @@ const PostsDetails = () => {
     const [categoryId, setCategoryId] = useState(null);
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
+    const readingTime = calculateReadingtime(post?.post?.content);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -124,13 +125,7 @@ const PostsDetails = () => {
                 <ErrorMsg message={error?.message} />
             ) : (
                 <section
-                    className="py-16 bg-white md:py-24"
-                    style={{
-                        backgroundImage: 'url("flex-ui-assets/elements/pattern-white.svg")',
-                        backgroundRepeat: "no-repeat",
-                        backgroundPosition: "center top",
-                    }}
-                >
+                    className= "py-16 bg-white md:py-24" >
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto mb-12 text-center md:max-w-2xl">
                             <img
@@ -142,7 +137,7 @@ const PostsDetails = () => {
                                 to={''}
                                 className="flex items-center justify-start mx-2 text-left"
                             >
-                                <div className="w-auto px-2 flex">
+                                <div className="w-auto px-2 flex ">
                                     <img
                                         className="w-12 h-12 rounded-full"
                                         alt="author image"
@@ -159,6 +154,10 @@ const PostsDetails = () => {
                                         <p className="inline-block font-medium text-green-500">
                                             {new Date(post?.post?.createdAt).toDateString()}
                                         </p>
+                                    </div>
+                                    <div className='flex justify-evenly'>
+                                    <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> Min</p>
+
                                     </div>
                                 </div>
                             </Link>
@@ -179,14 +178,7 @@ const PostsDetails = () => {
                     </div>
 
 
-                    <div
-                        style={{
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            height: "100%",
-                        }}
-                    >
+                    <div>
                     </div>
 
                     <div className="container px-4 mx-auto">

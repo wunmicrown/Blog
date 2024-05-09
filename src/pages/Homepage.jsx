@@ -1,10 +1,14 @@
 import React from 'react'
-import Posts from './postsFolder/Posts'
+import PostsList from './postsFolder/PostsList'
+// import Category from '../pages/category folder/Category';
+
+
 
 const Homepage = () => {
   return (
     <>
-      <Posts />
+      {/* <Category /> */}
+      <PostsList />
     </>
   )
 }

@@ -137,7 +137,7 @@ const PostsDetails = () => {
                                 to={''}
                                 className="flex items-center justify-start mx-2 text-left"
                             >
-                                <div className="w-auto px-2 flex ">
+                                <div className="px-2 flex justify-between w-full ">
                                     <img
                                         className="w-12 h-12 rounded-full"
                                         alt="author image"
@@ -146,18 +146,20 @@ const PostsDetails = () => {
                                             "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"
                                         }
                                     />
+                                    <div className='flex justify-between w-full'>
                                     <div className="w-auto px-2">
                                         <h4 className="text-base font-bold md:text-lg text-coolGray-800">
                                             {post?.post?.author?.username}
                                         </h4>
                                         <span className="mx-1 text-green-500">•</span>
-                                        <p className="inline-block font-medium text-green-500">
-                                            {new Date(post?.post?.createdAt).toDateString()}
+                                        <p className="inline-block font-medium text-green-500 hover:text-green-600">
+                                            posted on {new Date(post?.post?.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                         </p>
                                     </div>
-                                    <div className='flex justify-evenly'>
-                                    <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> Min</p>
+                                    <div>
+                                    <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> min read</p>
 
+                                    </div>
                                     </div>
                                 </div>
                             </Link>

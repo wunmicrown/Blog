@@ -61,13 +61,13 @@ const App = () => {
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
+                    <Route path="/posts/:postId" element={<AddComment />} />
                     {/* <Route path="/preview"element={<PostPreview />} /> */}
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />
                     <Route path="/settings/change-password" element={<ChangePassword />} />
                     <Route path="" element={<Uploadpic />} />
-                    <Route path="" element={<AddComment />} />
                     <Route path="" element={<CommentsList />} />
                 </Route>
                 {/* route for handling non-existing routes */}

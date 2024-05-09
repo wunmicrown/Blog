@@ -1,11 +1,10 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import truncatePost from "../../utils/truncatepost";
+import calculateTimeDifference from '../../utils/CalculateTime';
 
 const Posts = ({ posts }) => {
-  if (!posts || !Array.isArray(posts)) {
-    return <div>No posts found</div>;
-}
+
   return (
     <>
 
@@ -28,7 +27,7 @@ const Posts = ({ posts }) => {
               </Link>
             </div>
             <p className="mb-2 text-coolGray-500 font-medium">
-              {new Date(post?.createdAt).toDateString()}
+              {calculateTimeDifference(post?.createdAt)}
             </p>
             <Link
               className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:translate-x-1 transition-all duration-300 ease-in-out hover:text-green-300 "

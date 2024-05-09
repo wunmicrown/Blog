@@ -3,7 +3,7 @@ import React from 'react';
 const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDraft }) => {
     return (
         <>
-            <div className="text-white h-sreen">
+            <div className="text-white h-screen">
                 <div className="text-white mt-20 gap-4 flex justify-end">
                     <button onClick={onClose} className="p-4 rounded-sm hover:text-green-400 font-semibold  hover:cursor-pointer">
                         Edit

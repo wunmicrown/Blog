@@ -3,18 +3,16 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants/Api';
 import { MdEmail, MdVerifiedUser } from 'react-icons/md';
-import Posts from '../postsFolder/Posts';
 import calculateReadingtime from '../../utils/calculateReadingtime';
 
 const UserProfileDashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [tokenMatch, setTokenMatch] = useState(false);
-    const [posts, setPosts] = useState(null);
+    const [latestPosts, setLatestPosts] = useState([]);
     const [error, setError] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
-    const readingTime = posts && posts.latestPosts ? calculateReadingtime(posts.latestPosts.map(post => post.content).join(' ')) : 0;
-
+    const [readingTime, setReadingTime] = useState(0);
 
     useEffect(() => {
         const userDetails = async () => {
@@ -42,12 +40,14 @@ const UserProfileDashboard = () => {
         const fetchPostDetails = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get(`${API_URL}/api/v1/posts`, {
+                const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                setPosts(response.data);
+                setLatestPosts(data.latestPosts || []);
+                console.log(data);
+                setReadingTime(calculateReadingtime(data.latestPosts?.map(post => post.content).join(' ')));
             } catch (error) {
                 console.error('Error fetching post details:', error);
                 setError(error);
@@ -104,29 +104,73 @@ const UserProfileDashboard = () => {
                         <div className="mt-8">
                             {user && (
                                 <div className='mx-auto w-full max-w-screen-sm'>
-                                    <div className='bg-[#5b5c5b] mx-auto text-white h-auto text-center pt-4 max-w-screen-sm px-4 rounded-lg'>
-                                        <div className='flex justify-start'>
-                                            <img className='w-14 h-14 rounded-full' src={user && user.profilePic ? user.profilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic"
-                                            />
-                                            <p className='ml-2 font-semibold text-small flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>
-                                        </div>
+                                    <div className=' mx-auto text-white h-auto text-center pt-4 max-w-screen-sm px-4 rounded-lg'>
+
                                         <div className='flex flex-col lg:flex-row lg:gap-7 lg:justify-center md:justify-center md:gap-7 md:flex-row mt-4 md:mt-8 xl:flex-row'>
-                                            {posts && posts.latestPosts && posts.latestPosts.length > 0 ? (
-                                                <div className='mx-auto w-full max-w-screen-sm'>
-                                                    <div className='bg-[#5b5c5b] mx-auto text-white h-auto text-center pt-4 max-w-screen-sm px-4 rounded-lg'>
-                                                        <Posts posts={posts.latestPosts} />
-                                                        <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
-                                                            <p className="text-lg text-yellow-500 font-bold">{!isNaN(readingTime) ? <span>{readingTime} Min</span> : null}</p>
-                                                        </div>
+                                            {latestPosts.length > 0 ? (
+                                                <div className='mx-auto w-full max-w-screen-sm mb-20'>
+
+                                                    <div className=' mx-auto text-white h-auto text-start pt-4 max-w-screen-sm px-4 rounded-lg'>
+                                                        {latestPosts.map(post => (
+                                                            <div key={post.id} className="mb-6 bg-[#5b5c5b] rounded-lg p-4 overflow-y-auto">
+                                                                <div className='flex justify-start'>
+                                                                    <img className='w-14 h-14 rounded-full' src={post && post.authorProfilePic ? user.authorProfilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
+                                                                    <div className=' mt-0'>
+                                                                        <Link
+                                                                            className="inline-block py-1 px-3 text-xs leading-5 text-green-500 hover:text-green-600 font-medium uppercase bg-green-100 hover:bg-green-200 rounded-full shadow-sm"
+                                                                            to={`/user/${post.authorId}`}
+                                                                        >
+                                                                            {post?.authorUsername}
+                                                                        </Link>
+                                                                        <p className="mb-2 text-gray-300 text-sm font-small hover:text-white mt-2 ml-3">
+                                                                            {new Date(post?.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                <div>
+                                                                    <Link
+                                                                        className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:translate-x-1 transition-all duration-300 ease-in-out hover:text-green-300 ml-16"
+                                                                        to={`/posts/${post.id}`}
+                                                                    >
+                                                                        {post?.title}
+                                                                    </Link>
+                                                                </div>
+                                                                <div className="mb-4">
+                                                                    {post.tags.map((tag, index) => (
+                                                                        <button key={index} className="hover:bg-[#3f6155] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#749f8f] hover:text-white hover:cursor-pointer ml-12">
+                                                                            <span className='text-green-300'>#</span> {tag}
+                                                                        </button>
+                                                                    ))}
+                                                                </div>
+                                                                <div className='flex justify-between '>
+                                                                    <Link to={`/posts/${post.id}`}>
+                                                                        <div className='flex hover:bg-gray-500 rounded-lg p-1'>
+                                                                            <svg
+                                                                                xmlns="http://www.w3.org/2000/svg"
+                                                                                width="24" height="24" role="img" aria-labelledby="aes0polvpupav775nujwlpzankc902lu"
+                                                                                className="text-white fill-current">
+                                                                                <path d="M10.5 5h3a6 6 0 110 12v2.625c-3.75-1.5-9-3.75-9-8.625a6 6 0 016-6zM12 15.5h1.5a4.501 4.501 0 001.722-8.657A4.5 4.5 0 0013.5 6.5h-3A4.5 4.5 0 006 11c0 2.707 1.846 4.475 6 6.36V15.5z">
+                                                                                </path>
+                                                                            </svg>
+                                                                            <span className="inline-block text-white">Add&nbsp;Comment</span>
+                                                                        </div>
+                                                                    </Link>
+                                                                    <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
+                                                                        <p className="text-lg text-gray-300 ">{!isNaN(readingTime) ? <span>{readingTime} min read</span> : null}</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        ))}
                                                     </div>
+
                                                 </div>
                                             ) : (
-                                                <div className='mb-20'>
+                                                <div className='mb-20 bg-[#5b5c5b] rounded-lg p-4 overflow-y-auto'>
                                                     <div className='flex justify-center'>
                                                         <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt="" />
                                                     </div>
                                                     <div>
-                                                        <p>
+                                                        <p className=' font-semibold'>
                                                             This is where you can manage your posts, but you haven't written anything yet.
                                                         </p>
                                                         <Link to={'/create-post'}>

@@ -24,6 +24,7 @@ import NotFoundPage from './pages/NotFoundPage';
 import AdminSignUp from './pages/Admin/AdminSignUp';
 import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard';
 import PostsList from './pages/postsFolder/PostsList';
+import UpdatePosts from './pages/postsFolder/UpdatePosts ';
 // import PostPreview from './pages/posts/PostPreview';
 
 const App = () => {
@@ -61,6 +62,7 @@ const App = () => {
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
+                    <Route path="/update-post/:postId/edit" element={<UpdatePosts />} /> 
                     <Route path="/posts/:postId" element={<AddComment />} />
                     {/* <Route path="/preview"element={<PostPreview />} /> */}
                 </Route>

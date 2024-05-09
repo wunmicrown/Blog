@@ -1,11 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import React, { useState, useEffect, Fragment } from 'react';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
 import PostStats from './PostStats';
 import AddComment from '../comments/AddComment';
 import Loading from '../loading/Loading';
 import { API_URL } from '../constants/Api';
 import calculateReadingtime from '../../utils/calculateReadingtime';
+import { Transition } from '@headlessui/react';
 
 
 const PostsDetails = () => {
@@ -19,6 +20,8 @@ const PostsDetails = () => {
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const readingTime = calculateReadingtime(post?.post?.content);
+    const navigate = useNavigate()
+    const [showConfirmation, setShowConfirmation] = useState(false);
 
     useEffect(() => {
         const fetchUserDetails = async () => {
@@ -84,7 +87,6 @@ const PostsDetails = () => {
             console.error('Error liking post:', error);
         }
     };
-
     const handleDislikePost = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -106,6 +108,36 @@ const PostsDetails = () => {
         }
     };
 
+    const deletePostHandler = async () => {
+        try {
+            const token = localStorage.getItem('token');
+            if (!token) {
+                console.error('User is not authenticated.');
+                return;
+            }
+            const response = await axios.delete(`${URL}/${postId}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
+            if (response.status === 200) {
+                navigate('/');
+                toast.error("post delete successfully")
+                setShowConfirmation(false);
+            }
+        } catch (error) {
+            console.error('Error deleting post:', error);
+        }
+    };
+
+    const openConfirmationModal = () => {
+        setShowConfirmation(true);
+    };
+
+    const closeConfirmationModal = () => {
+        setShowConfirmation(false);
+    };
+
 
     if (loading) {
         return <div><Loading /></div>;
@@ -115,17 +147,17 @@ const PostsDetails = () => {
         return <div>Error: Unable to fetch post details</div>;
     }
     //! Get the creator of the post
-    const creator = post?.post?.author?._id?.toString();
-    const loginUser = user?.user?._id?.toString(); // Access user state here
+    // const creator = post?.post?.author?._id?.toString();
+    // const loginUser = user?.user?._id?.toString(); 
 
-    const isCreator = creator === loginUser;
+    // const isCreator = creator === loginUser;
     return (
         <>
             {error ? (
                 <ErrorMsg message={error?.message} />
             ) : (
                 <section
-                    className= "py-16 bg-white md:py-24" >
+                    className="py-16 bg-white md:py-24" >
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto mb-12 text-center md:max-w-2xl">
                             <img
@@ -147,19 +179,19 @@ const PostsDetails = () => {
                                         }
                                     />
                                     <div className='flex justify-between w-full'>
-                                    <div className="w-auto px-2">
-                                        <h4 className="text-base font-bold md:text-lg text-coolGray-800">
-                                            {post?.post?.author?.username}
-                                        </h4>
-                                        <span className="mx-1 text-green-500">•</span>
-                                        <p className="inline-block font-medium text-green-500 hover:text-green-600">
-                                            posted on {new Date(post?.post?.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
-                                        </p>
-                                    </div>
-                                    <div>
-                                    <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> min read</p>
+                                        <div className="w-auto px-2">
+                                            <h4 className="text-base font-bold md:text-lg text-coolGray-800">
+                                                {post?.post?.author?.username}
+                                            </h4>
+                                            <span className="mx-1 text-green-500">•</span>
+                                            <p className="inline-block font-medium text-green-500 hover:text-green-600">
+                                                posted on {new Date(post?.post?.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                                            </p>
+                                        </div>
+                                        <div>
+                                            <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> min read</p>
 
-                                    </div>
+                                        </div>
                                     </div>
                                 </div>
                             </Link>
@@ -199,50 +231,52 @@ const PostsDetails = () => {
                                 handleDislike={handleDislikePost} // Pass dislike handler function
                             />
                             {/* delete and update icons */}
-                            {isCreator && (
-                                <div className="flex justify-end mb-4">
-                                    {/* edit */}
-                                    <Link
-                                        to={`/posts/${post?.post?._id}/update`}
-                                        className="p-2 mr-2 text-gray-500 hover:text-gray-700"
+                            {/* {isCreator && ( */}
+                            <div className="flex justify-end mb-4">
+                                {/* edit */}
+                                <Link
+                                    to={`/update-post/${post?.post?._id}/edit`}
+                                    // to={'/create-post'}
+                                    className="p-2 mr-2 text-gray-500 hover:text-gray-700"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="w-6 h-6"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-6 h-6"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
-                                            />
-                                        </svg>
-                                    </Link>
-                                    {/* delete */}
-                                    <button
-                                        onClick={deletePostHandler}
-                                        className="p-2 text-gray-500 hover:text-gray-700"
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10"
+                                        />
+                                    </svg>
+                                </Link>
+                                {/* delete */}
+                                <button
+                                    // onClick={deletePostHandler}
+                                    onClick={openConfirmationModal}
+                                    className="p-2 text-gray-500 hover:text-gray-700"
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="none"
+                                        viewBox="0 0 24 24"
+                                        strokeWidth="1.5"
+                                        stroke="currentColor"
+                                        className="w-6 h-6"
                                     >
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke-width="1.5"
-                                            stroke="currentColor"
-                                            class="w-6 h-6"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
-                                            />
-                                        </svg>
-                                    </button>
-                                </div>
-                            )}
+                                        <path
+                                            strokeLinecap="round"
+                                            strokeLinejoin="round"
+                                            d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                                        />
+                                    </svg>
+                                </button>
+                            </div>
+                            {/* )} */}
                             <div className='mt-8 mb-16'>
                                 <hr />
 
@@ -259,6 +293,38 @@ const PostsDetails = () => {
 
                 </section>
             )}
+
+            {/* Modal */}
+            <Transition
+                show={showConfirmation}
+                as={Fragment}
+                enter="transition-opacity duration-200"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="transition-opacity duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+            >
+                <div className="fixed inset-0 flex justify-center items-center bg-black bg-opacity-50">
+                    <div className="bg-white p-4 rounded-md shadow-md">
+                        <p className="mb-4">Are you sure you want to delete this article?</p>
+                        <div className="flex justify-end">
+                            <button
+                                className="mr-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                                onClick={deletePostHandler} // Call deletePostHandler to delete the post
+                            >
+                                Delete
+                            </button>
+                            <button
+                                className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
+                                onClick={closeConfirmationModal} // Close modal without deleting
+                            >
+                                Cancel
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </Transition>
         </>
     );
 }

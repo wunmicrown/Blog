@@ -10,7 +10,7 @@ const Posts = ({ posts }) => {
 
       <div className="flex flex-wrap mx-4 mb-8 md:mb-16">
         {posts.map((post) => (
-          <div key={post.id} className="w-full md:w-1/3 px-4 mb-8">
+          <div key={post.id} className="w-full lg:w-1/3 md:w-1/2 px-4 mb-8">
             <Link
               to={`/posts/${post.id}`}
               className="block mb-10 overflow-hidden rounded-md"

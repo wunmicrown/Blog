@@ -156,8 +156,8 @@ const UpdatePosts = () => {
         formData.append('title', post.title);
         formData.append('content', post.content);
         formData.append('category', post.category);
-        if (coverImgUrl) { // Check if coverImgUrl contains a value
-            formData.append('image', coverImgUrl); // Use coverImgUrl instead of image
+        if (coverImgUrl) { 
+            formData.append('image', coverImgUrl); 
         }
         formData.append('tags', post.tags.join(','));
 

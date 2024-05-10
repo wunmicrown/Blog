@@ -22,7 +22,6 @@ const PostsDetails = () => {
     const readingTime = calculateReadingtime(post?.post?.content);
     const navigate = useNavigate()
     const [showConfirmation, setShowConfirmation] = useState(false);
-
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
@@ -147,13 +146,12 @@ const PostsDetails = () => {
         return <div>Error: Unable to fetch post details</div>;
     }
     //! Get the creator of the post
-    // const creator = post?.post?.author?._id?.toString();
-    // const loginUser = user?.user?._id?.toString(); 
-
-    // const isCreator = creator === loginUser;
+    const creator = post?.post?.author?._id?.toString();
+    const loginUser = user?._id?.toString(); 
+    const isCreator = creator === loginUser;
     return (
         <>
-            {error ? (
+            {error ? (  
                 <ErrorMsg message={error?.message} />
             ) : (
                 <section
@@ -231,7 +229,7 @@ const PostsDetails = () => {
                                 handleDislike={handleDislikePost} // Pass dislike handler function
                             />
                             {/* delete and update icons */}
-                            {/* {isCreator && ( */}
+                            {isCreator && (
                             <div className="flex justify-end mb-4">
                                 {/* edit */}
                                 <Link
@@ -276,7 +274,7 @@ const PostsDetails = () => {
                                     </svg>
                                 </button>
                             </div>
-                            {/* )} */}
+                             )}
                             <div className='mt-8 mb-16'>
                                 <hr />
 

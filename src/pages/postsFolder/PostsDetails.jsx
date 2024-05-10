@@ -121,7 +121,7 @@ const PostsDetails = () => {
                 },
             });
             if (response.status === 200) {
-                navigate('/');
+                navigate('/profile');
                 toast.error("post delete successfully")
                 setShowConfirmation(false);
             }

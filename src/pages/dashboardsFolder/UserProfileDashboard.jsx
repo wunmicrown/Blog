@@ -40,11 +40,12 @@ const UserProfileDashboard = () => {
         const fetchPostDetails = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
+                const { data } = await axios.get(`${API_URL}/api/v1/posts/all-posts`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
                 });
+                console.log(data);
                 setLatestPosts(data.latestPosts || []);
                 setReadingTime(calculateReadingtime(data.latestPosts?.map(post => post.content).join(' ')));
             } catch (error) {
@@ -97,11 +98,22 @@ const UserProfileDashboard = () => {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div>
+                                        <div className='mx-auto w-full max-w-screen-lg'>
+
+                                            <div className=' mx-auto h-auto text-start pt-4 max-w-screen-sm px-4 rounded-lg'>
+                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia delectus fuga ullam inventore sint, harum sequi quia eligendi veritatis repudiandae, expedita velit non deserunt pariatur dolores nihil. Officiis, ut minima.
+                                                {/* {user.totalposts} */}
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
+                                
                             )}
                         </div>
                         <div className="mt-8">
-                            {user && (
+                            {/* {user && (
                                 <div className='mx-auto w-full max-w-screen-sm'>
                                     <div className=' mx-auto text-white h-auto text-center pt-4 max-w-screen-sm px-4 rounded-lg'>
 
@@ -183,6 +195,11 @@ const UserProfileDashboard = () => {
                                         </div>
 
                                     </div>
+                                </div>
+                            )} */}
+                            {user && (
+                                <div className='bg-red-500'>
+                                    {/* {posts.totalComments} */}
                                 </div>
                             )}
                         </div>

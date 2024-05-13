@@ -8,6 +8,7 @@ import calculateReadingtime from '../../utils/calculateReadingtime';
 const UserProfileDashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
+    const [posts, setPosts] = useState(null);
     const [tokenMatch, setTokenMatch] = useState(false);
     const [latestPosts, setLatestPosts] = useState([]);
     const [error, setError] = useState(null);
@@ -47,6 +48,7 @@ const UserProfileDashboard = () => {
                 });
                 console.log(data);
                 setLatestPosts(data.latestPosts || []);
+                setPosts(data.posts || []);
                 setReadingTime(calculateReadingtime(data.latestPosts?.map(post => post.content).join(' ')));
             } catch (error) {
                 console.error('Error fetching post details:', error);
@@ -71,7 +73,7 @@ const UserProfileDashboard = () => {
                     <div className="mt-2 lg:mt-0">
                         <div className="pt-20 relative">
                             {user && (
-                                <div className='mx-auto w-full max-w-screen-lg'>
+                                <div className='mx-auto w-full max-w-screen-lg px-4'>
                                     <div className='flex md:justify-center lg:justify-center sm:justify-start xl:justify-center  '>
                                         <img className='w-24 h-24 rounded-full' src={user.profilePic ||
                                             "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
@@ -98,20 +100,36 @@ const UserProfileDashboard = () => {
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div>
-                                        <div className='mx-auto w-full max-w-screen-lg'>
-
-                                            <div className=' mx-auto h-auto text-start pt-4 max-w-screen-sm px-4 rounded-lg'>
-                                                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Officia delectus fuga ullam inventore sint, harum sequi quia eligendi veritatis repudiandae, expedita velit non deserunt pariatur dolores nihil. Officiis, ut minima.
-                                                {/* {user.totalposts} */}
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
-                                
+
                             )}
                         </div>
+                        <div>
+                            {user && posts !== null && (
+                                <div className='mx-auto w-full max-w-screen-lg mt-20 px-4'>
+                                    {posts.map((post) => (
+                                        <div key={post.id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
+                                                <strong className='text-xl'>{post.totalComments}</strong>
+                                                <p className='text-sm whitespace-nowrap'>Total post comments</p>
+                                            </div>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
+                                                <strong className='text-xl'>{post.totalFollowers}</strong>
+                                                <p className='text-sm whitespace-nowrap'>Total Followers</p>
+                                            </div>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
+                                                <strong className='text-xl'>{post.totalViewers}</strong>
+                                                <p className='text-sm whitespace-nowrap'>Total post views</p>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+
+
+
+
                         <div className="mt-8">
                             {/* {user && (
                                 <div className='mx-auto w-full max-w-screen-sm'>
@@ -197,11 +215,6 @@ const UserProfileDashboard = () => {
                                     </div>
                                 </div>
                             )} */}
-                            {user && (
-                                <div className='bg-red-500'>
-                                    {/* {posts.totalComments} */}
-                                </div>
-                            )}
                         </div>
                     </div>
                 )}

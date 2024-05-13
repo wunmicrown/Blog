@@ -4,9 +4,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants/Api';
 import { MdEmail, MdVerifiedUser } from 'react-icons/md';
 import calculateReadingtime from '../../utils/calculateReadingtime';
-import AdminDashboard from '../Admin/AdminDashboard';
 
-const UserProfileDashboard = () => {
+const AdminDashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState(null);
@@ -64,14 +63,7 @@ const UserProfileDashboard = () => {
 
     return (
         <>
-            <div className=' bg-green-50 h-auto'>
-                {isAdmin ? (
-                    <div>
-                        <AdminDashboard/>
-                    </div>
-                ) : (
-                    <div className="mt-2 lg:mt-0">
-                        <div className="pt-20 relative">
+            <div className=' bg-green-50 h-auto pt-20'>
                             {user && (
                                 <div className='mx-auto w-full max-w-screen-lg px-4'>
                                     <div className='flex md:justify-center lg:justify-center sm:justify-start xl:justify-center  '>
@@ -111,16 +103,22 @@ const UserProfileDashboard = () => {
                                         <div key={post.id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
                                             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
                                                 <strong className='text-xl'>{post.totalComments}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post comments</p>
+                                                <p className='text-sm whitespace-nowrap'>Total comments</p>
                                             </div>
                                             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
                                                 <strong className='text-xl'>{post.totalPostLikes}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post likes</p>
+                                                <p className='text-sm whitespace-nowrap'>Total likes</p>
                                             </div>
                                             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
                                                 <strong className='text-xl'>{post.totalViewers}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post views</p>
+                                                <p className='text-sm whitespace-nowrap'>Total views</p>
                                             </div>
+                                            <Link to={''}>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
+                                                <strong className='text-xl'>{post.totalPosts}</strong>
+                                                <p className='text-sm whitespace-nowrap'>Total posts</p>
+                                            </div>
+                                            </Link>
                                         </div>
                                     ))}
                                 </div>
@@ -214,11 +212,9 @@ const UserProfileDashboard = () => {
                                 </div>
                             )} */}
                         </div>
-                    </div>
-                )}
-            </div>
+                 
         </>
     );
 }
 
-export default UserProfileDashboard;
+export default AdminDashboard

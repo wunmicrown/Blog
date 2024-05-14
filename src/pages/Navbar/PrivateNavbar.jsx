@@ -183,7 +183,7 @@ const PrivateNavbar = () => {
                           <Menu.Item>
                             {({ active }) => (
                               <Link
-                                to={`/user/${user._id}/profile`}
+                                to={`${user.username}`}
                                 className={`${active ? "bg-gray-100" : ""
                                   } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >

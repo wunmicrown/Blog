@@ -45,7 +45,6 @@ const PostByEachUsers = () => {
                      params: { category_id: categoryName },
                 });
                 setPosts(data.posts);
-                console.log(data.posts);
                 setReadingTime(calculateReadingtime(data.posts?.map(post => post.content).join(' ')));
             } catch (error) {
                 console.error('Error fetching post details:', error);

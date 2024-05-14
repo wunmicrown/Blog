@@ -57,7 +57,7 @@ const App = () => {
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
-                    <Route path="/user/:id/posts" element={<PostByEachUsers />} />
+                    <Route path="/:id/posts" element={<PostByEachUsers />} />
                     <Route path="/home" element={<PostsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/:id/profile"element={<UserProfileDashboard />} />

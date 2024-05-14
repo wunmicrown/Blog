@@ -15,18 +15,23 @@ const SignUp = () => {
   const [loading, setLoading] = useState(false);
   const onSubmit = async (values) => {
     try {
-      setLoading(true)
+      setLoading(true);
       const response = await axios.post(URL, values);
-      // console.log(response);
       localStorage.setItem('userDetails', JSON.stringify(response.data.user));
-
       toast.success("User registered successfully. Verification OTP sent to email.");
       navigate("/verify-email");
     } catch (error) {
-      toast.warning(`Sign up failed: ${error.response.data}`);
-      setLoading(false)
+      if (error.response.data.error) {
+        const errorMessage = error.response.data.error;
+        toast.error(`Sign up failed: ${errorMessage}`);
+      } else {
+        // Handle other types of errors
+        toast.error("Sign up failed. Please try again later.");
+      }
+      setLoading(false);
     }
   };
+  
 
   const { handleChange, handleSubmit, values, errors } = useFormik({
     initialValues: {

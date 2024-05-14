@@ -45,11 +45,12 @@ const PrivateNavbar = () => {
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(`${API_URL}/api/v1/posts`, {
+      const {data} = await axios.get(`${API_URL}/api/v1/posts`, {
         params: { page: 1, title: searchTerm },
       });
-      setPosts(response.data.posts);
-      setNoResults(response.data.posts.length === 0);
+      setPosts(data.posts);
+      setNoResults(data.posts.length === 0);
+      console.log("dataa",data.posts);
       setLoading(false);
     } catch (error) {
       setError(error);
@@ -170,7 +171,7 @@ const PrivateNavbar = () => {
                           <Menu.Item>
                             {({ active }) => (
                               <Link
-                                to={"/profile"}
+                                to={`/${user.username}/profile`}
                                 className={`${active ? "bg-gray-100" : ""
                                   } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
@@ -181,7 +182,7 @@ const PrivateNavbar = () => {
                           <Menu.Item>
                             {({ active }) => (
                               <Link
-                                to={"/profile"}
+                                to={`/user/${user._id}/profile`}
                                 className={`${active ? "bg-gray-100" : ""
                                   } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >

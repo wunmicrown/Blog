@@ -31,7 +31,8 @@ const [loading, setLoading] = useState(false);
         if (data.user?.isEmailVerified) {
 
           toast.success('Login successful');
-          return navigate('/profile');
+          const username = data.user.username;
+          return navigate(`/${username}/profile`);
 
         }
         // Redirect to verify email page if email is not verified

@@ -25,6 +25,7 @@ import AdminSignUp from './pages/Admin/AdminSignUp';
 import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard';
 import PostsList from './pages/postsFolder/PostsList';
 import UpdatePosts from './pages/postsFolder/UpdatePosts ';
+import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
 // import PostPreview from './pages/posts/PostPreview';
 
 const App = () => {
@@ -56,9 +57,10 @@ const App = () => {
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
+                    <Route path="/user/:id/posts" element={<PostByEachUsers />} />
                     <Route path="/home" element={<PostsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
-                    <Route path="/profile"element={<UserProfileDashboard />} />
+                    <Route path="/:id/profile"element={<UserProfileDashboard />} />
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />

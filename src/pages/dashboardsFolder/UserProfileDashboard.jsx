@@ -10,6 +10,7 @@ const UserProfileDashboard = () => {
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState(null);
+    const [userStats, setUserStats] = useState(null);
     const [tokenMatch, setTokenMatch] = useState(false);
     const [latestPosts, setLatestPosts] = useState([]);
     const [error, setError] = useState(null);
@@ -42,14 +43,14 @@ const UserProfileDashboard = () => {
         const fetchPostDetails = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const { data } = await axios.get(`${API_URL}/api/v1/posts/all-posts`, {
+                const { data } = await axios.get(`${API_URL}/api/v1/posts/user-Stats`, {
                     headers: {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log(data);
                 setLatestPosts(data.latestPosts || []);
-                setPosts(data.posts || []);
+                setUserStats(data.userStats);
+                console.log(data);
                 setReadingTime(calculateReadingtime(data.latestPosts?.map(post => post.content).join(' ')));
             } catch (error) {
                 console.error('Error fetching post details:', error);
@@ -105,24 +106,28 @@ const UserProfileDashboard = () => {
                             )}
                         </div>
                         <div>
-                            {user && posts !== null && (
+                            {user && userStats !== null && (
                                 <div className='mx-auto w-full max-w-screen-lg mt-20 px-4'>
-                                    {posts.map((post) => (
-                                        <div key={post.id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
+                                        <div key={userStats._id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
                                             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{post.totalComments}</strong>
+                                                <strong className='text-xl'>{userStats.totalComments}</strong>
                                                 <p className='text-sm whitespace-nowrap'>Total post comments</p>
                                             </div>
                                             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{post.totalPostLikes}</strong>
+                                                <strong className='text-xl'>{userStats.totalPostLikes}</strong>
                                                 <p className='text-sm whitespace-nowrap'>Total post likes</p>
                                             </div>
                                             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{post.totalViewers}</strong>
+                                                <strong className='text-xl'>{userStats.totalViewers}</strong>
                                                 <p className='text-sm whitespace-nowrap'>Total post views</p>
                                             </div>
+                                            <Link to={`/user/${userStats._id}/posts`}>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
+                                                <strong className='text-xl'>{userStats.totalPosts}</strong>
+                                                <p className='text-sm whitespace-nowrap'>Total post</p>
+                                            </div>
+                                            </Link>
                                         </div>
-                                    ))}
                                 </div>
                             )}
                         </div>

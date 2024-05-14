@@ -103,11 +103,11 @@ const PostsDetails = () => {
         }
     };
 
-    
 
-    
 
-    
+
+
+
 
 
     if (loading) {
@@ -123,7 +123,7 @@ const PostsDetails = () => {
     // const isCreator = creator === loginUser;
     return (
         <>
-            {error ? (  
+            {error ? (
                 <ErrorMsg message={error?.message} />
             ) : (
                 <section
@@ -200,7 +200,7 @@ const PostsDetails = () => {
                                 handleLike={handleLikePost} // Pass like handler function
                                 handleDislike={handleDislikePost} // Pass dislike handler function
                             />
-                            
+
                             <div className='mt-8 mb-16'>
                                 <hr />
 

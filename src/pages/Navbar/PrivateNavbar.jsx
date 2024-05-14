@@ -71,6 +71,7 @@ const PrivateNavbar = () => {
   };
 
   const handleSignOut = () => {
+    localStorage.removeItem('token');
     navigate("/login");
     setShowConfirmation(false);
   };

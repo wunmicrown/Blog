@@ -68,7 +68,7 @@ const UserProfileDashboard = () => {
             <div className=' bg-green-50 h-auto'>
                 {isAdmin ? (
                     <div>
-                        <AdminDashboard/>
+                        <AdminDashboard />
                     </div>
                 ) : (
                     <div className="mt-2 lg:mt-0">
@@ -107,27 +107,27 @@ const UserProfileDashboard = () => {
                         </div>
                         <div>
                             {user && userStats !== null && (
-                                <div className='mx-auto w-full max-w-screen-lg mt-20 px-4'>
-                                        <div key={userStats._id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
-                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{userStats.totalComments}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post comments</p>
-                                            </div>
-                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{userStats.totalPostLikes}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post likes</p>
-                                            </div>
-                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{userStats.totalViewers}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post views</p>
-                                            </div>
-                                            <Link to={`/user/${userStats._id}/posts`}>
-                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 md:pr-48 pt-6 pb-6 rounded-lg'>
-                                                <strong className='text-xl'>{userStats.totalPosts}</strong>
-                                                <p className='text-sm whitespace-nowrap'>Total post</p>
-                                            </div>
-                                            </Link>
+                                <div className='mx-auto w-full max-w-screen-lg mt-16 px-4 text-center'>
+                                    <div key={userStats._id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
+                                        <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
+                                            <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalComments}</strong>
+                                            <p className='text-sm whitespace-nowrap'>Total post comments</p>
                                         </div>
+                                        <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
+                                            <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPostLikes}</strong>
+                                            <p className='text-sm whitespace-nowrap'>Total post likes</p>
+                                        </div>
+                                        <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
+                                            <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalViewers}</strong>
+                                            <p className='text-sm whitespace-nowrap'>Total post views</p>
+                                        </div>
+                                        <Link to={`/user/${userStats._id}/posts`}>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
+                                                <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPosts}</strong>
+                                                <p className='text-sm whitespace-nowrap font-bold'>Posts</p>
+                                            </div>
+                                        </Link>
+                                    </div>
                                 </div>
                             )}
                         </div>

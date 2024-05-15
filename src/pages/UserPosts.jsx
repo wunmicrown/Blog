@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import truncatePost from '../../utils/truncatepost';
-import calculateTimeDifference from '../../utils/calculateReadingtime';
+import truncatePost from '../utils/truncatepost';
+import calculateTimeDifference from '../utils/calculateReadingtime';
 
 const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
   return (

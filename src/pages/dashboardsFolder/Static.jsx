@@ -17,12 +17,12 @@ const Static = ({ user, userStats }) => {
             </div>
             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
               <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalViewers}</strong>
-              <p className='text-sm whitespace-nowrap'>Total post views</p>
+              <p className='text-sm whitespace-nowrap'>Draft Posts</p>
             </div>
             <Link to={`/${userStats.authorUsername}/posts`}>
               <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
                 <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPosts}</strong>
-                <p className='text-sm whitespace-nowrap font-bold'>Posts</p>
+                <p className='text-sm whitespace-nowrap font-bold'>Published Posts</p>
               </div>
             </Link>
           </div>

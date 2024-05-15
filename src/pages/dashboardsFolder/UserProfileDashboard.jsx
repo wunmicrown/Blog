@@ -31,8 +31,6 @@ const UserProfileDashboard = () => {
                 setUser(user);
                 setIsAdmin(user && user.userType === 'Admin');
             } catch (error) {
-                console.log('Error message:', error);
-                console.log(error.response);
                 setTokenMatch(false);
                 navigate('/login');
             }

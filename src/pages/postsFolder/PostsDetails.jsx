@@ -117,10 +117,7 @@ const PostsDetails = () => {
     if (error || !post) {
         return <div>Error: Unable to fetch post details</div>;
     }
-    // //! Get the creator of the post
-    // const creator = post?.post?.author?._id?.toString();
-    // const loginUser = user?._id?.toString(); 
-    // const isCreator = creator === loginUser;
+   
     return (
         <>
             {error ? (

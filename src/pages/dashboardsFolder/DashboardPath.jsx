@@ -24,7 +24,6 @@ const DashboardPath = () => {
         setUser(user); // Initialize image source
 
       } catch (error) {
-        console.log(error.response);
         setTokenMatch(false);
         navigate('/login');
 

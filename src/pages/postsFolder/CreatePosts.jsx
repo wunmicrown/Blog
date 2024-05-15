@@ -7,7 +7,6 @@ import { API_URL } from "../constants/Api";
 import { MdFileUpload, MdCancel } from "react-icons/md";
 import PostPreview from "./PostPreview";
 import DraftModal from "./DraftModal";
-// import { useNavigate } from "react-router-dom";
 
 const CreatePosts = () => {
   const editor = useRef(null);
@@ -22,7 +21,7 @@ const CreatePosts = () => {
     content: '',
     category: null,
     tags: [],
-    status: 'draft',  // Default status
+    status: 'published',  // Default status
   });
   const [showPreview, setShowPreview] = useState(false);
   const [draftSaved, setDraftSaved] = useState(false);
@@ -62,7 +61,7 @@ const CreatePosts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
+      await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -317,6 +316,7 @@ const CreatePosts = () => {
 }
 
 export default CreatePosts;
+
 
 
 // import React, { useState, useEffect, useRef } from "react";

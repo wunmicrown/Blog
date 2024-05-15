@@ -28,6 +28,7 @@ import UpdatePosts from './pages/postsFolder/UpdatePosts ';
 import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
 
 import UserDashboard from './pages/dashboardsFolder/UserDashboard';
+import DraftsList from './pages/postsFolder/DraftsList';
 
 const App = () => {
     return (
@@ -59,6 +60,7 @@ const App = () => {
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/:id/posts" element={<PostByEachUsers />} />
                     <Route path="/home" element={<PostsList />} />
+                    <Route path="/:id/draft" element={<DraftsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/:id/profile"element={<UserProfileDashboard />} />
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />

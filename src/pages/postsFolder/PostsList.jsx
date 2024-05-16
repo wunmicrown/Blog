@@ -23,7 +23,7 @@ const PostsList = () => {
         const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
           params: { category_id: categoryName, status: 'published' },
         });
-        const { latestPublishedPosts, trendingPublishedPosts} = data;
+        const { latestPublishedPosts, trendingPublishedPosts } = data;
         setPosts(latestPublishedPosts);
         if (trendingPublishedPosts) {
           setTrendingPublishedPosts(trendingPublishedPosts);

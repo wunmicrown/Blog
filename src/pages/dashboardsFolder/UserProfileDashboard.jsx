@@ -49,7 +49,6 @@ const UserProfileDashboard = () => {
                 });
                 setLatestPosts(data.latestPosts || []);
                 setUserStats(data.userStats);
-                console.log(data);
                 setReadingTime(calculateReadingtime(data.latestPosts?.map(post => post.content).join(' ')));
             } catch (error) {
                 console.error('Error fetching post details:', error);

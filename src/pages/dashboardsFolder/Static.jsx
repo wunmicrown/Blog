@@ -15,13 +15,15 @@ const Static = ({ user, userStats }) => {
               <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPostLikes}</strong>
               <p className='text-sm whitespace-nowrap'>Total post likes</p>
             </div>
+            <Link to={`/${userStats._id}/drafts`}>
             <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
-              <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalViewers}</strong>
+              <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.draft}</strong>
               <p className='text-sm whitespace-nowrap'>Draft Posts</p>
             </div>
+            </Link>
             <Link to={`/${userStats.authorUsername}/posts`}>
               <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
-                <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPosts}</strong>
+                <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.published}</strong>
                 <p className='text-sm whitespace-nowrap font-bold'>Published Posts</p>
               </div>
             </Link>

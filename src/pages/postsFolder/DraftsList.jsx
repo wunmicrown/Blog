@@ -3,6 +3,7 @@ import axios from "axios";
 import { API_URL } from "../constants/Api";
 import Loading from "../loading/Loading";
 import Posts from "./Posts";
+import { Link } from "react-router-dom";
 
 const DraftsList = () => {
 
@@ -16,12 +17,9 @@ const DraftsList = () => {
             setLoading(true);
             try {
                 const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
-                    //   params: { status: 'draft' },
                     params: { category_id: categoryName, status: 'published' },
-
                 });
                 setDrafts(data.draftPosts);
-                console.log(data.draftPosts);
                 setLoading(false);
                 setError(null);
             } catch (error) {
@@ -39,29 +37,36 @@ const DraftsList = () => {
     return (
         <>
             <div>
-                    <div className="container relative z-10 px-4 mx-auto">
-                        <section className="relative bg-white">
-                            <div className="container px-4 mx-auto">
-                                <div className="md:max-w-5xl mx-auto mb-10 md:mb-16 text-center">
-                                    <span className="inline-block py-px px-2 mb-6 mt-10 text-xs leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-full shadow-sm">
-                                        Drafts
-                                    </span>
-                                    <h3 className="mb-0 text-1xl md:text-2xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
-                                        Your Draft Articles
-                                    </h3>
+                <div className="container relative z-10 px-4 mx-auto pt-24">
+                    <section className="relative bg-white">
+                        <div className="container px-4 mx-auto">
+                        <div className="md:max-w-5xl mx-auto  mb-6 md:mb-10  text-center">
+                            <span className="inline-block py-px px-2 pl-3 pr-3 mt-10 text-md leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-full shadow-sm">
+                            Unpublished Post
+                            </span>
+                        </div>
+
+                            {loading ? (
+                                <Loading />
+                            ) : error ? (
+                                <div className="text-red-500 text-center">{error?.message}</div>
+                            ) : drafts.length === 0 ? (
+                                <div className='mb-20 bg-[#5b5c5b] rounded-lg p-4 overflow-y-auto'>
+                                    <div className='flex justify-center'>
+                                        <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt="" />
+                                    </div>
+                                    <div>
+                                        <p className=' font-semibold text-center text-white'>
+                                            This is where you can manage your posts, but no draft yet.
+                                        </p>
+                                    </div>
                                 </div>
-                                {loading ? (
-                                    <Loading />
-                                ) : error ? (
-                                    <div className="text-red-500 text-center">{error?.message}</div>
-                                ) : drafts.length === 0 ? (
-                                    <div className="text-center text-lg font-md text-gray-500 mb-6">No Drafts yet</div>
-                                ) : (
-                                    <Posts posts={drafts} />
-                                )}
-                            </div>
-                        </section>
-                    </div>
+                            ) : (
+                                <Posts posts={drafts} />
+                            )}
+                        </div>
+                    </section>
+                </div>
             </div>
         </>
     );

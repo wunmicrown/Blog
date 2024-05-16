@@ -130,7 +130,7 @@ const PostByEachUsers = () => {
                                         <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt="" />
                                     </div>
                                     <div>
-                                        <p className=' font-semibold text-center text-white'>
+                                        <p className=' font-semibold text-center text'>
                                             This is where you can manage your posts, but no published yet.
                                         </p>
                                         <div className='flex justify-center'>

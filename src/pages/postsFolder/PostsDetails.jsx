@@ -14,7 +14,6 @@ const PostsDetails = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [user, setUser] = useState(null);
-    const [categoryId, setCategoryId] = useState(null);
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const readingTime = calculateReadingtime(post?.post?.content);
@@ -104,12 +103,6 @@ const PostsDetails = () => {
     };
 
 
-
-
-
-
-
-
     if (loading) {
         return <div><Loading /></div>;
     }
@@ -117,7 +110,7 @@ const PostsDetails = () => {
     if (error || !post) {
         return <div>Error: Unable to fetch post details</div>;
     }
-   
+
     return (
         <>
             {error ? (
@@ -132,11 +125,11 @@ const PostsDetails = () => {
                                 src={post?.post?.coverImgUrl}
                                 alt="post image"
                             />
-                            <Link
-                                to={''}
-                                className="flex items-center justify-start mx-2 text-left"
-                            >
-                                <div className="px-2 flex justify-between w-full ">
+
+                            <div className="px-2 flex justify-between w-full ">
+                                <Link to={''}
+                                    className='flex items-center justify-start mx-2 text-left'
+                                >
                                     <img
                                         className="w-12 h-12 rounded-full"
                                         alt="author image"
@@ -155,13 +148,13 @@ const PostsDetails = () => {
                                                 posted on {new Date(post?.post?.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
                                             </p>
                                         </div>
-                                        <div>
-                                            <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> min read</p>
-
-                                        </div>
                                     </div>
+                                </Link>
+                                <div>
+                                    <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> min read</p>
+
                                 </div>
-                            </Link>
+                            </div>
                             <div className="inline-block px-3 py-1 mb-6 text-xs font-medium leading-5 text-green-500 uppercase bg-green-100 rounded-full shadow-sm">
                                 {post?.post?.category?.name}
                             </div>
@@ -192,7 +185,7 @@ const PostsDetails = () => {
                             <PostStats
                                 likes={likes}
                                 dislikes={dislikes}
-                                commentsCount={post.post.comments.length} // Update with actual comment count from the post object
+                                commentsCount={post.post.comments.length} 
                                 postId={postId}
                                 handleLike={handleLikePost} // Pass like handler function
                                 handleDislike={handleDislikePost} // Pass dislike handler function

@@ -7,7 +7,7 @@ import Posts from "./Posts";
 
 const PostsList = () => {
   const [posts, setPosts] = useState([]);
-  const [trendingPosts, setTrendingPosts] = useState([]);
+  const [trendingPublishedPosts, setTrendingPublishedPosts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [category, setCategory] = useState("");
@@ -23,10 +23,11 @@ const PostsList = () => {
         const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
           params: { category_id: categoryName, status: 'published' },
         });
-        const { latestPosts, trendingPosts } = data;
-        setPosts(latestPosts);
-        if (trendingPosts) {
-          setTrendingPosts(trendingPosts);
+        console.log(data)
+        const { latestPublishedPosts, trendingPublishedPosts} = data;
+        setPosts(latestPublishedPosts);
+        if (trendingPublishedPosts) {
+          setTrendingPublishedPosts(trendingPublishedPosts);
         }
         setLoading(false);
         setError(null);
@@ -62,15 +63,15 @@ const PostsList = () => {
     fetchCategories();
   }, []);
 
-  const handleLikeClick = (postId) => {
-    setLikedPosts((prevLikedPosts) => {
-      if (prevLikedPosts.includes(postId)) {
-        return prevLikedPosts.filter((id) => id !== postId);
-      } else {
-        return [...prevLikedPosts, postId];
-      }
-    });
-  };
+  // const handleLikeClick = (postId) => {
+  //   setLikedPosts((prevLikedPosts) => {
+  //     if (prevLikedPosts.includes(postId)) {
+  //       return prevLikedPosts.filter((id) => id !== postId);
+  //     } else {
+  //       return [...prevLikedPosts, postId];
+  //     }
+  //   });
+  // };
 
   return (
     <>
@@ -90,10 +91,10 @@ const PostsList = () => {
               <Loading />
             ) : error ? (
               <div className="text-red-500 text-center">{error?.message}</div>
-            ) : trendingPosts.length === 0 ? (
+            ) : trendingPublishedPosts.length === 0 ? (
               <div className="text-center text-lg font-md text-gray-500 mb-6">No Trending Articles yet</div>
             ) : (
-              <Posts posts={trendingPosts} />
+              <Posts posts={trendingPublishedPosts} />
             )}
           </div>
 

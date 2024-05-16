@@ -27,7 +27,6 @@ import PostsList from './pages/postsFolder/PostsList';
 import UpdatePosts from './pages/postsFolder/UpdatePosts ';
 import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
 
-import UserDashboard from './pages/dashboardsFolder/UserDashboard';
 import DraftsList from './pages/postsFolder/DraftsList';
 
 const App = () => {
@@ -54,13 +53,13 @@ const App = () => {
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} /> 
                     <Route path="/reset-password" element={<PasswordReset />} />
-                    <Route path="/:id" element={<UserDashboard />} />
+                    {/* <Route path="/:id" element={<UserDashboard />} /> */}
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/:id/posts" element={<PostByEachUsers />} />
                     <Route path="/home" element={<PostsList />} />
-                    <Route path="/:id/draft" element={<DraftsList />} />
+                    <Route path="/:id/drafts" element={<DraftsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/:id/profile"element={<UserProfileDashboard />} />
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
@@ -68,7 +67,6 @@ const App = () => {
                     <Route path="/create-category" element={<CreateCategoryForm />} />
                     <Route path="/update-post/:postId/edit" element={<UpdatePosts />} /> 
                     <Route path="/posts/:postId" element={<AddComment />} />
-                    {/* <Route path="/preview"element={<PostPreview />} /> */}
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />

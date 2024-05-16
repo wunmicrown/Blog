@@ -6,7 +6,7 @@ import axios from 'axios';
 import { API_URL } from "../constants/Api";
 import { MdFileUpload, MdCancel } from "react-icons/md";
 import PostPreview from "./PostPreview";
-import DraftModal from "./DraftModal";
+import { useNavigate } from "react-router-dom";
 
 const CreatePosts = () => {
   const editor = useRef(null);
@@ -14,6 +14,7 @@ const CreatePosts = () => {
   const [categories, setCategories] = useState([]);
   const [user, setUser] = useState('');
   const [image, setImage] = useState(null);
+  const navigate = useNavigate();
   const [imagePreview, setImagePreview] = useState('');
   const [tags, setTags] = useState('');
   const [post, setPost] = useState({
@@ -21,11 +22,10 @@ const CreatePosts = () => {
     content: '',
     category: null,
     tags: [],
-    status: 'published',  // Default status
+    status: 'published',  
   });
   const [showPreview, setShowPreview] = useState(false);
   const [draftSaved, setDraftSaved] = useState(false);
-  const [showDraftModal, setShowDraftModal] = useState(false);
 
   const saveDraft = (event) => createOrSavePost(event, 'draft');
   const publishPost = (event) => createOrSavePost(event, 'published');
@@ -61,17 +61,20 @@ const CreatePosts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
+      const { data }= await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
         }
       });
+      console.log(data);
       toast.success(status === 'draft' ? "Draft saved !!" : "Post Created !!");
       setPost({ title: '', content: '', category: null, tags: [], status: 'draft' });
       setImage(null);
       setImagePreview('');
       setDraftSaved(true);
+      if (status === 'draft') return navigate(`/${user._id}/drafts`);
+      
     } catch (error) {
       console.error('Error saving draft:', error);
       toast.error(status === 'draft' ? "Draft not saved due to some error !!" : "Post not created due to some error !!");
@@ -304,12 +307,6 @@ const CreatePosts = () => {
             </CardBody>
           </Card>
         </div>
-        <DraftModal
-          isOpen={showDraftModal}
-          toggle={() => setShowDraftModal(!showDraftModal)}
-          handleDiscard={handleDiscard}
-          handleSaveDraft={saveDraft}
-        />
       </div>
     </>
   );

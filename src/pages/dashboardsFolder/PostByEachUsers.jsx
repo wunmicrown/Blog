@@ -37,7 +37,6 @@ const PostByEachUsers = () => {
                     },
                 });
                 setLatestPublishedPosts(data.latestPublishedPosts);
-                console.log("data",data.latestPublishedPosts);
                 setLoading(false);
                 setError(null);
             } catch (error) {
@@ -94,7 +93,7 @@ const PostByEachUsers = () => {
         }
     };
 
-    const creator =latestPublishedPosts.length > 0 && latestPublishedPosts[0].authorId.toString();
+    const creator = latestPublishedPosts.length > 0 && latestPublishedPosts[0].authorId.toString();
     const loginUser = user?._id?.toString();
     const isCreator = creator === loginUser;
 
@@ -119,7 +118,7 @@ const PostByEachUsers = () => {
                         </div>
 
                         <div className=''>
-                            { latestPublishedPosts.length > 0 ? (
+                            {latestPublishedPosts.length > 0 ? (
                                 <div key={latestPublishedPosts._id} className='-mt-10'>
                                     {/* <Posts posts={posts} /> */}
                                     <UserPosts posts={latestPublishedPosts} isCreator={isCreator} openConfirmationModal={openConfirmationModal} />
@@ -131,14 +130,16 @@ const PostByEachUsers = () => {
                                         <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt="" />
                                     </div>
                                     <div>
-                                        <p className=' font-semibold'>
-                                            This is where you can manage your posts, but you haven't written anything yet.
+                                        <p className=' font-semibold text-center text-white'>
+                                            This is where you can manage your posts, but no published yet.
                                         </p>
-                                        <Link to={'/create-post'}>
-                                            <button className='p-2 rounded-md mt-4 bg-green-400 text-white '>
-                                                write your first post
-                                            </button>
-                                        </Link>
+                                        <div className='flex justify-center'>
+                                            <Link to={'/create-post'}>
+                                                <button className='p-2 rounded-md mt-4 bg-green-400 text-white'>
+                                                    write your first post
+                                                </button>
+                                            </Link>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -170,7 +171,7 @@ const PostByEachUsers = () => {
                             </button>
                             <button
                                 className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
-                                onClick={closeConfirmationModal} 
+                                onClick={closeConfirmationModal}
                             >
                                 Cancel
                             </button>

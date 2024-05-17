@@ -27,17 +27,19 @@ const VerifyEmail = () => {
             if (!email) return navigate("/login");
 
             try {
-                const response = await axios.post(URL, { ...values, email });
-                if (response.data.user.isEmailVerified) {
-                    navigate('/profile');
+                const {data} = await axios.post(URL, { ...values, email });
+                console.log("user",data);
+                if (data?.user?.isEmailVerified) {
                     toast.success("OTP verified successfully");
+                    const username = data.user.username;
+                    navigate(`/${username}/profile`);
                 } else {
                     navigate('/login');
                     toast.error("Email verification failed");
                 }
             } catch (error) {
-                setError(error.response?.data?.message || 'Verification failed');
-                toast.error(error.response?.data?.message || 'Verification failed');
+                setError(error.data?.message || 'Verification failed');
+                toast.error(error.data?.message || 'Verification failed');
             } finally {
                 setLoading(false);
             }

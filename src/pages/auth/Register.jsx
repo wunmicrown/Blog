@@ -16,13 +16,14 @@ const SignUp = () => {
   const onSubmit = async (values) => {
     try {
       setLoading(true);
-      const response = await axios.post(URL, values);
-      localStorage.setItem('userDetails', JSON.stringify(response.data.user));
+      const {data} = await axios.post(URL, values);
+      console.log("User",data);
+      localStorage.setItem('userDetails', JSON.stringify(data.user));
       toast.success("User registered successfully. Verification OTP sent to email.");
       navigate("/verify-email");
     } catch (error) {
-      if (error.response.data.error) {
-        const errorMessage = error.response.data.error;
+      if (error.data.error) {
+        const errorMessage = error.data.error;
         toast.error(`Sign up failed: ${errorMessage}`);
       } else {
         // Handle other types of errors
@@ -31,10 +32,11 @@ const SignUp = () => {
       setLoading(false);
     }
   };
-  
+
 
   const { handleChange, handleSubmit, values, errors } = useFormik({
     initialValues: {
+      name: "",
       username: "",
       email: "",
       password: "",
@@ -51,9 +53,36 @@ const SignUp = () => {
             <FaBlog className=" text-green-500 h-16 mx-auto w-full mt-4 mb-4" />
 
             <form onSubmit={handleSubmit}>
+          
               <div className="mb-4">
-                <label htmlFor="username" className="block text-sm font-medium text-gray-500">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-500">
+                  Name
+                  <span className=" inline-block text-[#ef4444]  text-xl ml-2 ">*</span>
+
+                  <div className="text-red-500">{errors.name}</div>
+
+                </label>
+                <div className="flex items-center border rounded-md px-3 py-2">
+                  <AiOutlineUser className="mr-2 text-gray-500 " />
+                  <input
+                    type="text"
+                    name="name"
+                    onChange={handleChange}
+                    value={values.name}
+                    autoComplete="false"
+                    placeholder="name"
+                    className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-200 rounded-lg focus:ring focus:ring-green-200"
+                  />
+                </div>
+
+              </div>
+              <div className="mb-4">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-500">
                   Username
+                  <span className=" inline-block text-[#ef4444]  text-xl ml-2 ">*</span>
+
+                  <div className="text-red-500">{errors.username}</div>
+
                 </label>
                 <div className="flex items-center border rounded-md px-3 py-2">
                   <AiOutlineUser className="mr-2 text-gray-500 " />
@@ -67,13 +96,14 @@ const SignUp = () => {
                     className="p-2 py-3.5 flex-grow text-gray-500 font-medium placeholder-gray-500 bg-white outline-none border border-green-200 rounded-lg focus:ring focus:ring-green-200"
                   />
                 </div>
-                <span className="text-red-500">{errors.username}</span>
 
               </div>
 
               <div className="mb-4">
                 <label htmlFor="email" className="block text-sm font-medium text-gray-500">
                   Email Address
+                  <span className=" inline-block text-[#ef4444]  text-xl ml-2 ">*</span>
+
                 </label>
                 <div className="flex items-center border rounded-md px-3 py-2">
                   <AiOutlineMail className="mr-2 text-gray-500" />
@@ -92,6 +122,8 @@ const SignUp = () => {
               <div className="mb-4">
                 <label htmlFor="password" className="block text-sm font-medium text-gray-500">
                   Password
+                  <span className=" inline-block text-[#ef4444]  text-xl ml-2 ">*</span>
+
                 </label>
                 <div className="flex items-center border rounded-md px-3 py-2">
                   <AiOutlineLock className="mr-2 text-gray-500" />

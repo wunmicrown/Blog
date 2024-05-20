@@ -31,7 +31,6 @@ const PrivateNavbar = () => {
         });
         setTokenMatch(true);
         setUser(user);
-
       } catch (error) {
         setTokenMatch(false);
         navigate('/login');

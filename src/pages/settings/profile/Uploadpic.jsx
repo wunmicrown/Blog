@@ -8,7 +8,6 @@ const Uploadpic = () => {
     const fileInputRef = useRef(null);
     const [user, setUser] = useState(null);
     const [selectedFile, setSelectedFile] = useState(null);
-
     useEffect(() => {
         const userDetails = async () => {
             try {
@@ -19,7 +18,6 @@ const Uploadpic = () => {
                     }
                 });
                 setUser(user);
-
             } catch (error) {
                 console.log('Error message:', error);
                 console.log(error.response);
@@ -66,14 +64,11 @@ const Uploadpic = () => {
                     "Content-Type": "multipart/form-data"
                 }
             });
-            // console.log("data", data);
-
             setUser(prevData => ({
                 ...prevData,
-                oldProfilePic: user.profilePic,
-                profilePic: data.user.profilePic
+                oldProfilePic: data.user?.profilePic,
+                profilePic: data?.user?.profilePic
             }));
-
             toast.success('Profile picture updated successfully!');
             setSelectedFile(null);
         } catch (error) {
@@ -97,11 +92,13 @@ const Uploadpic = () => {
                                         alt="User"
                                     />
                                 ) : (
-                                    <img
-                                        className="h-full w-full rounded-full"
-                                        src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"
-                                        alt="Default"
-                                    />
+                                    <div>
+                                        <img
+                                            className="h-full w-full rounded-full"
+                                            src="https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"
+                                            alt="Default"
+                                        />
+                                    </div>
                                 )}
                             </div>
 
@@ -121,7 +118,7 @@ const Uploadpic = () => {
                                     </button>
                                 }
                             </div>
-                            <div className=" text-gray-300 mt-10">
+                            <div className=" text-gray-300 mt-10 mb-16">
                             </div>
                             <input
                                 ref={fileInputRef}

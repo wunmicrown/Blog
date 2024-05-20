@@ -28,6 +28,7 @@ import UpdatePosts from './pages/postsFolder/UpdatePosts ';
 import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
 
 import DraftsList from './pages/postsFolder/DraftsList';
+import UserDashboard from './pages/dashboardsFolder/UserDashboard';
 
 const App = () => {
     return (
@@ -53,7 +54,7 @@ const App = () => {
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} /> 
                     <Route path="/reset-password" element={<PasswordReset />} />
-                    {/* <Route path="/:id" element={<UserDashboard />} /> */}
+                    <Route path="/:id" element={<UserDashboard />} />
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>

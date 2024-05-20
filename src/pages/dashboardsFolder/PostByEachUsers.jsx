@@ -37,6 +37,7 @@ const PostByEachUsers = () => {
                     },
                 });
                 setLatestPublishedPosts(data.latestPublishedPosts);
+                console.log(data)
                 setLoading(false);
                 setError(null);
             } catch (error) {

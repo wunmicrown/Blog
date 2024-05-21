@@ -63,13 +63,13 @@ const UserProfileDashboard = () => {
 
     return (
         <>
-            <div className=' bg-green-50 h-screen'>
+            <div className=' bg-green-50'>
                 {isAdmin ? (
                     <div>
                         <AdminDashboard />
                     </div>
                 ) : (
-                    <div className="mt-2 lg:mt-0">
+                    <div className="mt-2 lg:mt-0 pb-20">
                         <div className="pt-20 relative">
                             {user && (
                                 <div className='mx-auto w-full max-w-screen-lg px-4'>

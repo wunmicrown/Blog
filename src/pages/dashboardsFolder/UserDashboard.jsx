@@ -63,7 +63,7 @@ const UserDashboard = () => {
 
     return (
         <>
-            <div className=' bg-green-50 h-screen'>
+            <div className=' bg-green-50 h-auto'>
                  
                     <div className="mt-2 lg:mt-0">
                         <div className="pt-20 relative">
@@ -99,7 +99,7 @@ const UserDashboard = () => {
 
                             )}
                         </div>
-                        <div className="">
+                        <div className="pb-20">
                             {/* <Static user={user} userStats={userStats} /> */}
                             {user && userStats !== null && (
                                 <div className='mx-auto w-full max-w-screen-lg mt-16 px-4 text-center'>
@@ -113,7 +113,7 @@ const UserDashboard = () => {
                                             <p className='text-sm whitespace-nowrap'>Total post likes</p>
                                         </div>
                                         <Link to={`/${userStats.authorUsername}/posts`}>
-                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg mb-20'>
+                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg '>
                                                 <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPosts}</strong>
                                                 <p className='text-sm whitespace-nowrap font-bold'>Published Posts</p>
                                             </div>

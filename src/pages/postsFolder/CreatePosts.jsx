@@ -288,7 +288,7 @@ const CreatePosts = () => {
                       </Input>
                     </div>
                     <div className="mt-4">
-                      <h2 htmlFor="content" className="text-gray-200 font-bold flex justify-center py-4">Content</h2>
+                    <h2 htmlFor="content" className="text-gray-200 font-bold flex justify-start ml-8 py-4">Content</h2>
                       <JoditEditor
                         ref={editor}
                         value={post.content}
@@ -296,7 +296,7 @@ const CreatePosts = () => {
                         onBlur={(newContent) => setContent(newContent)}
                       />
                     </div>
-                    <Container className="text-start text-white pb-8 ml-4 lg:ml-16 mb-10">
+                    <Container className="text-start text-white pb-8 ml-4 lg:ml-16 mb-10 mt-3">
                       <Button onClick={publishPost} className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
                       <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
                     </Container>

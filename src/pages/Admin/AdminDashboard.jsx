@@ -12,7 +12,6 @@ const AdminDashboard = () => {
     const [userStats, setUserStats] = useState([]);
     const [error, setError] = useState(null);
     const [isAdmin, setIsAdmin] = useState(false);
-    const [readingTime, setReadingTime] = useState(0);
 
     useEffect(() => {
         const userDetails = async () => {
@@ -45,8 +44,7 @@ const AdminDashboard = () => {
                         "Authorization": `Bearer ${token}`
                     }
                 });
-                console.log("data", data),
-                    setUserStats(data || []);
+                setUserStats(data || []);
             } catch (error) {
                 console.error('Error fetching post details:', error);
                 setError(error);

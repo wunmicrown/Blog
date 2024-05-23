@@ -3,7 +3,6 @@ import CommentsList from "./CommentLists";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
 import { toast } from "react-toastify";
-import Loading from "../loading/Loading";
 import { FaHome } from "react-icons/fa";
 
 const AddComment = ({ postId }) => {
@@ -12,7 +11,8 @@ const AddComment = ({ postId }) => {
   const [formData, setFormData] = useState({ message: "" });
   const [comments, setComments] = useState([]);
   const [page, setPage] = useState(1);
-  const [fetching, setFetching] = useState(false); 
+  const [fetching, setFetching] = useState(false);
+  const [totalPages, setTotalPages] = useState(1);
 
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -34,12 +34,12 @@ const AddComment = ({ postId }) => {
 
   const fetchComments = useCallback(async () => {
     try {
-      setFetching(true); 
+      setFetching(true);
       const { data } = await axios.get(`${URL}/comment/get-comments/${postId}`, {
         params: { page, limit: 25 }
-      }); 
-      setComments(prevComments => [...prevComments, ...data.comments]);
-      setFetching(data.currentPage < data.totalPages);
+      });
+      setComments(data.comments);
+      setTotalPages(data.totalPages);
     } catch (error) {
       console.error("Error fetching comments:", error);
     } finally {
@@ -72,26 +72,17 @@ const AddComment = ({ postId }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleScroll = () => {
-    // Check if already fetching or no more to load
-    if (fetching) return;
-  
-    // Calculate if the user has scrolled to the bottom
-    const scrollTop = (document.documentElement && document.documentElement.scrollTop) || document.body.scrollTop;
-    const scrollHeight = (document.documentElement && document.documentElement.scrollHeight) || document.body.scrollHeight;
-    const clientHeight = document.documentElement.clientHeight || window.innerHeight;
-    const reachedBottom = Math.ceil(scrollTop + clientHeight) >= scrollHeight;
-  
-    if (reachedBottom) {
-      // Increment page number
+  const handlePrevious = () => {
+    if (page > 1) {
+      setPage(prevPage => prevPage - 1);
+    }
+  };
+
+  const handleNext = () => {
+    if (page < totalPages) {
       setPage(prevPage => prevPage + 1);
     }
   };
-  
-  useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [handleScroll]);
 
   return (
     <>
@@ -144,24 +135,32 @@ const AddComment = ({ postId }) => {
         </div>
         <CommentsList comments={comments || []} />
         {/* Show indicator when fetching comments */}
-        {fetching ? (  
+        {fetching ? (
           <div className="flex justify-center items-center my-4">
             <div className="w-8 h-8 border-4 border-green-500 border-dotted rounded-full animate-spin"></div>
           </div>
         ) : null}
-        {/* Display "Go back up" at the end of comments */}
-        {comments.length > 0 && !fetching && (
-          <div className="text-center my-4">
-            <div className="text-gray-500 cursor-pointer flex justify-center gap-1" onClick={() => window.scrollTo(800, 800)}>
-              <p className="text-sm font-medium">No more post</p>
-              <FaHome size={20}/>
-            </div>
-          </div>
-        )}
+        {/* Pagination controls */}
+        <div className="flex justify-between items-center my-4">
+          <button
+            onClick={handlePrevious}
+            disabled={page === 1}
+            className="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
+          >
+            Previous
+          </button>
+          {/* <span className="text-gray-500">Page {page} of {totalPages}</span> */}
+          <button
+            onClick={handleNext}
+            disabled={page === totalPages}
+            className="px-4 py-2 text-white bg-green-400 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
+          >
+            Next
+          </button>
+        </div>
       </div>
     </>
   );
-  
 };
 
 export default AddComment;

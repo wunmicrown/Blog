@@ -21,4 +21,5 @@ const useCommentsCount = (postId, URL, initialCommentsCount) => {
   return commentsCount;
 };
 
+
 export default useCommentsCount;

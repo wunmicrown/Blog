@@ -6,11 +6,11 @@ const CommentsList = ({ comments }) => {
   return (
     <div className="flex flex-col space-y-4">
       {comments?.length <= 0 ? (
-        <h2>No Comments</h2>
+        <h2></h2>
       ) : (
         uniqueComments.map((comment) => (
           <div key={comment._id}>
-            <div className="bg-blue-50 px-4 py-3 sm:px-6 flex justify-between items-center">
+            <div className="bg-blue-50 px-4 py-4 sm:px-6 flex justify-between items-center">
               <div className="flex items-center">
                 <img
                   src={comment.profilePic || "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"}
@@ -24,7 +24,7 @@ const CommentsList = ({ comments }) => {
                   <p className="text-sm text-gray-500 ml-4">
                     {new Date(comment.createdAt).toDateString()}
                   </p>
-                </div>
+                </div>  
               </div>
             </div>
             <div className="bg-green-50 px-4 py-3 sm:px-6">

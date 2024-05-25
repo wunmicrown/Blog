@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './pages/Layout';
 import Login from './pages/auth/Login';
@@ -24,13 +24,26 @@ import NotFoundPage from './pages/NotFoundPage';
 import AdminSignUp from './pages/Admin/AdminSignUp';
 import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard';
 import PostsList from './pages/postsFolder/PostsList';
-import UpdatePosts from './pages/postsFolder/UpdatePosts ';
 import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
-
 import DraftsList from './pages/postsFolder/DraftsList';
 import UserDashboard from './pages/dashboardsFolder/UserDashboard';
+import PrivateNavbar from './pages/Navbar/PrivateNavbar';
+import PublicNavbar from './pages/Navbar/PublicNavbar';
+import UpdatePosts from './pages/postsFolder/UpdatePosts ';
+import AuthContext, { AuthProvider } from './pages/validationSchema/authContext';
+
 
 const App = () => {
+    return (
+        <AuthProvider>
+            <AppContent />
+        </AuthProvider>
+    );
+};
+
+const AppContent = () => {
+    const { user } = useContext(AuthContext);
+
     return (
         <>
             <ToastContainer
@@ -45,6 +58,7 @@ const App = () => {
                 pauseOnHover
                 theme="light"
             />
+            {user ? <PrivateNavbar /> : <PublicNavbar />}
             <Routes>
                 <Route element={<Layout />}>
                     <Route path='/' index element={<Homepage />} />
@@ -55,7 +69,6 @@ const App = () => {
                     <Route path="/forgot-password" element={<ForgotPassword />} /> 
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/:id" element={<UserDashboard />} />
-
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/:id/posts" element={<PostByEachUsers />} />

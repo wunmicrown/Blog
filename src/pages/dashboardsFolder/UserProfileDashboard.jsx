@@ -1,42 +1,22 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import { API_URL } from '../constants/Api';
 import { MdEmail, MdVerifiedUser } from 'react-icons/md';
 import calculateReadingtime from '../../utils/calculateReadingtime';
 import AdminDashboard from '../Admin/AdminDashboard';
 import Static from './Static';
+import PrivateNavbar from '../Navbar/PrivateNavbar';
+import PublicNavbar from '../Navbar/PublicNavbar';
+import AuthContext from '../validationSchema/authContext';
 
 const UserProfileDashboard = () => {
-    const navigate = useNavigate();
-    const [user, setUser] = useState(null);
+    const { user, loading } = useContext(AuthContext);
     const [posts, setPosts] = useState(null);
     const [userStats, setUserStats] = useState(null);
-    const [tokenMatch, setTokenMatch] = useState(false);
     const [latestPosts, setLatestPosts] = useState([]);
     const [error, setError] = useState(null);
-    const [isAdmin, setIsAdmin] = useState(false);
     const [readingTime, setReadingTime] = useState(0);
-
-    useEffect(() => {
-        const userDetails = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                });
-                setTokenMatch(true);
-                setUser(user);
-                setIsAdmin(user && user.userType === 'Admin');
-            } catch (error) {
-                setTokenMatch(false);
-                navigate('/login');
-            }
-        }
-        userDetails();
-    }, []);
 
     useEffect(() => {
         const fetchPostDetails = async () => {
@@ -44,8 +24,8 @@ const UserProfileDashboard = () => {
                 const token = localStorage.getItem('token');
                 const { data } = await axios.get(`${API_URL}/api/v1/posts/user-Stats`, {
                     headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
+                        Authorization: `Bearer ${token}`,
+                    },
                 });
                 setLatestPosts(data.latestPosts || []);
                 setUserStats(data.userStats);
@@ -61,10 +41,13 @@ const UserProfileDashboard = () => {
         }
     }, [user]);
 
+    if (loading) return <div>Loading...</div>;
+
     return (
         <>
-            <div className=' bg-green-50'>
-                {isAdmin ? (
+            {user ? <PrivateNavbar /> : <PublicNavbar />}   
+            <div className='bg-green-50'>
+                {user && user.userType === 'Admin' ? (
                     <div>
                         <AdminDashboard />
                     </div>
@@ -73,16 +56,17 @@ const UserProfileDashboard = () => {
                         <div className="pt-20 relative">
                             {user && (
                                 <div className='mx-auto w-full max-w-screen-lg px-4'>
-                                    <div className='flex md:justify-center lg:justify-center sm:justify-start xl:justify-center  '>
-                                        <img className='w-24 h-24 rounded-full' src={user.profilePic ||
-                                            "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
+                                    <div className='flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>
+                                        <img
+                                            className='w-24 h-24 rounded-full'
+                                            src={user.profilePic || "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"}
+                                            alt="Profile Pic"
+                                        />
                                     </div>
                                     <div className='bg-[#5b5c5b] mx-auto w-full text-white h-auto text-center pt-4 p-20 max-w-screen-lg px-4 rounded-lg'>
                                         <p className='pt-8 font-bold text-xl flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>
                                         <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
-                                            <Link
-                                                to={'/settings/profile'}
-                                            >
+                                            <Link to={'/settings/profile'}>
                                                 <button className='bg-green-500 text-white p-2 rounded-lg hover:bg-green-600'>
                                                     Edit profile
                                                 </button>
@@ -91,7 +75,7 @@ const UserProfileDashboard = () => {
                                         <div className='flex flex-col lg:flex-row lg:gap-7 lg:justify-center md:justify-center md:gap-7 md:flex-row mt-4 md:mt-8 xl:flex-row'>
                                             <div className='flex items-center'>
                                                 <MdVerifiedUser size={30} />
-                                                <p className='ml-2'>EmailVerified {user.isEmailVerified ? ": Verified" : null}</p>
+                                                <p className='ml-2'>Email Verified {user.isEmailVerified ? ": Verified" : null}</p>
                                             </div>
                                             <div className='flex items-center mt-2 lg:mt-0'>
                                                 <MdEmail size={30} />
@@ -100,7 +84,6 @@ const UserProfileDashboard = () => {
                                         </div>
                                     </div>
                                 </div>
-
                             )}
                         </div>
                         <div className="">

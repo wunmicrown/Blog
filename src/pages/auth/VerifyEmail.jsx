@@ -27,8 +27,7 @@ const VerifyEmail = () => {
             if (!email) return navigate("/login");
 
             try {
-                const {data} = await axios.post(URL, { ...values, email });
-                console.log("user",data);
+                const { data } = await axios.post(URL, { ...values, email });
                 if (data?.user?.isEmailVerified) {
                     toast.success("OTP verified successfully");
                     const username = data.user.username;

@@ -26,7 +26,6 @@ const CreateCategoryForm = () => {
                     "Authorization": `Bearer ${token}`
                 }
             });
-            console.log('Category created successfully:', response.data);
             toast.success('Category created successfully:', response.data);
             setCategoryName('');
             setDescription('');

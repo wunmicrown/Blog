@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 import PostStats from './PostStats';
@@ -17,6 +17,7 @@ const PostsDetails = () => {
     const [likes, setLikes] = useState(0);
     const [dislikes, setDislikes] = useState(0);
     const readingTime = calculateReadingtime(post?.post?.content);
+
     useEffect(() => {
         const fetchUserDetails = async () => {
             try {
@@ -60,48 +61,6 @@ const PostsDetails = () => {
 
         fetchPostDetails();
     }, [postId, URL]);
-
-    const handleLikePost = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('User is not authenticated.');
-                return;
-            }
-            const response = await axios.put(`${URL}/posts/likes/${postId}`, null, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (response.status === 200) {
-                // Update likes count based on the response data
-                setLikes(response.data.likes.length);
-            }
-        } catch (error) {
-            console.error('Error liking post:', error);
-        }
-    };
-    const handleDislikePost = async () => {
-        try {
-            const token = localStorage.getItem('token');
-            if (!token) {
-                console.error('User is not authenticated.');
-                return;
-            }
-            const response = await axios.put(`${URL}/posts/dislikes/${postId}`, null, {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            });
-            if (response.status === 200) {
-                // Update dislikes count based on the response data
-                setDislikes(response.data.dislikes.length);
-            }
-        } catch (error) {
-            console.error('Error disliking post:', error);
-        }
-    };
-
 
     if (loading) {
         return <div><Loading /></div>;
@@ -183,12 +142,10 @@ const PostsDetails = () => {
                             </div>
                             {/* Posts stats */}
                             <PostStats
-                                likes={likes}
-                                dislikes={dislikes}
-                                commentsCount={post.post.comments.length} 
                                 postId={postId}
-                                handleLike={handleLikePost} // Pass like handler function
-                                handleDislike={handleDislikePost} // Pass dislike handler function
+                                initialLikes={post?.post?.likes.length}
+                                initialDislikes={post?.post?.dislikes.length}
+                                initialCommentsCount={post?.post?.comments.length}
                             />
 
                             <div className='mt-8 mb-16'>
@@ -212,4 +169,4 @@ const PostsDetails = () => {
     );
 }
 
-export default PostsDetails
+export default PostsDetails;

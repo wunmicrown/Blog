@@ -22,7 +22,6 @@ export const AuthProvider = ({ children }) => {
               "Authorization": `Bearer ${token}`
             }
           });
-          console.log("user", user);
           setTokenMatch(true);
           setUser(user); 
   

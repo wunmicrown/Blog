@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import truncatePost from '../utils/truncatepost';
 import calculateTimeDifference from '../utils/CalculateTime';
 
 const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
@@ -10,7 +9,7 @@ const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
         {posts.map((post) => (
           <div key={post.id} className="w-full lg:w-1/3 md:w-1/2 px-4 mb-8 ">
             <Link
-              to={`/posts/${post.authorId}`}
+              // to={`/posts/${post.authorId}`}  
               className="block mb-10 overflow-hidden rounded-md"
             >
               <img className="h-40 w-full" src={post?.coverImgUrl} alt={post.title} />
@@ -76,7 +75,7 @@ const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
             </p>
             <Link
               className="inline-block mb-4 text-2xl md:text-3xl leading-tight text-coolGray-800 hover:text-coolGray-900 font-bold hover:translate-x-1 transition-all duration-300 ease-in-out hover:text-green-300"
-              to={`/posts/${post.authorId}`}
+            // to={`/posts/${post.authorId}`}
             >
               {post?.title}
             </Link>
@@ -88,7 +87,7 @@ const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
               ))}
             </div>
             <div className="mb-4 text-coolGray-500">
-              <div dangerouslySetInnerHTML={{ __html: truncatePost(post?.content) }}></div>
+              <div dangerouslySetInnerHTML={{ __html: (post?.content) }}></div>
             </div>
           </div>
         ))}

@@ -3,10 +3,10 @@ import React from 'react';
 const Footer = () => {
   return (
     <>
-      <footer className="bg-[#ffff] w-full text-black font-sans font-semibold border-2 fixed bottom-0 border-[#f3f2f2]  py-6 mt-auto">
+      <footer className="bg-striped-gradient w-full text-black font-sans font-semibold border-2 fixed bottom-0 border-[#f3f2f2] py-6 mt-auto">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center">
-            <p className="text-sm">&copy; 2024 Your Blog App. All rights reserved.</p>
+            <p className="text-sm text-[#756d6d] font-bold">&copy; 2024 Your Blog App. All rights reserved.</p>
             <div className="flex space-x-4">
               {/* <Link to={"#"} className="hover:text-gray-400">About</Link> */}
             </div>

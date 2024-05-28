@@ -70,6 +70,18 @@ const DraftsList = () => {
         userDetails();
     }, [navigate]);
 
+    useEffect(() => {
+        if (showConfirmation) {
+            document.body.classList.add('overflow-hidden');
+        } else {
+            document.body.classList.remove('overflow-hidden');
+        }
+
+        return () => {
+            document.body.classList.remove('overflow-hidden');
+        };
+    }, [showConfirmation]);
+
     const deletePostHandler = async () => {
         try {
             const token = localStorage.getItem('token');
@@ -150,17 +162,13 @@ const DraftsList = () => {
                         <div className="flex justify-end">
                             <button
                                 className="mr-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
-                                onClick={() => {
-                                    deletePostHandler();
-                                }}
+                                onClick={deletePostHandler}
                             >
                                 Delete
                             </button>
                             <button
                                 className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
-                                onClick={() => {
-                                    closeConfirmationModal();
-                                }}
+                                onClick={closeConfirmationModal}
                             >
                                 Cancel
                             </button>
@@ -173,4 +181,3 @@ const DraftsList = () => {
 };
 
 export default DraftsList;
-

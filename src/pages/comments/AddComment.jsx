@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { API_URL } from "../constants/Api";
 import { toast } from "react-toastify";
-import { useParams } from "react-router-dom";
 import CommentsList from "./CommentLists";
 
 const AddComment = ({ postId }) => {

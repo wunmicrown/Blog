@@ -73,7 +73,7 @@ const UserDashboard = () => {
                                         <img className='w-24 h-24 rounded-full' src={user.profilePic ||
                                             "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
                                     </div>
-                                    <div className='bg-[#5b5c5b] mx-auto w-full text-white h-auto text-center pt-4 p-20 max-w-screen-lg px-4 rounded-lg'>
+                                    <div className='bg-[rgb(55,65,81)] mx-auto w-full text-white h-auto text-center pt-4 p-20 max-w-screen-lg px-4 rounded-lg'>
                                         <p className='pt-8 font-bold text-xl flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>
                                         <div className='flex justify-end lg:justify-end xl:justify-end md:justify-end'>
                                             <Link
@@ -104,16 +104,16 @@ const UserDashboard = () => {
                             {user && userStats !== null && (
                                 <div className='mx-auto w-full max-w-screen-lg mt-16 px-4 text-center'>
                                     <div key={userStats._id} className='flex-row md:grid-cols-2 gap-4 grid lg:grid-cols-3 grid-cols-2'>
-                                        <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
+                                        <div className='bg-[rgb(55,65,81)] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
                                             <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalComments}</strong>
                                             <p className='text-sm whitespace-nowrap'>Total post comments</p>
                                         </div>
-                                        <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
+                                        <div className='bg-[rgb(55,65,81)] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg'>
                                             <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPostLikes}</strong>
                                             <p className='text-sm whitespace-nowrap'>Total post likes</p>
                                         </div>
                                         <Link to={`/${userStats.authorUsername}/posts`}>
-                                            <div className='bg-[#5b5c5b] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg '>
+                                            <div className='bg-[rgb(55,65,81)] text-white pl-4 pr-6 pt-6 pb-6 rounded-lg '>
                                                 <strong className=' text-xl bg-[#82888a] pl-1 pr-1 rounded-lg'>{userStats.totalPosts}</strong>
                                                 <p className='text-sm whitespace-nowrap font-bold'>Published Posts</p>
                                             </div>
@@ -133,7 +133,7 @@ const UserDashboard = () => {
 
                                                     <div className=' mx-auto text-white h-auto text-start pt-4 max-w-screen-sm px-4 rounded-lg'>
                                                         {latestPosts.map(post => (
-                                                            <div key={post.id} className="mb-6 bg-[#5b5c5b] rounded-lg p-4 overflow-y-auto">
+                                                            <div key={post.id} className="mb-6 bg-[rgb(55,65,81)] rounded-lg p-4 overflow-y-auto">
                                                                 <div className='flex justify-start'>
                                                                     <img className='w-14 h-14 rounded-full' src={post && post.authorProfilePic ? user.authorProfilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
                                                                     <div className=' mt-0'>

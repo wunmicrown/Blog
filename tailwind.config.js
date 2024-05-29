@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       backgroundImage: {
-        'striped-gradient': 'linear-gradient(to bottom left, #22C55E 48%, #ffff 55%, #ffff 40%)',
+        'striped-gradient': 'linear-gradient(to bottom left, #4ADE80 48%, #ffff 55%, #ffff 40%)',
       },
     },
   },

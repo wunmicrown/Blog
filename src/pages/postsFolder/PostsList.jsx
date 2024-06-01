@@ -75,7 +75,7 @@ const PostsList = () => {
   return (
     <>
       <Category />
-      <div className="container relative z-10 px-4 mx-auto">
+      <div className="container  z-10 px-4 mx-auto">
         <section className="relative bg-white">
           <div className="container px-4 mx-auto">
             <div className="md:max-w-5xl mx-auto mb-10 md:mb-16 text-center">

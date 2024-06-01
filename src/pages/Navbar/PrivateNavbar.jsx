@@ -37,34 +37,43 @@ const PrivateNavbar = () => {
       }
     }
     userDetails();
-  }, []);
+  }, [navigate]);
 
   const fetchPosts = async () => {
     setLoading(true);
     try {
-      const {data} = await axios.get(`${API_URL}/api/v1/posts`, {
+      const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
         params: { page: 1, title: searchTerm },
       });
-      setPosts(data.posts);
-      setNoResults(data.posts.length === 0);
-      console.log("dataa",data.posts);
+      console.log("Search term:", searchTerm);
+      console.log("API response:", data);
+      setPosts(data.latestPublishedPosts);
+      setNoResults(data.latestPublishedPosts.length === 0);
       setLoading(false);
+      setSearchTerm("");
+      navigate("/search", { state: { posts: data.latestPublishedPosts, noResults: data.latestPublishedPosts.length === 0 } });
     } catch (error) {
+      console.error("Error fetching posts:", error);
       setError(error);
       setLoading(false);
     }
   };
 
   const handleSearch = () => {
-    fetchPosts();
-    setSearchTerm("");
+    if (searchTerm.length > 1) {
+      fetchPosts();
+    }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && searchTerm.length > 1) {
       fetchPosts();
-      setSearchTerm("");
     }
+  };
+
+  const handleClearFilter = () => {
+    setSearchTerm("");
+    fetchPosts();
   };
 
   const handleSignOut = () => {
@@ -72,6 +81,7 @@ const PrivateNavbar = () => {
     navigate("/login");
     setShowConfirmation(false);
   };
+
   useEffect(() => {
     let timer;
     if (noResults) {
@@ -83,9 +93,9 @@ const PrivateNavbar = () => {
       clearTimeout(timer);
     };
   }, [noResults]);
+
   return (
     <>
-
       <Disclosure as="nav" className="bg-white shadow-lg fixed w-full top-0 z-50">
         {({ open }) => (
           <>
@@ -93,7 +103,6 @@ const PrivateNavbar = () => {
               <div className="flex h-16 justify-between">
                 <div className="flex">
                   <div className="-ml-2 mr-2 flex items-center md:hidden">
-                    {/* Mobile menu button */}
                     <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-green-500">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
@@ -104,15 +113,12 @@ const PrivateNavbar = () => {
                     </Disclosure.Button>
                   </div>
                   <div className="flex flex-shrink-0 items-center">
-                    {/* Logo here */}
                     <Link to="/home">
                       <FaBlog className="block text-green-400 h-8 w-auto lg:hidden hover:cursor-pointer" />
                     </Link>
-
                     <FaBlog className="hidden text-green-400 h-8 w-auto lg:block" />
                   </div>
                   <div className="hidden md:ml-6 md:flex md:space-x-8">
-                    {/* Current: "border-green-600 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-green-300" */}
                     <Link
                       to={"/home"}
                       className="
@@ -128,6 +134,7 @@ const PrivateNavbar = () => {
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
+                        onKeyDown={handleKeyPress}
                         className="p-20 py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
                       />
                       <span className="absolute hover:bg-green-400 pl-2 rounded-lg" onClick={handleSearch}>
@@ -140,7 +147,7 @@ const PrivateNavbar = () => {
                   <div className="flex-shrink-0">
                     <Link
                       to={"/create-post"}
-                      className="ml-2 relative  items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300  hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
+                      className="ml-2 relative items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300 hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
                     >
                       <PlusIcon className="-ml-0.5 h-5 w-5 " aria-hidden="true" />
                       Create Post
@@ -154,7 +161,6 @@ const PrivateNavbar = () => {
                           className="h-10 w-10 rounded-full"
                           src={user && user.profilePic ? user.profilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic"
                         />
-
                       </Menu.Button>
                       <Transition
                         as={Fragment}
@@ -170,8 +176,7 @@ const PrivateNavbar = () => {
                             {({ active }) => (
                               <Link
                                 to={`/${user.username}/profile`}
-                                className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 {user.username}
                               </Link>
@@ -181,8 +186,7 @@ const PrivateNavbar = () => {
                             {({ active }) => (
                               <Link
                                 to={`/${user.username}/profile`}
-                                className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Dashboard
                               </Link>
@@ -192,8 +196,7 @@ const PrivateNavbar = () => {
                             {({ active }) => (
                               <Link
                                 to={"/create-post"}
-                                className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Create Post
                               </Link>
@@ -203,8 +206,7 @@ const PrivateNavbar = () => {
                             {({ active }) => (
                               <Link
                                 to={'/create-category'}
-                                className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Category
                               </Link>
@@ -214,23 +216,20 @@ const PrivateNavbar = () => {
                             {({ active }) => (
                               <Link
                                 to="/settings/profile"
-                                className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
                               >
                                 Settings
                               </Link>
                             )}
                           </Menu.Item>
-                         
                           <div>
                             <hr className=" mb-4" />
                           </div>
                           <Menu.Item>
                             {({ active }) => (
                               <button
-                                className={`${active ? "bg-gray-100" : ""
-                                  } block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline w-full text-left`}
-                                onClick={() => setShowConfirmation(true)} // Open sign-out confirmation modal
+                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline w-full text-left`}
+                                onClick={() => setShowConfirmation(true)}
                               >
                                 Sign Out
                               </button>
@@ -243,7 +242,6 @@ const PrivateNavbar = () => {
                 </div>
               </div>
             </div>
-
             <Transition
               show={showConfirmation}
               as={Fragment}
@@ -274,7 +272,6 @@ const PrivateNavbar = () => {
                 </div>
               </div>
             </Transition>
-
             <Disclosure.Panel className="md:hidden">
               <div className=" mt-4">
                 <input
@@ -290,7 +287,6 @@ const PrivateNavbar = () => {
                 </span>
               </div>
               <div className="space-y-1 pt-2 pb-3">
-                {/* Current: "bg-indigo-50 border-green-600 text-indigo-700", Default: "border-transparent text-gray-500 hover:bg-gray-50 hover:border-green-600 hover:text-green-300" */}
                 <Link
                   to={"/home"}
                   className="block border-l-4 border-transparent py-2 pl-3 pr-4 text-base font-medium text-gray-500 hover:border-green-600 hover:bg-gray-50 hover:text-green-300 sm:pl-5 sm:pr-6"
@@ -308,10 +304,6 @@ const PrivateNavbar = () => {
           </>
         )}
       </Disclosure>
-
-      {noResults && (
-        <div className="text-red-500 mt-20 text-center">No results match that query</div>
-      )}
     </>
   );
 };

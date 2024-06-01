@@ -29,6 +29,7 @@ import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
 
 import DraftsList from './pages/postsFolder/DraftsList';
 import UserDashboard from './pages/dashboardsFolder/UserDashboard';
+import SearchResultsPage from './pages/SearchResultsPage ';
 
 const App = () => {
     return (
@@ -68,6 +69,7 @@ const App = () => {
                     <Route path="/create-category" element={<CreateCategoryForm />} />
                     <Route path="/update-post/:postId/edit" element={<UpdatePosts />} /> 
                     <Route path="/posts/:postId" element={<AddComment />} />
+                    <Route path="/search" element={<SearchResultsPage />} />
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />

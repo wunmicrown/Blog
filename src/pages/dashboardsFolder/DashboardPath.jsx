@@ -34,8 +34,8 @@ const DashboardPath = () => {
 
   return (
     <>
-      <PrivateNavbar
-        user={user} />
+        <PrivateNavbar
+          user={user} />
       <Outlet />
       <Footer />
     </>

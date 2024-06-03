@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import JoditEditor from "jodit-react";
 import { toast } from "react-toastify";
-import { Card, CardBody, Form, Input, Container, Button } from 'reactstrap';
+import { Card, CardBody, Form, Container, Button, Input } from 'reactstrap';
 import axios from 'axios';
 import { API_URL } from "../constants/Api";
 import { MdFileUpload, MdCancel } from "react-icons/md";
@@ -22,7 +22,7 @@ const CreatePosts = () => {
     content: '',
     category: null,
     tags: [],
-    status: 'published',  
+    status: 'published',
   });
   const [showPreview, setShowPreview] = useState(false);
   const [draftSaved, setDraftSaved] = useState(false);
@@ -48,6 +48,11 @@ const CreatePosts = () => {
       return;
     }
 
+    if (!image && status === 'published') {
+      toast.error("Cover image is required to publish the post !!");
+      return;
+    }
+
     const formData = new FormData();
     formData.append('title', post.title);
     formData.append('content', post.content);
@@ -61,7 +66,7 @@ const CreatePosts = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const { data }= await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
+      const { data } = await axios.post(`${API_URL}/api/v1/posts/create`, formData, {
         headers: {
           "Authorization": `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -73,7 +78,7 @@ const CreatePosts = () => {
       setImagePreview('');
       setDraftSaved(true);
       if (status === 'draft') return navigate(`/${user._id}/drafts`);
-      
+
     } catch (error) {
       console.error('Error saving draft:', error);
       toast.error(status === 'draft' ? "Draft not saved due to some error !!" : "Post not created due to some error !!");
@@ -85,7 +90,6 @@ const CreatePosts = () => {
       if (!draftSaved && (post.title.trim() !== '' || post.content.trim() !== '' || post.tags.length > 0)) {
         event.preventDefault();
         event.returnValue = '';
-        setShowDraftModal(true);
       }
     };
     window.addEventListener('beforeunload', handleBeforeUnload);
@@ -94,14 +98,6 @@ const CreatePosts = () => {
       window.removeEventListener('beforeunload', handleBeforeUnload);
     };
   }, [draftSaved, post]);
-
-  const handleLeavePage = () => {
-    setShowDraftModal(false);
-  };
-
-  const handleDiscard = () => {
-    setShowDraftModal(false);
-  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -261,7 +257,7 @@ const CreatePosts = () => {
                       <div className="ml-4 lg:ml-16 px-4 lg:px-8">
                         <div className="flex flex-wrap">
                           {post.tags.map((tag, index) => (
-                            <button key={index} className="bg-[#2a2929] mb-5 p-4 shadow-lg text-[#0a4429] px-2 py-1 mt-2 rounded-md mr-2 flex items-center">
+                            <button key={index} className="bg-[#2a2929] mb-5 p-4 shadow-lg text-gray-200 px-2 py-1 mt-2 rounded-md mr-2 flex items-center">
                               #{tag}
                               <MdCancel size={24} className="ml-1 hover:text-red-600" onClick={() => removeTag(index)} />
                             </button>

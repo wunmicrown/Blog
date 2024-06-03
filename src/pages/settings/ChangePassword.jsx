@@ -69,7 +69,7 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="  p-8  w-auto">
+    <div className="  p-8 mb-10 w-auto">
       <div className="text-2xl font-bold mb-4 text-center text-green-500">
         Change Password
       </div>

@@ -54,7 +54,7 @@ const App = () => {
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
-                    <Route path="/forgot-password" element={<ForgotPassword />} /> 
+                    <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/:id" element={<UserDashboard />} />
 
@@ -62,14 +62,14 @@ const App = () => {
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/:id/posts" element={<PostByEachUsers />} />
                     <Route path="/home" element={<PostsList />} />
-                    <Route path="/cover/:imageUrl" element={<CoverImageView/>} />
+                    <Route path="/cover/:imageUrl" element={<CoverImageView />} />
                     <Route path="/:id/drafts" element={<DraftsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
-                    <Route path="/:id/profile"element={<UserProfileDashboard />} />
+                    <Route path="/:id/profile" element={<UserProfileDashboard />} />
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
-                    <Route path="/update-post/:postId/edit" element={<UpdatePosts />} /> 
+                    <Route path="/update-post/:postId/edit" element={<UpdatePosts />} />
                     <Route path="/posts/:postId" element={<AddComment />} />
                     <Route path="/search" element={<SearchResultsPage />} />
                 </Route>

@@ -78,11 +78,8 @@ const PostsList = () => {
       <div className="container  z-10 px-4 mx-auto">
         <section className="relative bg-white">
           <div className="container px-4 mx-auto">
-            <div className="md:max-w-5xl mx-auto mb-10 md:mb-16 text-center">
-              <span className="inline-block py-px px-2 mb-6 mt-10 text-xs leading-5 text-[#0a4429] bg-green-100 font-medium uppercase rounded-full shadow-sm">
-                Blog
-              </span>
-              <h3 className="mb-0 text-1xl md:text-2xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
+            <div className="md:max-w-5xl mx-auto mt-16  text-center">
+              <h3 className="mb-10 text-1xl md:text-2xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
                 Read our Trending Articles
               </h3>
             </div>
@@ -98,7 +95,7 @@ const PostsList = () => {
           </div>
 
           <div>
-            <div className="md:max-w-5xl mx-auto mb-8 md:mb-10 text-center">
+            <div className="md:max-w-5xl mx-auto mb-8 md:mb-10 text-center mt-10">
               <h3 className="mb-0 text-1xl md:text-2xl leading-tight text-darkCoolGray-900 font-bold tracking-tighter">
                 Read our Latest Articles
               </h3>

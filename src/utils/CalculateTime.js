@@ -3,8 +3,8 @@ const calculateTimeDifference = (postCreatedAt) => {
   const postDate = new Date(postCreatedAt);
   const timeDifferenceInMinutes = Math.floor((currentDate - postDate) / (1000 * 60));
 
-  // Format the post date
-  const formattedDate = new Date(postCreatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+  // Format the post date with year included
+  const formattedDate = new Date(postCreatedAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
 
   // Format the time ago
   let timeAgo;

@@ -13,27 +13,7 @@ const PostsDetails = () => {
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const [user, setUser] = useState(null);
-    const [likes, setLikes] = useState(0);
-    const [dislikes, setDislikes] = useState(0);
     const readingTime = calculateReadingtime(post?.post?.content);
-
-    useEffect(() => {
-        const fetchUserDetails = async () => {
-            try {
-                const token = localStorage.getItem('token');
-                const { data: user } = await axios.get(`${API_URL}/api/v1/users/getUser`, {
-                    headers: {
-                        "Authorization": `Bearer ${token}`
-                    }
-                });
-                setUser(user);
-            } catch (error) {
-                console.error('Error fetching user details:', error);
-            }
-        }
-        fetchUserDetails();
-    }, []);
 
     useEffect(() => {
         const fetchPostDetails = async () => {
@@ -50,8 +30,6 @@ const PostsDetails = () => {
                 });
                 setPost(response.data);
                 setLoading(false);
-                setLikes(response.data.post.likes.length);
-                setDislikes(response.data.post.dislikes.length);
             } catch (error) {
                 console.error('Error fetching post details:', error);
                 setError(error.message);
@@ -75,15 +53,16 @@ const PostsDetails = () => {
             {error ? (
                 <ErrorMsg message={error?.message} />
             ) : (
-                <section
-                    className="py-16 bg-white md:py-24" >
+                <section className="py-16 bg-white md:py-24">
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto mb-12 text-center md:max-w-2xl">
-                            <img
-                                className="w-full h-60 mx-auto mb-4"
-                                src={post?.post?.coverImgUrl}
-                                alt="post image"
-                            />
+                            <Link to={`/cover/${encodeURIComponent(post?.post?.coverImgUrl)}`}>
+                                <img
+                                    className="w-full h-60 mx-auto mb-4"
+                                    src={post?.post?.coverImgUrl}
+                                    alt="post image"
+                                />
+                            </Link>
 
                             <div className="px-2 flex justify-between w-full ">
                                 <Link to={''}
@@ -111,36 +90,28 @@ const PostsDetails = () => {
                                 </Link>
                                 <div>
                                     <p className="text-1g text-gray-500 font-bold"><span className='text-1xl text-'>{readingTime}</span> min read</p>
-
                                 </div>
                             </div>
                             <div className="inline-block px-3 py-1 mb-6 text-xs font-medium leading-5 text-green-500 uppercase bg-green-100 rounded-full shadow-sm">
                                 {post?.post?.category?.name}
                             </div>
-                            <div className="flex items-center justify-center">
-
-                            </div>
+                            <div className="flex items-center justify-center"></div>
                             <h2 className="mb-4 text-3xl font-bold leading-tight tracking-tighter md:text-5xl text-darkCoolGray-900">
                                 {post?.post?.title}
                             </h2>
                             <div className=' ml-6 flex items-center mb-6 gap-8 text-sm md:text-base font-small text-coolGray-500 mt-2'>
                                 <div className='hover:bg-[#3e5b50] hover:border-1 pl-4 pr-4 rounded-sm py-1 hover:border-[#019b65] hover:text-white hover:cursor-pointer'><span className='text-green-300'>#</span>{post?.post?.tags}</div>
                             </div>
-
                         </div>
                     </div>
 
-
-                    <div>
-                    </div>
+                    <div></div>
 
                     <div className="container px-4 mx-auto">
                         <div className="mx-auto md:max-w-3xl">
-
-                            <div className="  text-lg font-medium  md:text-xl text-coolGray-500 border-coolGray-100">
+                            <div className="text-lg font-medium md:text-xl text-coolGray-500 border-coolGray-100">
                                 <div dangerouslySetInnerHTML={{ __html: (post?.post?.content) }}></div>
                             </div>
-                            {/* Posts stats */}
                             <PostStats
                                 postId={postId}
                                 initialLikes={post?.post?.likes.length}
@@ -150,23 +121,17 @@ const PostsDetails = () => {
 
                             <div className='mt-8 mb-16'>
                                 <hr />
-
                             </div>
                             <h3 className="mb-4 text-2xl font-semibold md:text-3xl text-coolGray-800">
                                 Add a comment
                             </h3>
-
-                            {/* Comment form */}
                             <AddComment postId={postId} comments={post?.post?.comments} />
-
                         </div>
                     </div>
-
                 </section>
             )}
-
         </>
     );
-}
+};
 
 export default PostsDetails;

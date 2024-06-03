@@ -30,6 +30,7 @@ import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
 import DraftsList from './pages/postsFolder/DraftsList';
 import UserDashboard from './pages/dashboardsFolder/UserDashboard';
 import SearchResultsPage from './pages/SearchResultsPage ';
+import CoverImageView from './pages/postsFolder/CoverImageView';
 
 const App = () => {
     return (
@@ -61,6 +62,7 @@ const App = () => {
                 <Route path='/' element={<DashboardPath />}>
                     <Route path="/:id/posts" element={<PostByEachUsers />} />
                     <Route path="/home" element={<PostsList />} />
+                    <Route path="/cover/:imageUrl" element={<CoverImageView/>} />
                     <Route path="/:id/drafts" element={<DraftsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/:id/profile"element={<UserProfileDashboard />} />

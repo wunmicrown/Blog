@@ -116,7 +116,9 @@ const PrivateNavbar = () => {
                     <Link to="/home">
                       <FaBlog className="block text-green-400 h-8 w-auto lg:hidden hover:cursor-pointer" />
                     </Link>
+                    <Link to="/home">
                     <FaBlog className="hidden text-green-400 h-8 w-auto lg:block" />
+                    </Link>
                   </div>
                   <div className="hidden md:ml-6 md:flex md:space-x-8">
                     <Link

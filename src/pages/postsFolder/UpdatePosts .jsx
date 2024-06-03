@@ -247,7 +247,7 @@ const UpdatePosts = () => {
                                             onChange={handleTagChange}
                                             value={tags}
                                         />
-                                        <button type="button" onClick={addTag} className="bg-green-600 text-white px-4 py-2 rounded shadow ml-2 flex items-center">
+                                        <button type="button" onClick={addTag} className="bg-green-600 text-black px-4 py-2 rounded shadow ml-2 flex items-center">
                                             <svg className="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                                                 <path fillRule="evenodd" d="M19 10a1 1 0 01-1 1h-7v7a1 1 0 11-2 0v-7H2a1 1 0 110-2h7V2a1 1 0 112 0v7h7a1 1 0 011 1z" clipRule="evenodd" />
                                             </svg>
@@ -300,13 +300,13 @@ const UpdatePosts = () => {
                                     />
                                 </div>
 
-                                <Container className="text-start text-white pb-8 ml-4 lg:ml-16 mb-10">
+                                <Container className="text-start text-[#0a4429] pb-8 ml-4 lg:ml-16 mb-10">
                                     {post.status === 'published' ? (
                                         <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Save Changes</Button>
                                     ) : (
                                         <>
                                             <Button type="submit" className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
-                                            <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
+                                            <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]">Save draft</Button>
                                         </>
                                     )}
                                 </Container>

@@ -29,9 +29,9 @@ const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDra
                         <div dangerouslySetInnerHTML={{ __html: (post.content) }}></div>
                     </div>
                 </div>
-                <div className="text-start mt-4 text-white pb-8 ml-4 lg:ml-10">
+                <div className="text-start mt-4 text-[#0a4429] pb-8 ml-4 lg:ml-10">
                     <button className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2 mr-2" onClick={handlePublish}>Publish</button>
-                    <button className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white" onClick={handleSaveDraft}>Save draft</button>
+                    <button className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]" onClick={handleSaveDraft}>Save draft</button>
                 </div>
             </div>
         </>

@@ -85,10 +85,10 @@ const PasswordResetVerification = () => {
                                 className="bg-white font-medium placeholder-gray-500 focus:border-green-500 rounded-lg shadow appearance-none border  w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                             />
                         </div>
-                        <button type="submit" className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={loading}>
+                        <button type="submit" className="bg-green-500 hover:bg-green-600 text-[#0A4429] font-bold py-2 rounded focus:outline-none focus:shadow-outline" disabled={loading}>
                             {loading ? 'Verifying...' : 'Verify'}
                         </button>
-                        <button type="button" onClick={handleResendOTP} className="mb-4  p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-400 to-yellow-200 hover:from-purple-200 hover:to-green-400 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulsee" disabled={resendLoading}>
+                        <button type="button" onClick={handleResendOTP} className="mb-4  p-4 py-3 px-7 w-full leading-6 text-[#0A4429] font-medium text-center bg-gradient-to-r from-green-400 to-yellow-200 hover:from-purple-200 hover:to-green-400 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulsee" disabled={resendLoading}>
                             {resendLoading ? 'Resending...' : 'Resend OTP'}
                         </button>
 

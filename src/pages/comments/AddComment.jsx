@@ -196,7 +196,7 @@ const AddComment = ({ postId }) => {
                     <div className="flex items-center justify-end px-3 py-2 rounded-b-lg bg-gray-50">
                       <button
                         type="submit"
-                        className="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50"
+                        className="px-4 py-2 text-[#0a4429] bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50"
                       >
                         Submit
                       </button>
@@ -223,14 +223,14 @@ const AddComment = ({ postId }) => {
           <button
             onClick={handlePrevious}
             disabled={page === 1}
-            className="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
+            className="px-4 py-2 text-black bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
           >
             Previous
           </button>
           <button
             onClick={handleNext}
             disabled={page === totalPages}
-            className="px-4 py-2 text-white bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
+            className="px-4 py-2 text-black bg-green-600 rounded hover:bg-green-700 focus:outline-none focus:ring-green-500 focus:ring-opacity-50 disabled:opacity-50"
           >
             Next
           </button>
@@ -258,7 +258,7 @@ const AddComment = ({ postId }) => {
                 </button>
                 <button
                   type="submit"
-                  className="px-4 py-2 bg-green-600 text-white rounded"
+                  className="px-4 py-2 bg-green-600 text-[#0a4429] rounded"
                 >
                   Save Changes
                 </button>
@@ -283,7 +283,7 @@ const AddComment = ({ postId }) => {
               </button>
               <button
                 type="button"
-                className="px-4 py-2 bg-red-600 text-white rounded"
+                className="px-4 py-2 bg-red-600 text-[#0a4429] rounded"
                 onClick={handleDeleteConfirm}
               >
                 Delete

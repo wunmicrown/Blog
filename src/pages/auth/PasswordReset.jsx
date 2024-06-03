@@ -118,7 +118,7 @@ const PasswordReset = () => {
                     <Loading />
                 ) : (
                     <button
-                        className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-green-50 font-medium text-center bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse"
+                        className="mb-4 mt-9 p-4 py-3 px-7 w-full leading-6 text-[#000000] font-medium text-center bg-gradient-to-r from-green-500 to-lime-500 hover:from-green-500 hover:to-green-700 focus:ring-2 focus:ring-green-500 focus:ring-opacity-50 rounded-md shadow-lg transform transition-all duration-500 ease-in-out hover:scale-105 flex items-center justify-center animate-pulse"
                         onClick={handleSubmit}
                         disabled={loading}
                     >

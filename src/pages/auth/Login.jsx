@@ -97,29 +97,24 @@ const [loading, setLoading] = useState(false);
             ) : (
               <button
               type="submit"
-                className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
+                className="w-full bg-green-500 text-black py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
                 disabled={loading}
               >
                 Login
               </button>
             )}
-            {/* <button
-              type="submit"
-              className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
-            >
-              Login
-            </button> */}
             <div className="flex justify-between">
               <div>
                 <input type="checkbox" className="mr-2" />
                 <span>Remember me</span>
               </div>
-              <Link to="/forgot-password" className="text-green-500">Forgot password?</Link>
+              <Link to="/forgot-password" className="text-[#0a4429]">Forgot password?</Link>
             </div>
             <div className="flex">
-              <p>Don't have an account <span>
-                <Link to='/register' className=" text-green-500">Register</Link></span></p>
-            </div>
+  <p>Don't have an account <span>
+    <Link to='/register' className="text-black hover:underline hover:text-green-800">Register</Link></span></p>
+</div>
+
           </form>
         </div>
       </div>

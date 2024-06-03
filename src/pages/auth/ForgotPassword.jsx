@@ -56,18 +56,11 @@ const ForgotPassword = () => {
                             />
                         </div>
                     </div>
-                    {/* <button
-          className="bg-blue-600 text-white px-4 py-2 rounded-lg"
-          onClick={handleSubmit}
-          disabled={loading}
-        >
-          {loading ? (<Loading/>) : " Send reset otp"}
-        </button> */}
                     {loading ? (
                         <Loading />
                     ) : (
                         <button
-                            className="w-full px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none"
+                            className="w-full px-4 py-2 text-black bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none"
                             onClick={handleSubmit}
                             disabled={loading}
                         >

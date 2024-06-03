@@ -126,16 +126,16 @@ const SignUp = () => {
                 <Loading />
               ) : (
                 <button
-                  className="w-full bg-green-500 text-white py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
+                  className="w-full bg-green-500 text-black py-2 px-4 rounded-md hover:bg-green-600 outline-none focus:outline-none focus:ring-2 focus:ring-green-100 focus:ring-offset-2 focus:ring-offset-green-100"
                   type="submit"
                   disabled={loading}
                 >
                   Sign Up
                 </button>
               )}
-              <div className="text-center mt-4">
+              <div className="text-center mt-4 mb-8">
                 <p className="text-gray-500">Already have an account?</p>
-                <Link to="/login" className="text-green-400 hover:underline">Login here</Link>
+                <Link to="/login" className="text-black hover:underline hover:text-green-800">Login here</Link>
               </div>
             </form>
           </div>

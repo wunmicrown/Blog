@@ -83,7 +83,7 @@ const UserProfileDashboard = () => {
                                             <Link
                                                 to={'/settings/profile'}
                                             >
-                                                <button className='bg-green-500 text-white p-2 rounded-lg hover:bg-green-600'>
+                                                <button className='bg-green-500 text-black p-2 rounded-lg hover:bg-green-600'>
                                                     Edit profile
                                                 </button>
                                             </Link>

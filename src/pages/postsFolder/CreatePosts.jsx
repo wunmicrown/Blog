@@ -249,7 +249,7 @@ const CreatePosts = () => {
                           onChange={handleTagChange}
                           value={tags}
                         />
-                        <button type="button" onClick={addTag} className="flex items-center bg-green-500 text-white px-2 py-1 mt-2 rounded-md ml-2">
+                        <button type="button" onClick={addTag} className="flex items-center bg-green-500 text-[#0a4429] px-2 py-1 mt-2 rounded-md ml-2">
                           <svg className="w-4 h-4 ml-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
                             <path fillRule="evenodd" d="M19 10a1 1 0 01-1 1h-7v7a1 1 0 11-2 0v-7H2a1 1 0 110-2h7V2a1 1 0 112 0v7h7a1 1 0 011 1z" clipRule="evenodd" />
                           </svg>
@@ -261,7 +261,7 @@ const CreatePosts = () => {
                       <div className="ml-4 lg:ml-16 px-4 lg:px-8">
                         <div className="flex flex-wrap">
                           {post.tags.map((tag, index) => (
-                            <button key={index} className="bg-[#2a2929] mb-5 p-4 shadow-lg text-white px-2 py-1 mt-2 rounded-md mr-2 flex items-center">
+                            <button key={index} className="bg-[#2a2929] mb-5 p-4 shadow-lg text-[#0a4429] px-2 py-1 mt-2 rounded-md mr-2 flex items-center">
                               #{tag}
                               <MdCancel size={24} className="ml-1 hover:text-red-600" onClick={() => removeTag(index)} />
                             </button>
@@ -296,9 +296,9 @@ const CreatePosts = () => {
                         onBlur={(newContent) => setContent(newContent)}
                       />
                     </div>
-                    <Container className="text-start text-white pb-8 ml-4 lg:ml-16 mb-10 mt-3">
+                    <Container className="text-start text-[#0a4429] pb-8 ml-4 lg:ml-16 mb-10 mt-3">
                       <Button onClick={publishPost} className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
-                      <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-white">Save draft</Button>
+                      <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]">Save draft</Button>
                     </Container>
                   </Form>
                 </>

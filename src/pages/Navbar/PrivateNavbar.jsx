@@ -147,7 +147,7 @@ const PrivateNavbar = () => {
                   <div className="flex-shrink-0">
                     <Link
                       to={"/create-post"}
-                      className="ml-2 relative items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300 hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
+                      className="ml-2 relative items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300 hidden md:ml-4 md:flex md:flex-shrink-0 md:items-center"
                     >
                       <PlusIcon className="-ml-0.5 h-5 w-5 " aria-hidden="true" />
                       Create Post
@@ -257,7 +257,7 @@ const PrivateNavbar = () => {
                   <p className="mb-4">Are you sure you want to sign out?</p>
                   <div className="flex justify-end">
                     <button
-                      className="mr-2 bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"
+                      className="mr-2 bg-red-500 text-black px-4 py-2 rounded-md hover:bg-red-600"
                       onClick={handleSignOut} // Call handleSignOut to sign out and navigate
                     >
                       Yes, sign out

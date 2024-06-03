@@ -118,7 +118,7 @@ const ChangePassword = () => {
           />
           <label htmlFor="termsAccepted" className="text-sm text-gray-500">I accept the Terms and Conditions</label>
         </div>
-        <button type="submit" className="w-full px-4 py-2 text-white bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none">
+        <button type="submit" className="w-full px-4 py-2 text-[#0a4429] bg-green-500 rounded-lg hover:bg-green-600 focus:outline-none">
           Update Password
         </button>
       </form>

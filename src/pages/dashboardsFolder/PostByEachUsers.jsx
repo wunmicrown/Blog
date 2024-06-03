@@ -115,7 +115,7 @@ const PostByEachUsers = () => {
                 <div className=''>
                     <div className='container relative z-20 px-4 mx-auto pt-20'>
                         <div className="md:max-w-5xl mx-auto mb-10 md:mb-16 text-center">
-                            <span className="inline-block py-px px-2 mb-6 pl-3 pr-3 mt-10 text-md leading-5 text-green-500 bg-green-100 font-medium uppercase rounded-full shadow-sm">
+                            <span className="inline-block py-px px-2 mb-6 pl-3 pr-3 mt-10 text-md leading-5 text-[#0a4429] bg-green-100 font-medium uppercase rounded-full shadow-sm">
                                 Posts
                             </span>
                         </div>

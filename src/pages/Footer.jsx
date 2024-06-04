@@ -11,6 +11,8 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               {/* <Link to={"#"} className="hover:text-gray-400">About</Link> */}
+              {/* bg-[#00af9d] */}
+              {/* bg-[#6e63e8] */}
             </div>
           </div>
         </div>

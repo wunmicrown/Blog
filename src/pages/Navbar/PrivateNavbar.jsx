@@ -62,10 +62,9 @@ const PrivateNavbar = () => {
         setSearchResults([]);
       }
     };
-
-    const timeoutId = setTimeout(fetchPosts, 500);
-
-    return () => clearTimeout(timeoutId);
+    // Search Input Delay using of debounce mechanism
+    const SearchInputDelayRslt = setTimeout(fetchPosts, 500);
+    return () => clearTimeout(SearchInputDelayRslt);
   }, [searchTerm]);
 
   const handleSearch = () => {
@@ -155,19 +154,21 @@ const PrivateNavbar = () => {
                         leaveFrom="opacity-100"
                         leaveTo="opacity-0"
                       >
-                        <div className="absolute z-10 bg-white shadow-2xl top-[42px] left-0 right-0">
+                        <div className="absolute z-10 box-decoration-clone bg-white shadow-sm border border-[#dfd8d8] rounded top-[42px] left-0 right-0">
                           <ul>
                             {searchResults.map((post) => (
                               <li key={post.id}>
                                 <Link
                                   to={`/posts/${post.id}`}
-                                  className="block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline"
+                                  className="block px-4 py-2 align-middle text-lg font-sans text-[#000000] hover:bg-zinc-900 hover:bg-blend-overlay hover:bg-opacity-5"
                                   onClick={() => {
                                     setSearchTerm("");
                                     setShowPopup(false);
                                   }}
                                 >
-                                  {post.title}
+                                  <strong>
+                                    {post.title}
+                                  </strong>
                                 </Link>
                               </li>
                             ))}

@@ -17,6 +17,8 @@ const PrivateNavbar = () => {
   const [posts, setPosts] = useState([]);
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [noResults, setNoResults] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
+  const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
   const URL = `${API_URL}/api/v1/users/getUser`;
 
@@ -39,41 +41,51 @@ const PrivateNavbar = () => {
     userDetails();
   }, [navigate]);
 
-  const fetchPosts = async () => {
-    setLoading(true);
-    try {
-      const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
-        params: { page: 1, title: searchTerm },
-      });
-      console.log("Search term:", searchTerm);
-      console.log("API response:", data);
-      setPosts(data.latestPublishedPosts);
-      setNoResults(data.latestPublishedPosts.length === 0);
-      setLoading(false);
-      setSearchTerm("");
-      navigate("/search", { state: { posts: data.latestPublishedPosts, noResults: data.latestPublishedPosts.length === 0 } });
-    } catch (error) {
-      console.error("Error fetching posts:", error);
-      setError(error);
-      setLoading(false);
-    }
-  };
+  useEffect(() => {
+    const fetchPosts = async () => {
+      if (searchTerm.length > 0) {
+        setLoading(true);
+        try {
+          const { data } = await axios.get(`${API_URL}/api/v1/posts`, {
+            params: { page: 1, title: searchTerm },
+          });
+          setPosts(data.latestPublishedPosts);
+          setSearchResults(data.latestPublishedPosts.slice(0, 6));
+          setNoResults(data.latestPublishedPosts.length === 0);
+          setLoading(false);
+        } catch (error) {
+          console.error("Error fetching posts:", error);
+          setError(error);
+          setLoading(false);
+        }
+      } else {
+        setSearchResults([]);
+      }
+    };
+
+    const timeoutId = setTimeout(fetchPosts, 500);
+
+    return () => clearTimeout(timeoutId);
+  }, [searchTerm]);
 
   const handleSearch = () => {
-    if (searchTerm.length > 1) {
-      fetchPosts();
+    if (searchTerm.length > 0) {
+      setShowPopup(true);
+      navigate("/search", { state: { posts: posts, noResults: noResults } });
+      setSearchTerm("");
     }
   };
 
   const handleKeyPress = (e) => {
-    if (e.key === "Enter" && searchTerm.length > 1) {
-      fetchPosts();
+    if (e.key === "Enter") {
+      handleSearch();
+      setSearchTerm("");
     }
   };
 
   const handleClearFilter = () => {
     setSearchTerm("");
-    fetchPosts();
+    setShowPopup(false);
   };
 
   const handleSignOut = () => {
@@ -81,18 +93,6 @@ const PrivateNavbar = () => {
     navigate("/login");
     setShowConfirmation(false);
   };
-
-  useEffect(() => {
-    let timer;
-    if (noResults) {
-      timer = setTimeout(() => {
-        setNoResults(false);
-      }, 3000);
-    }
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [noResults]);
 
   return (
     <>
@@ -117,7 +117,7 @@ const PrivateNavbar = () => {
                       <FaBlog className="block text-green-400 h-8 w-auto lg:hidden hover:cursor-pointer" />
                     </Link>
                     <Link to="/home">
-                    <FaBlog className="hidden text-green-400 h-8 w-auto lg:block" />
+                      <FaBlog className="hidden text-green-400 h-8 w-auto lg:block" />
                     </Link>
                   </div>
                   <div className="hidden md:ml-6 md:flex md:space-x-8">
@@ -130,18 +130,50 @@ const PrivateNavbar = () => {
                     >
                       Home
                     </Link>
-                    <div className=" mt-4 ">
+                    <div className="mt-4 relative ">
                       <input
                         type="text"
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        onKeyDown={handleKeyPress}
-                        className="p-20 py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
+                        onKeyUp={handleKeyPress}
+                        onFocus={() => setShowPopup(searchTerm.length > 0)}
+                        onBlur={() => setShowPopup(false)}
+                        className="p-2 w-full sm:w-[440px] border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold "
                       />
                       <span className="absolute hover:bg-green-400 pl-2 rounded-lg" onClick={handleSearch}>
                         <BsSearch className="absolute top-3 right-5 text-gray-800" size={20} />
                       </span>
+                      {/* Popup for search results */}
+                      <Transition
+                        show={showPopup && searchResults.length > 0 && !noResults}
+                        as={Fragment}
+                        enter="transition-opacity duration-200"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="transition-opacity duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                      >
+                        <div className="absolute z-10 bg-white shadow-2xl top-[42px] left-0 right-0">
+                          <ul>
+                            {searchResults.map((post) => (
+                              <li key={post.id}>
+                                <Link
+                                  to={`/posts/${post.id}`}
+                                  className="block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline"
+                                  onClick={() => {
+                                    setSearchTerm("");
+                                    setShowPopup(false);
+                                  }}
+                                >
+                                  {post.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      </Transition>
                     </div>
                   </div>
                 </div>
@@ -156,7 +188,7 @@ const PrivateNavbar = () => {
                     </Link>
                   </div>
 
-                  <div className=" md:ml-4 md:flex md:flex-shrink-0 md:items-center">
+                  <div className="md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative ml-3">
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:shadow-xl hover:focus:outline-none hover:focus:ring-2 hover:focus:ring-green-500 focus:ring-offset-2">
                         <img
@@ -173,7 +205,7 @@ const PrivateNavbar = () => {
                         leaveFrom="transform opacity-100 scale-100"
                         leaveTo="transform opacity-0 scale-95"
                       >
-                        <Menu.Items className=" w-56 absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                        <Menu.Items className="w-56 absolute right-0 z-10 mt-2 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                           <Menu.Item>
                             {({ active }) => (
                               <Link
@@ -225,7 +257,7 @@ const PrivateNavbar = () => {
                             )}
                           </Menu.Item>
                           <div>
-                            <hr className=" mb-4" />
+                            <hr className="mb-4" />
                           </div>
                           <Menu.Item>
                             {({ active }) => (
@@ -260,13 +292,13 @@ const PrivateNavbar = () => {
                   <div className="flex justify-end">
                     <button
                       className="mr-2 bg-red-500 text-black px-4 py-2 rounded-md hover:bg-red-600"
-                      onClick={handleSignOut} // Call handleSignOut to sign out and navigate
+                      onClick={handleSignOut}
                     >
                       Yes, sign out
                     </button>
                     <button
                       className="bg-gray-200 text-gray-700 px-4 py-2 rounded-md hover:bg-gray-300"
-                      onClick={() => setShowConfirmation(false)} // Close modal without signing out
+                      onClick={() => setShowConfirmation(false)}
                     >
                       Cancel
                     </button>
@@ -275,14 +307,16 @@ const PrivateNavbar = () => {
               </div>
             </Transition>
             <Disclosure.Panel className="md:hidden">
-              <div className=" mt-4">
+              <div className="mt-4">
                 <input
                   type="text"
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                   onKeyDown={handleKeyPress}
-                  className="py-2 w-full sm:w-auto border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
+                  onFocus={() => setShowPopup(searchTerm.length > 0)}
+                  onBlur={() => setShowPopup(false)}
+                  className="p-2 w-full sm:w-full border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
                 />
                 <span className="absolute hover:bg-green-400 pl-2 rounded-lg" onClick={handleSearch}>
                   <BsSearch className="absolute top-3 right-5 text-gray-800" size={20} />

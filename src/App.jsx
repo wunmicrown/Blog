@@ -31,6 +31,7 @@ import DraftsList from './pages/postsFolder/DraftsList';
 import UserDashboard from './pages/dashboardsFolder/UserDashboard';
 import SearchResultsPage from './pages/SearchResultsPage ';
 import CoverImageView from './pages/postsFolder/CoverImageView';
+import ResultPopUp from './pages/Navbar/SearchResultsPopup';
 
 const App = () => {
     return (

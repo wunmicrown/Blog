@@ -131,7 +131,7 @@ const PrivateNavbar = () => {
                     </Link>
                     <div className="mt-4 relative ">
                       <input
-                        type="text"
+                        type="search"
                         placeholder="Search..."
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
@@ -237,16 +237,19 @@ const PrivateNavbar = () => {
                               </Link>
                             )}
                           </Menu.Item>
-                          <Menu.Item>
-                            {({ active }) => (
-                              <Link
-                                to={'/create-category'}
-                                className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
-                              >
-                                Category
-                              </Link>
-                            )}
-                          </Menu.Item>
+                          {user?.userType === 'Admin' && (
+                            <Menu.Item>
+                              {({ active }) => (
+                                <Link
+                                  to={'/create-category'}
+                                  className={`${active ? "bg-gray-100" : ""} block px-4 py-2 text-sm text-gray-700 hover:text-green-500 hover:underline`}
+                                >
+                                  Category
+                                </Link>
+                              )}
+                            </Menu.Item>
+                          )}
+
                           <Menu.Item>
                             {({ active }) => (
                               <Link
@@ -310,7 +313,7 @@ const PrivateNavbar = () => {
             <Disclosure.Panel className="md:hidden">
               <div className="mt-4">
                 <input
-                  type="text"
+                  type="search"
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}

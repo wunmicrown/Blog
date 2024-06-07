@@ -319,22 +319,24 @@ const PrivateNavbar = () => {
                   </div>
                 </div>
               </div>
+
+
             </Transition>
             <Disclosure.Panel className="md:hidden">
               <div className="mt-4">
+                <span className="absolute hover:bg-green-400 rounded-lg hover:cursor-pointer pt-10 pl-10" onClick={handleSearch}>
+                  <BsSearch className="absolute top-3 left-2 text-gray-800" size={20} />
+                </span>
                 <input
                   type="search"
                   placeholder="Search..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  onKeyDown={handleKeyPress}
+                  onKeyUp={handleKeyPress}
                   onFocus={() => setShowPopup(searchTerm.length > 0)}
                   onBlur={() => setShowPopup(false)}
-                  className="p-2 w-full sm:w-full border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold"
+                  className="p-2 pl-10 w-full sm:w-[440px] border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold "
                 />
-                <span className="absolute hover:bg-green-400 pl-2 rounded-lg" onClick={handleSearch}>
-                  <BsSearch className="absolute top-3 right-5 text-gray-800" size={20} />
-                </span>
               </div>
               <div className="space-y-1 pt-2 pb-3">
                 <Link

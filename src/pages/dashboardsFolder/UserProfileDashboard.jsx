@@ -8,6 +8,7 @@ import AdminDashboard from '../Admin/AdminDashboard';
 import Static from './Static';
 
 const UserProfileDashboard = () => {
+    const defaultProfilePic = "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png";
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [posts, setPosts] = useState(null);
@@ -74,8 +75,15 @@ const UserProfileDashboard = () => {
                             {user && (
                                 <div className='mx-auto w-full max-w-screen-lg px-4'>
                                     <div className='flex md:justify-center lg:justify-center sm:justify-start xl:justify-center  '>
-                                        <img className='w-24 h-24 rounded-full' src={user.profilePic ||
-                                            "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic" />
+                                        <div>
+                                          <img 
+                                        className='w-24 h-24 object-cover rounded-full'
+                                         src={user.profilePic? `${user.profilePic}?w=96&h=96`:`${defaultProfilePic}?w=96&h=96`}
+                                          alt="Profile Pic" 
+                                          width='96'
+                                          height='96'
+                                          />
+                                        </div>
                                     </div>
                                     <div className='bg-[rgb(55,65,81)] mx-auto w-full text-white h-auto text-center pt-4 p-20 max-w-screen-lg px-4 rounded-lg'>
                                         <p className='pt-8 font-bold text-xl flex md:justify-center lg:justify-center sm:justify-start xl:justify-center'>{user.username}</p>

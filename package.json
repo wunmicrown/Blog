@@ -13,6 +13,7 @@
   "dependencies": {
     "@headlessui/react": "^1.7.18",
     "@heroicons/react": "^2.1.1",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
     "axios": "^1.6.7",
     "formik": "^2.4.5",
     "jodit-react": "^4.0.18",

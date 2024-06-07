@@ -130,7 +130,7 @@ const PrivateNavbar = () => {
                       Home
                     </Link>
                     <div className="mt-4 relative ">
-                    <span className="absolute hover:bg-green-400 rounded-lg hover:cursor-pointer pt-10 pl-10" onClick={handleSearch}>
+                      <span className="absolute hover:bg-green-400 rounded-lg hover:cursor-pointer pt-10 pl-10" onClick={handleSearch}>
                         <BsSearch className="absolute top-3 left-2 text-gray-800" size={20} />
                       </span>
                       <input
@@ -143,7 +143,7 @@ const PrivateNavbar = () => {
                         onBlur={() => setShowPopup(false)}
                         className="p-2 pl-10 w-full sm:w-[440px] border bg-green-100 border-gray-200 rounded-md focus:ring-1 focus:ring-green-500 focus:outline-none focus:border-transparent text-gray-700 font-bold "
                       />
-                      
+
                       {/* Popup for search results */}
                       <Transition
                         show={showPopup && searchResults.length > 0 && !noResults}

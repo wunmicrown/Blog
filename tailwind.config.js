@@ -23,6 +23,7 @@ export default {
     },
   },
   plugins: [
+    require('@tailwindcss/aspect-ratio'),
     function ({ addUtilities }) {
       addUtilities({
         '.custom-scrollbar': {
@@ -35,5 +36,6 @@ export default {
         },
       });
     },
+
   ],
 }

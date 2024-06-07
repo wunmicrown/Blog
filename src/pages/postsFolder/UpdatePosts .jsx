@@ -185,7 +185,7 @@ const UpdatePosts = () => {
 
     return (
         <>
-            <Card className="p-4 shadow-sm border-0 bg-[#3d3d3e] w-full lg:w-[90%] xl:w-[80%] mx-auto">
+            <Card className="p-4 shadow-sm border-0 bg-[#2a3240] w-full lg:w-[90%] xl:w-[80%] mx-auto">
                 <CardBody>
                     {showPreview ? (
                         <PostPreview

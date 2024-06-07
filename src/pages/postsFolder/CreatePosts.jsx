@@ -183,7 +183,7 @@ const CreatePosts = () => {
     <>
       <div className="bg-green-50 overflow-x-hidden">
         <div className="wrapper min-h-screen">
-          <Card className="p-4 shadow-sm border-0 bg-[#3d3d3e] w-full lg:w-[90%] xl:w-[80%] mx-auto">
+          <Card className="p-4 shadow-sm border-0 bg-[#2a3240] w-full lg:w-[90%] xl:w-[80%] mx-auto">
             <CardBody>
               {showPreview ? (
                 <PostPreview
@@ -209,11 +209,11 @@ const CreatePosts = () => {
                         {imagePreview ? (
                           <img src={imagePreview} alt="Selected Image" className="rounded-md w-full h-full object-cover" />
                         ) : (
-                          <p className="text-gray-500">Click the button to upload cover image</p>
+                          <p className="text-gray-400">Click the button to upload cover image</p>
                         )}
                       </div>
                       <div className="mt-16 mb-16">
-                        <label htmlFor="image" className="flex p-4 relative cursor-pointer border-4 border-gray-200 text-[#D6D6D7] bg-[#171717] rounded-md">
+                        <label htmlFor="image" className="flex p-4 relative cursor-pointer border-4 border-[#959494] text-[#959494] bg-[#171717] rounded-md">
                           <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 opacity-0 cursor-pointer" />
                           <MdFileUpload size={24} className="mr-2" />
                           <span className="font-bold">{imagePreview ? <div className="!h-[10px]">Change</div> : 'Add a cover image'}</span>
@@ -269,7 +269,7 @@ const CreatePosts = () => {
                       <Input
                         type="select"
                         placeholder="Enter here"
-                        className="rounded border-4 border-gray-200 text-[#D6D6D7] focus:outline-none cursor-pointer w-full lg:w-56 bg-[#171717] p-2"
+                        className="rounded border-4 border-[#959494] text-[#959494] focus:outline-none cursor-pointer w-full lg:w-56 bg-[#171717] p-2"
                         name="category"
                         onChange={fieldChanged}
                         value={post.category || ''}

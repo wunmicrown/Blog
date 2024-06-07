@@ -13,7 +13,7 @@ const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDra
                     </button>
                 </div>
                 <div className='p-6'>
-                    {imagePreview && <img src={imagePreview} alt="Cover" className=' w-full h-96' />}
+                    {imagePreview && <img src={imagePreview} alt="Cover" className=' w-full h-96 object-cover' />}
                 </div>
                 <div className=' ml-6 mb-8 mt-6 text-3xl font-bold leading-tight tracking-tighter md:text-5xl text-darkCoolGray-900'>
                     {post.title}

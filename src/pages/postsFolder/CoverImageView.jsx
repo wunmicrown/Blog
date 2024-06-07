@@ -9,7 +9,7 @@ const CoverImageView = () => {
             <div className="block select-none mx-auto bg-gray-300 transition-colors duration-300">
                 <img
                     src={decodeURIComponent(imageUrl)}
-                    alt="Cover"
+                    alt="Cover object-cover"
                     className="w-[1000px] h-[420px] overflow-hidden"
                 />
             </div>

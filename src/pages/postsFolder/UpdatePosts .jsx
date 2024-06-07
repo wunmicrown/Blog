@@ -208,7 +208,7 @@ const UpdatePosts = () => {
                                 <div className="lg:pt-10 sm:pt-10 md:pt-10 flex justify-evenly 16">
                                     <div className="border-2 w-3/6 h-60 rounded-md flex items-center justify-center">
                                         {imagePreview ? (
-                                            <img src={imagePreview} alt="Selected Image" className="rounded-md w-full h-full" />
+                                            <img src={imagePreview} alt="Selected Image" className="rounded-md w-full h-full object-cover" />
                                         ) : (
                                             <p className="text-gray-500">Click the button to upload cover image</p>
                                         )}

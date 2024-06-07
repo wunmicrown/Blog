@@ -58,7 +58,7 @@ const PostsDetails = () => {
                         <div className="mx-auto mb-12 text-center md:max-w-2xl">
                             <Link to={`/cover/${encodeURIComponent(post?.post?.coverImgUrl)}`}>
                                 <img
-                                    className="w-full h-60 mx-auto mb-4"
+                                    className="w-full h-60 mx-auto mb-4 object-cover"
                                     src={post?.post?.coverImgUrl}
                                     alt="post image"
                                 />
@@ -68,14 +68,20 @@ const PostsDetails = () => {
                                 <Link to={''}
                                     className='flex items-center justify-start mx-2 text-left'
                                 >
-                                    <img
-                                        className="w-12 h-12 rounded-full"
-                                        alt="author image"
-                                        src={
-                                            post?.post?.author?.profilePic ||
-                                            "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"
-                                        }
-                                    />
+                                    <div className="bg-rd-500 rounded-full flex items-center justify-center">
+                                        <img
+                                            className=" w-16 h-16 rounded-full object-cover"
+                                            alt="author image"
+                                            src={
+                                                post?.post?.author?.profilePic ||
+                                                "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"
+                                            }
+                                            width="40"
+                                            height="40"
+                                            sizes="(max-width: 600px) 40px, 40px"
+                                        />
+                                    </div>
+
                                     <div className='flex justify-between w-full'>
                                         <div className="w-auto px-2">
                                             <h4 className="text-base font-bold md:text-lg text-coolGray-800">

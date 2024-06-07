@@ -15,7 +15,7 @@ const Posts = ({ posts }) => {
               to={`/posts/${post.id}`}
               className="block mb-10 overflow-hidden rounded-md"
             >
-              <img className="h-40 w-full" src={post?.coverImgUrl} alt={post.title} />
+              <img className="h-40 w-full object-cover" src={post?.coverImgUrl} alt={post.title} />
             </Link>
 
             <div className="mb-4">

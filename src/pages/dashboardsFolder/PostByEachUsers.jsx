@@ -128,7 +128,9 @@ const PostByEachUsers = () => {
                             ) : (
                                 <div className='mb-20 bg-[#5b5c5b] rounded-lg p-4 overflow-y-auto'>
                                     <div className='flex justify-center'>
-                                        <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt="" />
+                                        <img src={'https://media.dev.to/cdn-cgi/image/width=300,height=,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fi%2Fy5767q6brm62skiyywvc.png'} alt=""
+                                        className='object-cover'
+                                        />
                                     </div>
                                     <div>
                                         <p className='font-semibold text-center'>

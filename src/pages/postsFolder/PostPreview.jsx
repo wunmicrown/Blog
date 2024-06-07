@@ -1,14 +1,14 @@
 import React from 'react';
 
-const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDraft }) => {
+const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDraft, handleSaveChanges }) => {
     return (
         <>
             <div className="text-white mb-10">
                 <div className="text-white mt-20 gap-4 flex justify-end">
-                    <button onClick={onClose} className="p-4 rounded-sm hover:text-green-400 font-semibold  hover:cursor-pointer">
+                    <button onClick={onClose} className="p-4 rounded-sm hover:text-green-400 font-semibold hover:cursor-pointer">
                         Edit
                     </button>
-                    <button onClick={onClose} className="p-4 rounded-sm hover:text-green-400 font-semibold  hover:cursor-pointer">
+                    <button onClick={onClose} className="p-4 rounded-sm hover:text-green-400 font-semibold hover:cursor-pointer">
                         Preview
                     </button>
                 </div>
@@ -30,8 +30,14 @@ const PostPreview = ({ post, imagePreview, onClose, handlePublish, handleSaveDra
                     </div>
                 </div>
                 <div className="text-start mt-4 text-[#0a4429] pb-8 ml-4 lg:ml-10">
-                    <button className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2 mr-2" onClick={handlePublish}>Publish</button>
-                    <button className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]" onClick={handleSaveDraft}>Save draft</button>
+                    {post.status === 'published' ? (
+                        <button className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2 mr-2" onClick={handleSaveChanges}>Save Changes</button>
+                    ) : (
+                        <>
+                            <button className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2 mr-2" onClick={handlePublish}>Publish</button>
+                            <button className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]" onClick={handleSaveDraft}>Save Draft</button>
+                        </>
+                    )}
                 </div>
             </div>
         </>

@@ -22,7 +22,7 @@ const CreatePosts = () => {
     content: '',
     category: null,
     tags: [],
-    status: 'published',
+    status: 'draft',
   });
   const [showPreview, setShowPreview] = useState(false);
   const [draftSaved, setDraftSaved] = useState(false);
@@ -284,7 +284,7 @@ const CreatePosts = () => {
                       </Input>
                     </div>
                     <div className="mt-4">
-                    <h2 htmlFor="content" className="text-gray-200 font-bold flex justify-start ml-8 py-4">Content</h2>
+                      <h2 htmlFor="content" className="text-gray-200 font-bold flex justify-start ml-8 py-4">Content</h2>
                       <JoditEditor
                         ref={editor}
                         value={post.content}

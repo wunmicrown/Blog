@@ -46,7 +46,7 @@ const Category = () => {
                 />
                 <div className="overlay absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center bg-black bg-opacity-55 text-white">
                   <h4 className="text-lg font-semibold">{item.category}</h4>
-                  <p className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center bg-black bg-opacity-55 text-white transition-colors duration-500 hover:bg-opacity-65">
+                  <p className="absolute top-0 left-0 right-0 bottom-0 flex flex-col items-center justify-center bg-black bg-opacity-45 text-white transition-colors duration-500 hover:bg-opacity-65">
                     {item.title}
                   </p>
                 </div>

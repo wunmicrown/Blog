@@ -9,6 +9,7 @@ import axios from "axios";
 import { API_URL } from "../constants/Api";
 
 const PrivateNavbar = () => {
+  const defaultProfilePic = "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png";
   const [user, setUser] = useState(null);
   const [tokenMatch, setTokenMatch] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -193,10 +194,18 @@ const PrivateNavbar = () => {
                   <div className="md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative ml-3">
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:shadow-xl hover:focus:outline-none hover:focus:ring-2 hover:focus:ring-green-500 focus:ring-offset-2">
-                        <img
-                          className="h-10 w-10 rounded-full"
-                          src={user && user.profilePic ? user.profilePic : "https://cdn.pixabay.com/photo/2016/11/18/23/38/child-1837375_1280.png"} alt="Profile Pic"
-                        />
+                      {user && (
+                          <div className=''>
+                            <img
+                              className=' w-12 h-12 object-cover rounded-full'
+                              sizes="(max-width: 600px) 48px, 96px"
+                              src={user.profilePic ? `${user.profilePic}?w=96&h=96` : defaultProfilePic}
+                              alt="Profile Pic"
+                              width='96'
+                              height='96'
+                            />
+                          </div>
+                        )}
                       </Menu.Button>
                       <Transition
                         as={Fragment}

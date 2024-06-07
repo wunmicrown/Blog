@@ -89,9 +89,11 @@ const Uploadpic = () => {
                             <div className="flex items-center justify-center h-48 w-48 rounded-full">
                                 {user && user.profilePic ? (
                                     <img
-                                        className="h-full w-full rounded-full"
-                                        src={user.profilePic}
+                                        className="h-full object-cover w-full rounded-full"
+                                        src={`${user.profilePic}?w=96&h=96`}
                                         alt="User"
+                                        width='96'
+                                        height='96'
                                     />
                                 ) : (
                                     <div>

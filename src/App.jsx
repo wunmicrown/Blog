@@ -55,6 +55,7 @@ const App = () => {
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
+                    <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
@@ -64,7 +65,6 @@ const App = () => {
                     <Route path="/:id/drafts" element={<DraftsList />} />
                     <Route path="/posts/:postId" element={<PostsDetails />} />
                     <Route path="/:id/profile" element={<UserProfileDashboard />} />
-                    <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
                     <Route path="/create-post" element={<CreatePosts />} />
                     <Route path="/create-category" element={<CreateCategoryForm />} />
                     <Route path="/update-post/:postId/edit" element={<UpdatePosts />} />

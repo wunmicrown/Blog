@@ -76,13 +76,13 @@ const UserProfileDashboard = () => {
                                 <div className='mx-auto w-full max-w-screen-lg px-4'>
                                     <div className='flex md:justify-center lg:justify-center sm:justify-start xl:justify-center  '>
                                         <div>
-                                          <img 
-                                        className='w-24 h-24 object-cover rounded-full'
-                                         src={user.profilePic? `${user.profilePic}?w=96&h=96`:`${defaultProfilePic}?w=96&h=96`}
-                                          alt="Profile Pic" 
-                                          width='96'
-                                          height='96'
-                                          />
+                                            <img
+                                                className='w-24 h-24 object-cover rounded-full'
+                                                src={user.profilePic ? `${user.profilePic}?w=96&h=96` : `${defaultProfilePic}?w=96&h=96`}
+                                                alt="Profile Pic"
+                                                width='96'
+                                                height='96'
+                                            />
                                         </div>
                                     </div>
                                     <div className='bg-[rgb(55,65,81)] mx-auto w-full text-white h-auto text-center pt-4 p-20 max-w-screen-lg px-4 rounded-lg'>

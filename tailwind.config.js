@@ -9,7 +9,31 @@ export default {
       // backgroundImage: {
       //   'striped-gradient': 'linear-gradient(to bottom left, #4ADE80 48%, #ffff 55%, #ffff 40%)',
       // },
+      // Custom scrollbar hiding utility
+      scrollbar: {
+        hide: {
+          '&::-webkit-scrollbar': {
+            width: '0',
+            height: '0',
+          },
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    function ({ addUtilities }) {
+      addUtilities({
+        '.custom-scrollbar': {
+          '&::-webkit-scrollbar': {
+            width: '0',
+            height: '0',
+          },
+          '-ms-overflow-style': 'none',
+          'scrollbar-width': 'none',
+        },
+      });
+    },
+  ],
 }

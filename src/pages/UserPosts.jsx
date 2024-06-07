@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import calculateTimeDifference from '../utils/CalculateTime';
+import truncatePost from '../utils/truncatepost';
 
 const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
   return (
@@ -86,7 +87,7 @@ const UserPosts = ({ posts, isCreator, openConfirmationModal }) => {
                 </button>
               ))}
             </div>
-            <div className="mb-4 text-coolGray-500">
+            <div className="mb-4 text-coolGray-500 max-h-40 overflow-auto custom-scrollbar">
               <div dangerouslySetInnerHTML={{ __html: (post?.content) }}></div>
             </div>
           </div>

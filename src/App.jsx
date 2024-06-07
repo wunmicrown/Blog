@@ -26,7 +26,6 @@ import UserProfileDashboard from './pages/dashboardsFolder/UserProfileDashboard'
 import PostsList from './pages/postsFolder/PostsList';
 import UpdatePosts from './pages/postsFolder/UpdatePosts ';
 import PostByEachUsers from './pages/dashboardsFolder/PostByEachUsers';
-
 import DraftsList from './pages/postsFolder/DraftsList';
 import UserDashboard from './pages/dashboardsFolder/UserDashboard';
 import SearchResultsPage from './pages/SearchResultsPage ';
@@ -56,7 +55,6 @@ const App = () => {
                     <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
-                    <Route path="/:id" element={<UserDashboard />} />
 
                 </Route>
                 <Route path='/' element={<DashboardPath />}>
@@ -72,6 +70,7 @@ const App = () => {
                     <Route path="/update-post/:postId/edit" element={<UpdatePosts />} />
                     <Route path="/posts/:postId" element={<AddComment />} />
                     <Route path="/search" element={<SearchResultsPage />} />
+                    <Route path="/:id" element={<UserDashboard />} />
                 </Route>
                 <Route path="/settings" element={<SettingLayout />} >
                     <Route path="/settings/profile" element={<ChangeEmail />} />

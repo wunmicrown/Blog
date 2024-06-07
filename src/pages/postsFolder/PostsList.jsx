@@ -62,16 +62,6 @@ const PostsList = () => {
     fetchCategories();
   }, []);
 
-  // const handleLikeClick = (postId) => {
-  //   setLikedPosts((prevLikedPosts) => {
-  //     if (prevLikedPosts.includes(postId)) {
-  //       return prevLikedPosts.filter((id) => id !== postId);
-  //     } else {
-  //       return [...prevLikedPosts, postId];
-  //     }
-  //   });
-  // };
-
   return (
     <>
       <Category />

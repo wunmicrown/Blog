@@ -4,7 +4,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { API_URL } from '../constants/Api';
 import { MdEmail, MdVerifiedUser } from 'react-icons/md';
 import calculateReadingtime from '../../utils/calculateReadingtime';
-import AdminDashboard from '../Admin/AdminDashboard';
 
 const UserDashboard = () => {
     const navigate = useNavigate();

@@ -194,7 +194,7 @@ const PrivateNavbar = () => {
                   <div className="md:ml-4 md:flex md:flex-shrink-0 md:items-center">
                     <Menu as="div" className="relative ml-3">
                       <Menu.Button className="flex rounded-full bg-white text-sm focus:shadow-xl hover:focus:outline-none hover:focus:ring-2 hover:focus:ring-green-500 focus:ring-offset-2">
-                      {user && (
+                        {user && (
                           <div className=''>
                             <img
                               className=' w-12 h-12 object-cover rounded-full'

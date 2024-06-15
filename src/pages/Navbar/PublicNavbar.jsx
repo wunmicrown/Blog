@@ -44,28 +44,28 @@ const PublicNavbar = () => {
                   <Link
                     to={"/"}
                     className="
-                     inline-flex items-center px-1 pt-1 text-sm font-medium border-b-2 border-transparent text-gray-900 
+                     inline-flex items-center px-1 pt-1 text-sm border-b-2 border-transparent text-[16px] font-medium text-black
                      hover:border-green-600 hover:text-green-300
                      "
                   >
                     Home
                   </Link>
-                  <Link
-                    to={"/login"}
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-600 hover:text-green-300"
-                  >
-                    Login
-                  </Link>
-                  <Link
-                    to={"/register"}
-                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-sm font-medium text-gray-500 hover:border-green-600 hover:text-green-300"
-                  >
-                    SignUp
-                  </Link>
                 </div>
               </div>
               <div className="flex items-center">
-                <div className="flex-shrink-0">
+                <div className="flex-shrink-0 flex gap-6">
+                  <Link
+                    to={"/login"}
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-[16px] font-medium text-black hover:border-green-600 hover:text-green-300"
+                  >
+                    Log in
+                  </Link>
+                  <Link
+                    to={"/register"}
+                    className="inline-flex items-center border-b-2 border-transparent px-1 pt-1 text-[16px] font-medium text-black hover:border-green-600 hover:text-green-300"
+                  >
+                    Signup
+                  </Link>
                   <Link
                     to={"/login"}
                     className="ml-2 relative inline-flex items-center gap-x-1.5 rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-black shadow-sm hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-300"
@@ -73,6 +73,7 @@ const PublicNavbar = () => {
                     <PlusIcon className="-ml-0.5 h-5 w-5" aria-hidden="true" />
                     Add New Post
                   </Link>
+                  
                 </div>
               </div>
             </div>

@@ -10,7 +10,6 @@ const Layout = () => {
     <>
       <div>
         {isLoggedIn ? <PrivateNavbar /> : <PublicNavbar />}
-
         <Outlet />
         <Footer />
       </div>

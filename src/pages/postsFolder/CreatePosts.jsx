@@ -26,6 +26,10 @@ const CreatePosts = () => {
   });
   const [showPreview, setShowPreview] = useState(false);
   const [draftSaved, setDraftSaved] = useState(false);
+  const [selectFocused, setSelectFocused] = useState(false);
+  const [isSubmittingDraft, setIsSubmittingDraft] = useState(false);
+  const [isSubmittingPublish, setIsSubmittingPublish] = useState(false);
+  const [isPublished, setIsPublished] = useState(false);
 
   const saveDraft = (event) => createOrSavePost(event, 'draft');
   const publishPost = (event) => createOrSavePost(event, 'published');
@@ -33,23 +37,34 @@ const CreatePosts = () => {
   const createOrSavePost = async (event, status) => {
     event.preventDefault();
 
+    if ((status === 'draft' && isSubmittingDraft) || (status === 'published' && isSubmittingPublish)) return;
+    if (status === 'draft') {
+      setIsSubmittingDraft(true);
+    } else if (status === 'published') {
+      setIsSubmittingPublish(true);
+    }
+
     if (post.title.trim() === '') {
       toast.error("Title can't be blank !!");
+      resetSubmitState(status);
       return;
     }
 
     if (post.content.trim() === '') {
       toast.error("Post content is required !!");
+      resetSubmitState(status);
       return;
     }
 
     if (!post.category) {
       toast.error("Select some category !!");
+      resetSubmitState(status);
       return;
     }
 
     if (!image && status === 'published') {
       toast.error("Cover image is required to publish the post !!");
+      resetSubmitState(status);
       return;
     }
 
@@ -77,11 +92,24 @@ const CreatePosts = () => {
       setImage(null);
       setImagePreview('');
       setDraftSaved(true);
+      if (status === 'published') {
+        setIsPublished(true);
+      }
       if (status === 'draft') return navigate(`/${user._id}/drafts`);
 
     } catch (error) {
       console.error('Error saving draft:', error);
       toast.error(status === 'draft' ? "Draft not saved due to some error !!" : "Post not created due to some error !!");
+    } finally {
+      resetSubmitState(status);
+    }
+  };
+
+  const resetSubmitState = (status) => {
+    if (status === 'draft') {
+      setIsSubmittingDraft(false);
+    } else if (status === 'published') {
+      setIsSubmittingPublish(false);
     }
   };
 
@@ -179,6 +207,14 @@ const CreatePosts = () => {
     setShowPreview(false);
   };
 
+  const handleSelectFocus = () => {
+    setSelectFocused(true);
+  };
+
+  const handleSelectBlur = () => {
+    setSelectFocused(false);
+  };
+
   return (
     <>
       <div className="bg-green-50 overflow-x-hidden">
@@ -196,16 +232,16 @@ const CreatePosts = () => {
               ) : (
                 <>
                   <div className="text-white mt-20 gap-4 flex justify-end mr-16">
-                    <button onClick={handleEditClick} className="p-4 rounded-sm hover:text-green-400 font-semibold  hover:cursor-pointer">
+                    <button onClick={handleEditClick} className="p-4 rounded-sm hover:text-green-400 font-semibold hover:cursor-pointer">
                       Edit
                     </button>
-                    <button onClick={handlePreviewClick} className="p-4 rounded-sm hover:text-green-400 font-semibold  hover:cursor-pointer">
+                    <button onClick={handlePreviewClick} className="p-4 rounded-sm hover:text-green-400 font-semibold hover:cursor-pointer">
                       Preview
                     </button>
                   </div>
                   <Form>
                     <div className="lg:pt-10 sm:pt-10 md:pt-10 flex justify-evenly 16">
-                      <div className="border-2 w-3/6 h-60 rounded-md flex items-center justify-center">
+                      <div className="border-2 lg:w-3/6 lg:h-60 xl:w-3/6 md:h-60 md:w-3/6  xl:h-60 rounded-md flex items-center justify-center">
                         {imagePreview ? (
                           <img src={imagePreview} alt="Selected Image" className="rounded-md w-full h-full object-cover" />
                         ) : (
@@ -221,11 +257,11 @@ const CreatePosts = () => {
                       </div>
                     </div>
                     <div className="my-3 mt-8 ml-4 lg:ml-16 p-4 lg:p-8">
-                      <label htmlFor="title" className="text-gray-200 font-xl text-lg mb-4">Title</label>
+                      <label htmlFor="title" className="text-gray-200 font-bold text-lg mb-2">Post title</label>
                       <input
                         type="text"
                         id="title"
-                        placeholder="New post title here..."
+                        placeholder="Write a title..."
                         className="bg-transparent font-medium placeholder-gray-200 hover:placeholder-green-500 focus:border-green-500 appearance-none border-2 w-full py-3 px-3 rounded text-gray-200 leading-tight focus:outline-none"
                         name="title"
                         onChange={fieldChanged}
@@ -272,10 +308,12 @@ const CreatePosts = () => {
                         className="rounded border-4 border-[#959494] text-[#959494] focus:outline-none cursor-pointer w-full lg:w-56 bg-[#171717] p-2"
                         name="category"
                         onChange={fieldChanged}
-                        value={post.category || ''}
+                        onFocus={handleSelectFocus}
+                        onBlur={handleSelectBlur}
+                        value={post.category || 'default'}
                         style={{ appearance: 'none' }}
                       >
-                        <option key="0" className="cursor-pointer">Select category</option>
+                        <option value="default" className="cursor-pointer" hidden>Select category</option>
                         {categories.map((category) => (
                           <option key={category._id} value={category._id} className="cursor-pointer">
                             {category.categoryName}
@@ -283,18 +321,28 @@ const CreatePosts = () => {
                         ))}
                       </Input>
                     </div>
-                    <div className="mt-4">
+                    <div className={`mt-4 px-12 transition-all duration-300 ${selectFocused ? 'mt-24' : ''}`}>
                       <h2 htmlFor="content" className="text-gray-200 font-bold flex justify-start ml-8 py-4">Content</h2>
                       <JoditEditor
                         ref={editor}
                         value={post.content}
-                        onChange={contentFieldChanged}
-                        onBlur={(newContent) => setContent(newContent)}
+                        config={{ readonly: false, height: 350 }}
+                        onBlur={contentFieldChanged}
                       />
+
                     </div>
-                    <Container className="text-start text-[#0a4429] pb-8 ml-4 lg:ml-16 mb-10 mt-3">
-                      <Button onClick={publishPost} className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2">Publish</Button>
-                      <Button onClick={saveDraft} className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]">Save draft</Button>
+                    <Container className="text-start text-[#0a4429] pb-8 xl:ml-12 md:ml-12 lg:ml-12 ml-10 mb-10 mt-3">
+                      <Button onClick={publishPost} className="rounded-lg bg-green-500 font-medium text-lg hover:bg-green-300 p-2" >
+                        {isSubmittingPublish ? "Publishing..." : isPublished ? "Publish" : "Publish"}
+                      </Button>
+                      <Button
+                        type="submit"
+                        onClick={saveDraft}
+                        className="rounded-sm ms-2 text-gray-200 p-2 font-medium hover:rounded-lg hover:bg-green-400 hover:text-[#0a4429]"
+                        disabled={isSubmittingDraft}
+                      >
+                        {isSubmittingDraft ? 'Saving...' : 'Save Draft'}
+                      </Button>
                     </Container>
                   </Form>
                 </>
@@ -305,6 +353,6 @@ const CreatePosts = () => {
       </div>
     </>
   );
-}
+};
 
 export default CreatePosts;

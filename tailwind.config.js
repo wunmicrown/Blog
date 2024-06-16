@@ -6,6 +6,12 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily:{
+        sans: ['Helvetica', 'Arial', 'sans-serif'],
+        serif: ['Georgia', 'Times New Roman', 'serif'],
+        mono: ['SFMono-Regular', 'Menlo', 'monospace'],
+        custom: ['"SFMono-Regular"', '"YourCustomFont2"', 'fallback-font'],
+      },
       // backgroundImage: {
       //   'striped-gradient': 'linear-gradient(to bottom left, #4ADE80 48%, #ffff 55%, #ffff 40%)',
       // },

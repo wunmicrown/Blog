@@ -46,13 +46,14 @@ const App = () => {
                 pauseOnHover
                 theme="light"
             />
-            <Routes>
+            <div className=' font-mono-serif-custom-sans'>
+            <Routes> 
                 <Route element={<Layout />}>
                     <Route path='/' index element={<Homepage />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/verify-email" element={<VerifyEmail />} />
-                    <Route path="/password-reset-verification" element={<PasswordResetVerification />} />
+                    <Route path="/password-reset-verification" element={<PasswordResetVerification /   >} />
                     <Route path="/forgot-password" element={<ForgotPassword />} />
                     <Route path="/reset-password" element={<PasswordReset />} />
                     <Route path="/auth/reg/:key/admin" element={<AdminSignUp />} />
@@ -81,6 +82,7 @@ const App = () => {
                 {/* route for handling non-existing routes */}
                 <Route path="*" element={<NotFoundPage />} />
             </Routes>
+            </div>
         </>
     );
 };

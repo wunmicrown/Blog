@@ -74,7 +74,10 @@ const PostsList = () => {
               </h3>
             </div>
             {loading ? (
-              <Loading />
+              <div>
+
+                {/* <Loading /> */}
+              </div>
             ) : error ? (
               <div className="text-red-500 text-center">{error?.message}</div>
             ) : trendingPublishedPosts.length === 0 ? (

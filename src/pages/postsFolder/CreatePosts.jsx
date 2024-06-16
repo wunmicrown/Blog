@@ -305,7 +305,7 @@ const CreatePosts = () => {
                       <Input
                         type="select"
                         placeholder="Enter here"
-                        className="rounded border-4 border-[#959494] text-[#959494] focus:outline-none cursor-pointer w-full lg:w-56 bg-[#171717] p-2"
+                        className="rounded border-4 border-[#959494] text-[#959494] focus:outline-none cursor-pointer w-56 lg:w-56 bg-[#171717] p-2"
                         name="category"
                         onChange={fieldChanged}
                         onFocus={handleSelectFocus}

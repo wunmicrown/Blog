@@ -249,12 +249,19 @@ const CreatePosts = () => {
                         )}
                       </div>
                       <div className="mt-16 mb-16">
-                        <label htmlFor="image" className="flex p-4 relative cursor-pointer border-4 border-[#959494] text-[#959494] bg-[#171717] rounded-md">
+                        <label htmlFor="image" className="flex p-2 relative cursor-pointer border-4 border-[#959494] text-[#959494] bg-[#171717] rounded-md">
                           <input id="image" type="file" onChange={handleFileChange} className="absolute inset-0 opacity-0 cursor-pointer" />
                           <MdFileUpload size={24} className="mr-2" />
                           <span className="font-bold">{imagePreview ? <div className="!h-[10px]">Change</div> : 'Add a cover image'}</span>
                         </label>
+                        {imagePreview && (
+                          <button onClick={() => { setImage(null); setImagePreview(''); }} className="flex p-2 mt-4  ml-2 relative cursor-pointer border-4 border-[#959494] text-[#959494] bg-[#171717] rounded-md
+">
+                            <MdCancel className="mr-2 text-xl" /> Remove
+                          </button>
+                        )}
                       </div>
+
                     </div>
                     <div className="my-3 mt-8 ml-4 lg:ml-16 p-4 lg:p-8">
                       <label htmlFor="title" className="text-gray-200 font-bold text-lg mb-2">Post title</label>
